@@ -1,0 +1,17 @@
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.LoginForm.resources
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.MainMenuForm.resources
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.csproj.GenerateResource.cache
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.AssemblyInfoInputs.cache
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.AssemblyInfo.cs
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.csproj.CoreCompileInputs.cache
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\bin\Debug\net8.0-windows\LSMSystem.exe
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\bin\Debug\net8.0-windows\LSMSystem.deps.json
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\bin\Debug\net8.0-windows\LSMSystem.runtimeconfig.json
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\bin\Debug\net8.0-windows\LSMSystem.dll
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\bin\Debug\net8.0-windows\LSMSystem.pdb
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.dll
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\refint\LSMSystem.dll
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.pdb
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\LSMSystem.genruntimeconfig.cache
+C:\Users\destr\source\repos\LSMSystem\LSMSystem\obj\Debug\net8.0-windows\ref\LSMSystem.dll

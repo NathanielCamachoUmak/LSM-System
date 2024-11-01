@@ -1,0 +1,116 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|c:\\users\\destr\\source\\repos\\lsm-system\\lsmsystem\\lsmsystem\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\lsmsystem\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|c:\\users\\destr\\source\\repos\\lsm-system\\lsmsystem\\lsmsystem\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|c:\\users\\destr\\source\\repos\\lsm-system\\lsmsystem\\lsmsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|c:\\users\\destr\\source\\repos\\lsm-system\\lsmsystem\\lsmsystem\\mainmenuform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\mainmenuform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\lsmsystem\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3AE57E66-993F-4A90-8858-0C03B6791794}|LSMSystem\\LSMSystem.csproj|solutionrelative:lsmsystem\\mainmenuform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\Program.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\Program.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\Program.cs",
+              "RelativeToolTip": "LSMSystem\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T04:04:04.772Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LoginForm.Designer.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\LoginForm.Designer.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LoginForm.Designer.cs",
+              "RelativeToolTip": "LSMSystem\\LoginForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T03:57:54.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LoginForm.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LoginForm.cs",
+              "RelativeToolTip": "LSMSystem\\LoginForm.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwC0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T03:48:52.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LoginForm.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\LoginForm.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\LoginForm.cs [Design]",
+              "RelativeToolTip": "..\\..\\LSMSystem\\LSMSystem\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T03:48:31.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainMenuForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\MainMenuForm.Designer.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\MainMenuForm.Designer.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\MainMenuForm.Designer.cs",
+              "RelativeToolTip": "LSMSystem\\MainMenuForm.Designer.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAiwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T02:52:32.788Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainMenuForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\destr\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\MainMenuForm.cs",
+              "RelativeDocumentMoniker": "LSMSystem\\MainMenuForm.cs",
+              "ToolTip": "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\MainMenuForm.cs [Design]",
+              "RelativeToolTip": "..\\..\\LSMSystem\\LSMSystem\\MainMenuForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T02:52:08.246Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
