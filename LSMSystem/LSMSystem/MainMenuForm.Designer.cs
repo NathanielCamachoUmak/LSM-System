@@ -25,13 +25,12 @@ namespace LSMSystem
 
         private void InitializeComponent()
         {
-            // Initialize buttons and form layout
             btnEmployeeCustomer = new Button();
             btnTaskAssignment = new Button();
             btnServiceRecords = new Button();
             btnReports = new Button();
+            btnLogin = new Button();
             SuspendLayout();
-
             // 
             // btnEmployeeCustomer
             // 
@@ -41,7 +40,6 @@ namespace LSMSystem
             btnEmployeeCustomer.TabIndex = 0;
             btnEmployeeCustomer.Text = "Employee & Customer Management";
             btnEmployeeCustomer.Click += BtnEmployeeCustomer_Click;
-
             // 
             // btnTaskAssignment
             // 
@@ -51,7 +49,6 @@ namespace LSMSystem
             btnTaskAssignment.TabIndex = 1;
             btnTaskAssignment.Text = "Task Assignment & Tracking";
             btnTaskAssignment.Click += BtnTaskAssignment_Click;
-
             // 
             // btnServiceRecords
             // 
@@ -61,7 +58,6 @@ namespace LSMSystem
             btnServiceRecords.TabIndex = 2;
             btnServiceRecords.Text = "Service Records";
             btnServiceRecords.Click += BtnServiceRecords_Click;
-
             // 
             // btnReports
             // 
@@ -71,11 +67,20 @@ namespace LSMSystem
             btnReports.TabIndex = 3;
             btnReports.Text = "Reports Generation";
             btnReports.Click += BtnReports_Click;
-
+            // 
+            // btnLogin
+            // 
+            btnLogin.Location = new Point(50, 266);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(200, 50);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "Login window";
+            btnLogin.Click += btnLogin_Click;
             // 
             // MainMenuForm
             // 
-            ClientSize = new Size(300, 300);
+            ClientSize = new Size(300, 356);
+            Controls.Add(btnLogin);
             Controls.Add(btnEmployeeCustomer);
             Controls.Add(btnTaskAssignment);
             Controls.Add(btnServiceRecords);
@@ -118,5 +123,6 @@ namespace LSMSystem
         private Button btnTaskAssignment;
         private Button btnServiceRecords;
         private Button btnReports;
+        private Button btnLogin;
     }
 }

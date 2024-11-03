@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\LSMSystem.csproj": {}
+    "C:\\Users\\Andre\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LSMSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\LSMSystem.csproj": {
+    "C:\\Users\\Andre\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LSMSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\LSMSystem.csproj",
+        "projectUniqueName": "C:\\Users\\Andre\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LSMSystem.csproj",
         "projectName": "LSMSystem",
-        "projectPath": "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\LSMSystem.csproj",
-        "packagesPath": "C:\\Users\\destr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\destr\\source\\repos\\LSMSystem\\LSMSystem\\obj\\",
+        "projectPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\LSMSystem.csproj",
+        "packagesPath": "C:\\Users\\Andre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\LSMSystem\\LSMSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\destr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

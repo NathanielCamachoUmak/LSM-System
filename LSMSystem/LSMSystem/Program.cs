@@ -10,7 +10,7 @@ namespace LSMSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm()); // Set LoginForm as the startup form
+            Application.Run(new MainMenuForm());
         }
     }
 }
