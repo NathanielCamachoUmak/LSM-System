@@ -1,0 +1,73 @@
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\MenuButtonTheme.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\TextBoxTheme.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\HomeView.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFaiv.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFor.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewToo.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewTree.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewWon.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype_MarkupCompile.cache
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype_MarkupCompile.lref
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.exe
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.deps.json
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.runtimeconfig.json
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.pdb
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\App.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\HomeView.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFaiv.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFor.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewToo.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewTree.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewWon.baml
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.g.resources
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.AssemblyInfoInputs.cache
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.AssemblyInfo.cs
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.csproj.CoreCompileInputs.cache
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\refint\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.pdb
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.genruntimeconfig.cache
+C:\Users\Andre\source\repos\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\ref\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.exe
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.deps.json
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.runtimeconfig.json
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.pdb
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\MenuButtonTheme.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\TextBoxTheme.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\HomeView.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFaiv.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFor.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewToo.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewTree.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewWon.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype_MarkupCompile.cache
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype_MarkupCompile.lref
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\App.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\HomeView.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFaiv.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewFor.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewToo.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewTree.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ViewWon.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.g.resources
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.AssemblyInfoInputs.cache
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.AssemblyInfo.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.csproj.CoreCompileInputs.cache
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.sourcelink.json
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\refint\LSM_prototype.dll
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.pdb
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.genruntimeconfig.cache
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\ref\LSM_prototype.dll

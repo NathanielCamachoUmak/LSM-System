@@ -1,0 +1,42 @@
+﻿<Application x:Class="LSM_prototype.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LSM_prototype"
+             xmlns:viewModel="clr-namespace:LSM_prototype.MVVM.ViewModel"
+             xmlns:view="clr-namespace:LSM_prototype.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ViewWonModel}">
+                <view:ViewWon/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ViewTooModel}">
+                <view:ViewToo/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ViewTreeModel}">
+                <view:ViewTree/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ViewForModel}">
+                <view:ViewFor/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ViewFaivModel}">
+                <view:ViewFaiv/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+

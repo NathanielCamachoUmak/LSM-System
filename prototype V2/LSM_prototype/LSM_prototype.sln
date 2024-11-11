@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSM_prototype", "LSM_prototype\LSM_prototype.csproj", "{99A22374-1219-4EC9-B5D2-A702473A5C59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99A22374-1219-4EC9-B5D2-A702473A5C59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A22374-1219-4EC9-B5D2-A702473A5C59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A22374-1219-4EC9-B5D2-A702473A5C59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A22374-1219-4EC9-B5D2-A702473A5C59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2929B3BB-5DD8-4617-927B-5AC9F5222682}
+	EndGlobalSection
+EndGlobal
