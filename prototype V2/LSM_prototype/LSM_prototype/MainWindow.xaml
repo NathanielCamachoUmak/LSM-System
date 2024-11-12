@@ -163,13 +163,19 @@
                      Style="{StaticResource ModernTextBox}"/>
 
             <Border Grid.Column="1" 
-                    Grid.Row="2"
-                    Background="#FF004FAD"/>
+                    Grid.Row="2">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#FFFF00BB" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
 
-
-            <ContentControl Grid.Row="2"
-                            Grid.Column="1"
-                            Content="{Binding CurrentView}"/>
+            <Viewbox Grid.Row="2"
+                     Grid.Column="1">
+                <ContentControl Content="{Binding CurrentView}"/>
+            </Viewbox>
 
 
         </Grid>
