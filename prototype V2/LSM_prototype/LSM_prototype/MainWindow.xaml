@@ -172,12 +172,14 @@
                 </Border.Background>
             </Border>
 
-            <Viewbox Grid.Row="2"
+            <Border Background="#4C969696"
+                    Grid.Row="2"
                      Grid.Column="1">
-                <ContentControl Content="{Binding CurrentView}"/>
-            </Viewbox>
+                <Viewbox>
 
-
+                    <ContentControl Content="{Binding CurrentView}"/>
+                </Viewbox>
+            </Border>
         </Grid>
     </Border>
 </Window>
