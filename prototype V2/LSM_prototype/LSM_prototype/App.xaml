@@ -10,30 +10,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/tryThisNga.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:ViewWonModel}">
-                <view:ViewWon/>
+            <DataTemplate DataType="{x:Type viewModel:InventoryViewModel}">
+                <view:InventoryView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:ViewTooModel}">
-                <view:ViewToo/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:ViewTreeModel}">
-                <view:ViewTree/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:ViewForModel}">
-                <view:ViewFor/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:ViewFaivModel}">
-                <view:ViewFaiv/>
+            <DataTemplate DataType="{x:Type viewModel:AccountsViewModel}">
+                <view:AccountsView/>
             </DataTemplate>
 
         </ResourceDictionary>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\App.xaml
-9-1269091094
+8-1586986647
 
-191363474122
+161510523397
 198-556154604
-MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\ViewFaiv.xaml;MVVM\View\ViewFor.xaml;MVVM\View\ViewToo.xaml;MVVM\View\ViewTree.xaml;MVVM\View\ViewWon.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;
+MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\tryThisNga.xaml;Theme\WindowButtonTheme.xaml;
 
 False
 

@@ -7,22 +7,13 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="MVVM\View\AccountsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\ViewFaiv.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\ViewFor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\ViewToo.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\ViewTree.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\View\ViewWon.xaml.cs">
+    <Compile Update="MVVM\View\InventoryView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -30,28 +21,22 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\AccountsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\ViewFaiv.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\ViewFor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\ViewToo.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\ViewTree.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="MVVM\View\ViewWon.xaml">
+    <Page Update="MVVM\View\InventoryView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\TextBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Theme\tryThisNga.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

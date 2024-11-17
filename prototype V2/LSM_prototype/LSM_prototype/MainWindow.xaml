@@ -6,11 +6,83 @@
         xmlns:local="clr-namespace:LSM_prototype"
         xmlns:viewModel="clr-namespace:LSM_prototype.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="625" Width="920"
+        MinHeight="625" MinWidth="1000"
         WindowStyle="None"
+        WindowState="Maximized"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <!--window control button style-->
+    <Window.Resources>
+        <!-- MouseOver Background Color -->
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="LightGray"/>
+        <!-- Edit this color for mouse hover background -->
+
+        <!-- MouseOver Border Color -->
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <!-- Edit this color for mouse hover border -->
+
+        <!-- Pressed Background Color -->
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <!-- Edit this color for pressed state background -->
+
+        <!-- Pressed Border Color -->
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <!-- Edit this color for pressed state border -->
+
+        <!-- Disabled Background Color -->
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <!-- Edit this color for disabled state background -->
+
+        <!-- Disabled Border Color -->
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <!-- Edit this color for disabled state border -->
+
+        <!-- Disabled Foreground Color -->
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <!-- Edit this color for disabled state text -->
+
+        <ControlTemplate x:Key="ButtonTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <!-- Trigger when the button is defaulted (for example, when it's pressed enter) -->
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+
+                <!-- Trigger for mouse hover (IsMouseOver) -->
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <!-- Edit mouseover background -->
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                    <!-- Edit mouseover border -->
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Black"/>
+                    <!-- Change foreground when hovered -->
+                </Trigger>
+
+                <!-- Trigger for button press (IsPressed) -->
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <!-- Edit pressed background -->
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                    <!-- Edit pressed border -->
+                </Trigger>
+
+                <!-- Trigger when button is disabled (IsEnabled=false) -->
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <!-- Edit disabled background -->
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <!-- Edit disabled border -->
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                    <!-- Edit disabled text color -->
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -24,8 +96,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="90*"/>
             </Grid.RowDefinitions>
 
             <Border Grid.ColumnSpan="2"
@@ -43,7 +115,8 @@
                     <StackPanel HorizontalAlignment="Right"
                                 Orientation="Horizontal">
 
-                        <Button Width="25"
+                        <Button Template="{DynamicResource ButtonTemplate1}"
+                                Width="25"
                                 Height="25"
                                 Content="_"
                                 FontSize="25"
@@ -53,7 +126,8 @@
                                 BorderThickness="0"
                                 Click="Button_Minimize"/>
 
-                        <Button Width="25"
+                        <Button Template="{DynamicResource ButtonTemplate1}"
+                                Width="25"
                                 Height="25"
                                 Content="□"
                                 FontSize="25"
@@ -63,14 +137,16 @@
                                 BorderThickness="0"
                                 Click="Button_Maximize"/>
 
-                        <Button Width="25"
+                        <Button Template="{DynamicResource ButtonTemplate1}"
+                                Width="25"
                                 Height="25"
                                 Content="×"
                                 FontSize="25"
                                 Background="Transparent"
                                 Foreground="White"
-                                Padding="0,-7.5,0,0"
+                                Padding="0,-8,0,0"
                                 BorderThickness="0"
+                                FontWeight="Bold"
                                 Click="Button_Close"/>
 
                     </StackPanel>
@@ -93,7 +169,6 @@
                 <ToggleButton Name="Button_win1"
                               Content="Window 1"
                               Height="50"
-                              Foreground="White"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
                               Command="{Binding ViewWonCommand}"
@@ -102,45 +177,39 @@
                 <ToggleButton Name="Button_win2"
                               Content="Window 2"
                               Height="50"
-                              Foreground="White"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
                               Command="{Binding ViewTooCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Button_win3"
-                              Content="Window 3"
+                              Content="INVENTORY"
                               Height="50"
-                              Foreground="White"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding ViewTreeCommand}"
+                              Command="{Binding InventoryViewCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Button_win4"
-                              Content="Window 4"
+                              Content="ACCOUNTS"
                               Height="50"
-                              Foreground="White"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding ViewForCommand}"
+                              Command="{Binding AccountsViewCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Button_win5"
                               Content="Window 5"
                               Height="50"
-                              Foreground="White"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding ViewFaivCommand}"
+                              Command="{Binding ViewTooCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Logout"
                               Content="LOG OUT"
                               Height="50"
                               Margin="0,50,0,0"
-                              Foreground="White"
-                              Background="#26FF0000"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
                               Checked="Button_logout"/>
@@ -151,15 +220,14 @@
             <Border Grid.Column="1" 
                     Grid.Row="1"
                     Background="#03346E"/>
-            
+
             <TextBox Width="250"
                      Height="40"
                      VerticalContentAlignment="Center"
                      HorizontalAlignment="Left"
                      Margin="5"
                      Grid.Column="1"
-                     Grid.Row="1
-                     "
+                     Grid.Row="1"
                      Style="{StaticResource ModernTextBox}"/>
 
             <Border Grid.Column="1" 
@@ -174,9 +242,9 @@
 
             <Border Background="#4C969696"
                     Grid.Row="2"
-                     Grid.Column="1">
-                <Viewbox>
-
+                    Grid.Column="1">
+                <Viewbox VerticalAlignment="Top"
+                         Margin="5">
                     <ContentControl Content="{Binding CurrentView}"/>
                 </Viewbox>
             </Border>

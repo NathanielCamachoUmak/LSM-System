@@ -14,17 +14,22 @@
 
                             <TextBlock Text="{TemplateBinding Property=Content}"
                                        VerticalAlignment="Center"
-                                       Margin="50,0,0,0"/>
+                                       Margin="50,0,0,0"
+                                       Foreground="{TemplateBinding Foreground}"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
+            <!-- Default Background and Border -->
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style.Setters>
 
         <Style.Triggers>
+            <!-- Trigger when the ToggleButton is checked -->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background">
                     <Setter.Value>
@@ -34,7 +39,26 @@
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
+
+                <!-- Change text color to black when mouse hovers -->
+                <Setter Property="TextElement.Foreground" Value="Black"/>
             </Trigger>
+
+            <!-- Trigger for Mouse Hover (IsMouseOver) -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#6EACDA" Offset="0.5" />
+                            <GradientStop Color="#021526" Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+
+                <!-- Change text color to black when mouse hovers -->
+                <Setter Property="TextElement.Foreground" Value="Black"/>
+            </Trigger>
+
         </Style.Triggers>
 
     </Style>

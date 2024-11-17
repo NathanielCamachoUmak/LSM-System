@@ -1,27 +1,19 @@
 ﻿using LSM_prototype.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     internal class MainViewModel : ObservableObjects
     {
         public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand ViewWonCommand { get; set; }
-        public RelayCommand ViewTooCommand { get; set; }
-        public RelayCommand ViewTreeCommand { get; set; }
-        public RelayCommand ViewForCommand { get; set; }
-        public RelayCommand ViewFaivCommand { get; set; }
+        public RelayCommand OngoingOrdersViewCommand { get; set; }
+        public RelayCommand ManageOrdersViewCommand { get; set; }
+        public RelayCommand InventoryViewCommand { get; set; }
+        public RelayCommand AccountsViewCommand { get; set; }
+        public RelayCommand AnalyticsCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
-        public ViewWonModel ViewWonVM { get; set; }
-        public ViewTooModel ViewTooVM { get; set; }
-        public ViewTreeModel ViewTreeVM { get; set; }
-        public ViewForModel ViewForVM { get; set; }
-        public ViewFaivModel ViewFaivVM { get; set; }
+        public InventoryViewModel InventoryVM { get; set; }
+        public AccountsViewModel AccountsVM { get; set; }
 
         private object _currentView;
 
@@ -38,75 +30,33 @@ namespace LSM_prototype.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
-            ViewWonVM = new ViewWonModel();
-            ViewTooVM = new ViewTooModel();
-            ViewTreeVM = new ViewTreeModel();
-            ViewForVM = new ViewForModel();
-            ViewFaivVM = new ViewFaivModel();
-            CurrentView = HomeVM;
+            InventoryVM = new InventoryViewModel();
+            AccountsVM = new AccountsViewModel();
+            CurrentView = InventoryVM;
 
-            ViewWonCommand = new RelayCommand(o =>
+            InventoryViewCommand = new RelayCommand(o =>
             {
-                // If already on HomeVM, reset the view to HomeVM again
-                if (CurrentView == ViewWonVM)
-                {
-                    CurrentView = HomeVM;
-                }
-                else
-                {
-                    CurrentView = ViewWonVM;
-                }
-            });
-
-            ViewTooCommand = new RelayCommand(o =>
-            {
-                if (CurrentView == ViewTooVM)
+                if (CurrentView == InventoryVM)
                 {
                     // If the current view is the same, close it (set to HomeVM)
                     CurrentView = HomeVM;
                 }
                 else
                 {
-                    CurrentView = ViewTooVM;
+                    CurrentView = InventoryVM;
                 }
             });
 
-            ViewTreeCommand = new RelayCommand(o =>
+            AccountsViewCommand = new RelayCommand(o =>
             {
-                if (CurrentView == ViewTreeVM)
+                if (CurrentView == AccountsVM)
                 {
                     // If the current view is the same, close it (set to HomeVM)
                     CurrentView = HomeVM;
                 }
                 else
                 {
-                    CurrentView = ViewTreeVM;
-                }
-            });
-
-            ViewForCommand = new RelayCommand(o =>
-            {
-                if (CurrentView == ViewForVM)
-                {
-                    // If the current view is the same, close it (set to HomeVM)
-                    CurrentView = HomeVM;
-                }
-                else
-                {
-                    CurrentView = ViewForVM;
-                }
-            });
-
-            ViewFaivCommand = new RelayCommand(o =>
-            {
-                if (CurrentView == ViewFaivVM)
-                {
-                    // If the current view is the same, close it (set to HomeVM)
-                    CurrentView = HomeVM;
-                }
-                else
-                {
-                    CurrentView = ViewFaivVM;
+                    CurrentView = AccountsVM;
                 }
             });
         }
