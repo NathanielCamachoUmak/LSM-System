@@ -167,19 +167,19 @@
                         VerticalAlignment="Bottom">
 
                 <ToggleButton Name="Button_win1"
-                              Content="Window 1"
+                              Content="ONGOING ORDERS"
                               Height="50"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding ViewWonCommand}"
+                              Command="{Binding OngoingOrdersViewCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Button_win2"
-                              Content="Window 2"
+                              Content="MANAGE ORDERS"
                               Height="50"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Command="{Binding ViewTooCommand}"
+                              Command="{Binding ManageOrdersViewCommand}"
                               Checked="ToggleButton_Checked"/>
 
                 <ToggleButton Name="Button_win3"

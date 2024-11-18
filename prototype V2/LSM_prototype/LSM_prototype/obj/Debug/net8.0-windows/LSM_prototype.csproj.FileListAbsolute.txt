@@ -67,3 +67,7 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\InventoryView.baml
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\AccountsView.g.cs
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\AccountsView.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\OngoingOrdersView.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\OngoingOrdersView.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ManageOrdersView.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ManageOrdersView.baml

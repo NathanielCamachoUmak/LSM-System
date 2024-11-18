@@ -5,46 +5,82 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LSM_prototype.MVVM.View"
              mc:Ignorable="d" 
+             x:Name="Root"
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid MaxHeight="550" Width="1000">
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*" Name="row1"/>
+            <RowDefinition Height="9*" Name="row2"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
+        <!--save button-->
+        <Button Height="auto"
+                Grid.Row="0"
+                BorderThickness="0"
+                Background="White">
 
-            <Button Content="Add" 
-                    Width="320"
-                    Height="50"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Grid.Column="0"
-                    Command="{Binding AddCommand}"/>
+            <TextBlock Text="SAVE CHANGES TO DATABASE" FontSize="20"/>
+        </Button>
 
-            <Button Content="Save"
-                    Width="320"
-                    Height="50"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Grid.Column="1"
-                    Margin="20,0,20,0"
-                    Command="{Binding SaveCommand}"/>
+        <!--add accounts expander-->
+        <StackPanel Height="auto"
+                    Background="White"
+                    Margin="0,5,0,5"
+                    Grid.Row="1">
+            <Expander Header="Add Item"
+                      VerticalContentAlignment="Top"
+                      Expanded="Expander_StateChanged"
+                      Collapsed="Expander_StateChanged"
+                      Margin="10,5,10,5"
+                      FontSize="20">
 
-            <Button Content="Delete"
-                    Width="320"
-                    Height="50"
-                    FontSize="20"
-                    Grid.Column="2"
-                    FontWeight="Bold"
-                    Command="{Binding DeleteCommand}"/>
+                <StackPanel Background="White">
+                    <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
 
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Item Name: " FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="" FontSize="14" Margin="5"/>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Item Price: " FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="" FontSize="14" Margin="5"/>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="" FontSize="14" Margin="5"/>
+                            </Grid>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <Button Content="test" Command="{Binding AddCommand}"/>
+                </StackPanel>
+            </Expander>
         </StackPanel>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+        
+        <!--datagrid grid-->
+        <Grid Grid.Row="2">
             <DataGrid CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       ItemsSource="{Binding Items}"
@@ -52,42 +88,73 @@
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
                       VerticalScrollBarVisibility="Visible"
-                      HorizontalScrollBarVisibility="Disabled">
+                      HorizontalScrollBarVisibility="Disabled"
+                      RowHeaderWidth="0"
+                      VirtualizingPanel.ScrollUnit="Pixel">
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name"
-                                        Binding="{Binding Name}"
-                                        Width="4*"
-                                        FontSize="20">
-                        <DataGridColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="FontSize" Value="24"/>
-                            </Style>
-                        </DataGridColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                    
-                    <DataGridTextColumn Header="Price"
-                                        Binding="{Binding Price}"
-                                        Width="4*"
-                                        FontSize="20">
-                        <DataGridColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="FontSize" Value="24"/>
-                            </Style>
-                        </DataGridColumn.HeaderStyle>
-                    </DataGridTextColumn>
+                    <!-- Other columns -->
 
-                    <DataGridTextColumn Header="Stock"
-                                        Binding="{Binding Stock}"
-                                        Width="2*"
-                                        FontSize="20">
+                    <!-- Template column with Expander inside -->
+                    <DataGridTemplateColumn Header="Inventory" Width="*">
                         <DataGridColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontSize" Value="24"/>
                             </Style>
                         </DataGridColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                    
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!-- Expander inside DataGrid -->
+
+                                <Expander Header="{Binding Name}" VerticalAlignment="Top">
+                                    <StackPanel Background="White">
+                                        <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1*"/>
+                                                    <RowDefinition Height="1*"/>
+                                                    <RowDefinition Height="1*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid Grid.Column="0" Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="5*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="Item Price: " FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding Price}" FontSize="14" Margin="5"/>
+                                                </Grid>
+
+                                                <Grid Grid.Column="1" Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="5*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding Stock}" FontSize="14" Margin="5"/>
+                                                </Grid>
+
+                                                <Button Grid.Column="2" Grid.Row="1"
+                                                        Background="#FFFF8D8D"
+                                                        FontWeight="Bold"
+                                                        Content="DELETE"
+                                                        Width="75"
+                                                        Height="20"
+                                                        Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
+
+                                            </Grid>
+                                        </GroupBox>
+                                    </StackPanel>
+                                </Expander>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

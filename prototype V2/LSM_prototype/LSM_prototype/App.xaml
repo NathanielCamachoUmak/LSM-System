@@ -13,6 +13,14 @@
                 <ResourceDictionary Source="Theme/tryThisNga.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <DataTemplate DataType="{x:Type viewModel:OngoingOrdersViewModel}">
+                <view:OngoingOrdersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ManageOrdersViewModel}">
+                <view:ManageOrdersView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>

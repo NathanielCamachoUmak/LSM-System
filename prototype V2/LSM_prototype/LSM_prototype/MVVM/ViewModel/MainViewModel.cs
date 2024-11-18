@@ -1,4 +1,5 @@
 ﻿using LSM_prototype.Core;
+using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
@@ -12,6 +13,8 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand AnalyticsCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
+        public OngoingOrdersViewModel OngoingOrdersVM { get; set; }
+        public ManageOrdersViewModel ManageOrdersVM { get; set; }
         public InventoryViewModel InventoryVM { get; set; }
         public AccountsViewModel AccountsVM { get; set; }
 
@@ -30,9 +33,38 @@ namespace LSM_prototype.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
+            OngoingOrdersVM = new OngoingOrdersViewModel();
+            ManageOrdersVM = new ManageOrdersViewModel();
             InventoryVM = new InventoryViewModel();
             AccountsVM = new AccountsViewModel();
-            CurrentView = InventoryVM;
+
+            CurrentView = ManageOrdersVM;
+
+            OngoingOrdersViewCommand = new RelayCommand(o =>
+            {
+                if (CurrentView == OngoingOrdersVM)
+                {
+                    // If the current view is the same, close it (set to HomeVM)
+                    CurrentView = HomeVM;
+                }
+                else
+                {
+                    CurrentView = OngoingOrdersVM;
+                }
+            });
+
+            ManageOrdersViewCommand = new RelayCommand(o =>
+            {
+                if (CurrentView == ManageOrdersVM)
+                {
+                    // If the current view is the same, close it (set to HomeVM)
+                    CurrentView = HomeVM;
+                }
+                else
+                {
+                    CurrentView = ManageOrdersVM;
+                }
+            });
 
             InventoryViewCommand = new RelayCommand(o =>
             {
