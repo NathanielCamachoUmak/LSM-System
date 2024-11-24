@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LSM_prototype.MVVM.Model
+﻿namespace LSM_prototype.MVVM.Model
 {
-    class Orders
+    public class Orders
     {
         public string OrderID { get; set; }
         public string Item { get; set; }

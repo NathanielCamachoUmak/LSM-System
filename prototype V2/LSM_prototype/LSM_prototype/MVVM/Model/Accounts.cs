@@ -2,7 +2,7 @@
 
 namespace LSM_prototype.MVVM.Model
 {
-    class Accounts
+    public class Accounts
     {
         public string Name { get; set; }
         public string Gender { get; set; }
@@ -12,5 +12,8 @@ namespace LSM_prototype.MVVM.Model
         public string Email { get; set; }
         public string HireDate { get; set; }
         public string Role { get; set; }
+        public string EmpID { get; set; }
+        public string EmpPW { get; set; }
+        public string AccessLevel { get; set; }
     }
 }

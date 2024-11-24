@@ -38,10 +38,11 @@ namespace LSM_prototype.MVVM.ViewModel
             InventoryVM = new InventoryViewModel();
             AccountsVM = new AccountsViewModel();
 
-            CurrentView = ManageOrdersVM;
+            CurrentView = HomeVM;
 
             OngoingOrdersViewCommand = new RelayCommand(o =>
             {
+
                 if (CurrentView == OngoingOrdersVM)
                 {
                     // If the current view is the same, close it (set to HomeVM)

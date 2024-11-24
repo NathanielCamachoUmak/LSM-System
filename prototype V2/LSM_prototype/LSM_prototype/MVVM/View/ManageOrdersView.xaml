@@ -7,6 +7,7 @@
              mc:Ignorable="d" 
              x:Name="Root"
              d:DesignHeight="600" d:DesignWidth="1000">
+
     <Grid MaxHeight="550" Width="1000">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -171,8 +172,8 @@
             <!--datagrid grid-->
             <DataGrid CanUserAddRows="False"
                           CanUserDeleteRows="False"
-                          ItemsSource="{Binding orders}"
                           SelectedItem="{Binding SelectedItem}"
+                          ItemsSource="{Binding SharedOrders}"
                           AutoGenerateColumns="False"
                           CanUserResizeColumns="False"
                           VerticalScrollBarVisibility="Visible"
@@ -218,7 +219,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Item}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding Item, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <!--item ETA-->
@@ -228,7 +229,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="ETA: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding ETA}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding ETA, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <!--item Technician-->
@@ -238,7 +239,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Technician: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Technician}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding Technician, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <!--item Status-->
@@ -248,7 +249,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5"/>
-                                                    <ComboBox Grid.Column="1" Text="{Binding Status}" FontSize="14" Margin="5">
+                                                    <ComboBox Grid.Column="1" Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5">
                                                         <ComboBoxItem Content="Ongoing"/>
                                                         <ComboBoxItem Content="Complete"/>
                                                         <ComboBoxItem Content="Cancelled"/>
@@ -262,7 +263,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding Problem, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
                                                 </Grid>
 
                                                 <!--item Other Notes-->
@@ -272,7 +273,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Other Notes: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding OtherNotes, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
                                                 </Grid>
 
                                                 <Button Grid.Column="2" Grid.RowSpan="4"
@@ -303,7 +304,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Name: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustName}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding CustName, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <!--customer PhoneNum-->
@@ -313,7 +314,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Phone #: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding CustPhoneNum, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <!--item Technician-->
@@ -323,7 +324,7 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="CustEmail: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustEmail}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding CustEmail, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                             </Grid>

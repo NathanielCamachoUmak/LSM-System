@@ -13,30 +13,14 @@ namespace LSM_prototype.MVVM.ViewModel
 {
     class ManageOrdersViewModel: ViewModelBase
     {
-        public ObservableCollection<Orders> orders { get; set; }
-
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => SelectedItem != null);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
+        public ObservableCollection<Orders> SharedOrders { get; }
         public ManageOrdersViewModel()
         {
-            orders = new ObservableCollection<Orders>();
-
-            //temporary, can delete
-            orders.Add(new Orders { OrderID = "a123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                    Problem = "screen replacement", OtherNotes = null});
-
-            orders.Add(new Orders { OrderID = "b123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                    Problem = "screen replacement", OtherNotes = null});
-
-            orders.Add(new Orders { OrderID = "c123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                    Problem = "screen replacement", OtherNotes = null});
-
-            orders.Add(new Orders { OrderID = "d123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                    Problem = "screen replacement", OtherNotes = null});
-
-            orders.Add(new Orders { OrderID = "e123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                    Problem = "screen replacement", OtherNotes = null});
+            // Access the shared collection from the Accounts model
+            SharedOrders = OrdersData.Instance.OrdersList;
         }
 
         private Orders _selectedItem;
@@ -54,7 +38,7 @@ namespace LSM_prototype.MVVM.ViewModel
         //can we check if item is already in database? using name as primary key
         private void AddItem()
         {
-            orders.Add(new Orders
+            SharedOrders.Add(new Orders
             {
                 OrderID = "123412142412",
                 Item = "Laptop",
@@ -74,7 +58,7 @@ namespace LSM_prototype.MVVM.ViewModel
 
             if (result == MessageBoxResult.Yes)
             {
-                orders.Remove(SelectedItem);
+                SharedOrders.Remove(SelectedItem);
             }
         }
 

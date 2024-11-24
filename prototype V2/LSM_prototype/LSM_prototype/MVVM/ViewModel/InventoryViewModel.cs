@@ -7,7 +7,7 @@ namespace LSM_prototype.MVVM.ViewModel
 {
     class InventoryViewModel : ViewModelBase
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public static ObservableCollection<Item> Items { get; set; }
 
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => SelectedItem != null);
@@ -15,13 +15,14 @@ namespace LSM_prototype.MVVM.ViewModel
         public InventoryViewModel()
         {
             Items = new ObservableCollection<Item>();
-            
+
             //temporary, can delete
-            Items.Add(new Item { Name = "item 1", Price = 100.00m, Stock = 10});
-            Items.Add(new Item { Name = "item 2", Price = 200.00m, Stock = 9});
-            Items.Add(new Item { Name = "item 3", Price = 300.00m, Stock = 8});
-            Items.Add(new Item { Name = "item 4", Price = 400.00m, Stock = 7});
-            Items.Add(new Item { Name = "item 5", Price = 500.00m, Stock = 6});
+            Items.Add(new Item { Name = "item 1", Price = 100.00m, Stock = 10 });
+            Items.Add(new Item { Name = "item 2", Price = 200.00m, Stock = 9 });
+            Items.Add(new Item { Name = "item 3", Price = 300.00m, Stock = 8 });
+            Items.Add(new Item { Name = "item 4", Price = 400.00m, Stock = 7 });
+            Items.Add(new Item { Name = "item 5", Price = 500.00m, Stock = 6 });
+            
         }
 
         private Item _selectedItem;
@@ -62,7 +63,6 @@ namespace LSM_prototype.MVVM.ViewModel
         //save to database using this
         private void Save()
         {
-
         }
 
         //add a check to see if database is up and items can e saved

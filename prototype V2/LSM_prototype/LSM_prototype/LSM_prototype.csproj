@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\BENJAMIN transparent.png" />
     <None Remove="Images\hitler.png" />
   </ItemGroup>
 
@@ -26,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\BENJAMIN transparent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\hitler.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

@@ -24,12 +24,17 @@
             </Border.Background>
 
             <Grid>
-                <Canvas>
-                    <Polygon Points="0,20 230, 140 0, 270" Fill="SandyBrown"/>
-                    <Polygon Points="100,400 200,370 180,470" Fill="SandyBrown"/>
-                    <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="SandyBrown"/>
-                    <Ellipse Margin="50 400 0 0" Width="20" Height="20" Fill="SandyBrown"/>
-                </Canvas>
+                <Border>
+                    <Border.Effect>
+                        <BlurEffect Radius="50" KernelType="Gaussian"/>
+                    </Border.Effect>
+                    <Canvas>
+                        <Polygon Points="0,20 230, 140 0, 270" Fill="SandyBrown"/>
+                        <Polygon Points="100,400 200,370 180,470" Fill="SandyBrown"/>
+                        <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="SandyBrown"/>
+                        <Ellipse Margin="50 400 0 0" Width="20" Height="20" Fill="SandyBrown"/>
+                    </Canvas>
+                </Border>
 
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
                     <TextBlock Text="Login" Style="{StaticResource titleText}"/>
@@ -39,7 +44,7 @@
             </Grid>
 
         </Border>
-        <Image Source="Images/Benjamin.png" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Image Source="Images/Benjamin transparent.png" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
             <StackPanel>
                 <TextBlock Text="Login to App" Style="{StaticResource titleText}" Foreground="ForestGreen"/>

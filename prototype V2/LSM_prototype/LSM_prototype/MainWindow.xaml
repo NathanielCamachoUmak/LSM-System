@@ -13,6 +13,10 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
     <!--window control button style-->
     <Window.Resources>
         <!-- MouseOver Background Color -->
@@ -83,10 +87,6 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
-
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
 
     <Border Background="#021526">
         <Grid>

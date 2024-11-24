@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using LSM_prototype.MVVM.View;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -69,7 +70,13 @@ namespace LSM_prototype
 
         private void Button_logout(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            LoginView loginWindow = new LoginView();
+            Application.Current.MainWindow = loginWindow;
+            loginWindow.Show();
+
+            Application.Current.Windows
+                .OfType<MainWindow>()
+                .FirstOrDefault()?.Close();
         }
     }
 }

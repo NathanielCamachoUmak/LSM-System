@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\LoginForm\\",
+  "WorkspaceRootPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|e:\\loginform\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\login-form\\login\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|E:\\LoginForm\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|E:\\LoginForm\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{830135F0-34FD-4114-9898-E7C38F428BB5}|LoginForm.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -22,32 +22,27 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "E:\\LoginForm\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "E:\\LoginForm\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAAIwCsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T06:30:48.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T06:30:48.921Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "E:\\LoginForm\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "E:\\LoginForm\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-18T19:03:55.816Z",
@@ -57,9 +52,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "App.xaml",
-              "DocumentMoniker": "E:\\LoginForm\\App.xaml",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "E:\\LoginForm\\App.xaml",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\Login-Form\\Login\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-11-19T03:23:44.786Z",
