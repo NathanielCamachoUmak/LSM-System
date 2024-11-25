@@ -1,9 +1,12 @@
-﻿using System.Net.Mail;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace LSM_prototype.MVVM.Model
 {
     public class Accounts
     {
+        [Key]
+        public int AccountID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
