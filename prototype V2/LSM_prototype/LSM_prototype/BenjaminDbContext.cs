@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LSM_prototype.MVVM.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace LSM_prototype
 {
@@ -14,7 +15,11 @@ namespace LSM_prototype
         public DbSet<Item> Item { get; set; } // Represents the Item table
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-OAKRFHN;Database=BenjaminDB;Trusted_Connection=True;TrustServerCertificate=True;");
+            // Get the connection string from the App.config file
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+            // Use the connection string for SQL Server
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
