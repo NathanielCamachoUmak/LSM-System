@@ -170,6 +170,7 @@
                                                     <RowDefinition Height="1*"/>
                                                     <RowDefinition Height="1*"/>
                                                     <RowDefinition Height="1*"/>
+                                                    <RowDefinition Height="1*"/>
                                                 </Grid.RowDefinitions>
 
                                                 <Grid Grid.Column="0" Grid.Row="0">
@@ -242,6 +243,24 @@
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Role: " FontSize="14" Margin="5"/>
                                                     <TextBox Grid.Column="1" Text="{Binding Role, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                </Grid>
+
+                                                <Grid Grid.Column="0" Grid.Row="4">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="5*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="ID: " FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding EmpID, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                </Grid>
+
+                                                <Grid Grid.Column="1" Grid.Row="4">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="5*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="PW: " FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Text="{Binding EmpPW, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
                                                 <Button Grid.Column="2" Grid.RowSpan="4"

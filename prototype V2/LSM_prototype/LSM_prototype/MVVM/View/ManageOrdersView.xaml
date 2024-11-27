@@ -185,7 +185,7 @@
                     <!-- Other columns -->
 
                     <!-- Template column with Expander inside -->
-                    <DataGridTemplateColumn Header="Ongoing Orders" Width="*">
+                    <DataGridTemplateColumn Header="Manage Orders" Width="*">
                         <DataGridColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontSize" Value="24"/>
