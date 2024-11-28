@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:LSM_prototype"
              xmlns:viewModel="clr-namespace:LSM_prototype.MVVM.ViewModel"
              xmlns:view="clr-namespace:LSM_prototype.MVVM.View"
-             StartupUri="MVVM/View/LoginView.xaml">
+             StartupUri="MVVM/View/RegisterView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

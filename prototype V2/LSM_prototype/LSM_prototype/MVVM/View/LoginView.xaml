@@ -195,7 +195,7 @@
                             <TextBox Grid.Column="1"
                                      FontSize="20"
                                      MaxLength="10"
-                                     Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding empIDInput}"/>
                         </Grid>
 
                         <StackPanel Height="20"/>
@@ -213,7 +213,7 @@
                                        TextAlignment="Right"/>
                             <PasswordBox Grid.Column="1"
                                          FontSize="20"
-                                         PasswordChar="#"
+                                         PasswordChar="*"
                                          MaxLength="64"
                                          Name="PWbox"/>
                         </Grid>

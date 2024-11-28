@@ -1,6 +1,7 @@
 ﻿using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.View;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.ObjectModel;
 using System.Security;
 using System.Windows;
@@ -16,6 +17,21 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             // Access the shared collection from the Accounts model
             SharedAccounts = AccountsData.Instance.AccountsList;
+
+            if (SharedAccounts.Count == 0)
+            {
+
+                // Open the new main window
+                RegisterView regWindow = new RegisterView();
+                Application.Current.MainWindow = regWindow; // Update the application's main window
+                regWindow.Show();
+
+                // Close the login window
+                Application.Current.Windows
+                    .OfType<MainWindow>()
+                    .FirstOrDefault()?.Close();
+                return;
+            }
         }
 
         private string _empIDInput = string.Empty;

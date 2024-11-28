@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\App.xaml
-12309888937
+13-1852530673
 
-27-2043229472
+28-1207166520
 228-1063711
-MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;MVVM\View\LoginView.xaml;MVVM\View\ManageOrdersView.xaml;MVVM\View\OngoingOrdersView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\tryThisNga.xaml;Theme\WindowButtonTheme.xaml;Window1.xaml;
+MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;MVVM\View\LoginView.xaml;MVVM\View\ManageOrdersView.xaml;MVVM\View\OngoingOrdersView.xaml;MVVM\View\RegisterView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\tryThisNga.xaml;Theme\WindowButtonTheme.xaml;Window1.xaml;
 
 False
 
