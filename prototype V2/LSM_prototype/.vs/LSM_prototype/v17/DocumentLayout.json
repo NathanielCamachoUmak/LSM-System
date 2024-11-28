@@ -3,28 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\inventoryview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\inventoryview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\viewmodel\\inventoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\viewmodel\\inventoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\model\\accounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\model\\accounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\model\\accountsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\model\\accountsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\model\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\model\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\benjamindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\benjamindbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BenjaminDB/True/SqlTable/dbo.Accounts.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,78 +18,11 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InventoryView.xaml",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\InventoryView.xaml",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\View\\InventoryView.xaml",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\InventoryView.xaml",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\View\\InventoryView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-25T15:14:26.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BenjaminDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\BenjaminDbContext.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\BenjaminDbContext.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\BenjaminDbContext.cs",
-              "RelativeToolTip": "LSM_prototype\\BenjaminDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T14:07:15.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Item.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\Item.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\Model\\Item.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\Item.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\Model\\Item.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T13:53:12.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InventoryViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\InventoryViewModel.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\ViewModel\\InventoryViewModel.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\InventoryViewModel.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\ViewModel\\InventoryViewModel.cs",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAlwIIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T14:01:07.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountsData.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\AccountsData.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\Model\\AccountsData.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\AccountsData.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\Model\\AccountsData.cs",
-              "ViewState": "AgIAAA4AAAAgMzMzMzMhwCAAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T06:26:43.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Accounts.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\Accounts.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\Model\\Accounts.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\Accounts.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\Model\\Accounts.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T06:26:42.121Z",
+              "Title": "dbo.Accounts [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BenjaminDB/True/SqlTable/dbo.Accounts.sql",
+              "ToolTip": "dbo.Accounts [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-27T10:31:29.343Z",
               "EditorCaption": ""
             }
           ]
