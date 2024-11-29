@@ -426,3 +426,5 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\InputTextBox1.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.baml

@@ -1,18 +1,7 @@
 ﻿using LSM_prototype.MVVM.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace LSM_prototype.MVVM.View
 {
@@ -29,7 +18,7 @@ namespace LSM_prototype.MVVM.View
             viewModel = new LoginViewModel();
             this.DataContext = viewModel;
         }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve the password and assign it to the ViewModel's property

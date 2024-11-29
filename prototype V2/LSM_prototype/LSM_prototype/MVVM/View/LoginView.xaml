@@ -88,9 +88,13 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
             <!--window controls-->
-            <Border Grid.Row="0"
+            <Border Grid.Row="0" Grid.ColumnSpan="2"
                     Background="#252525"
                     MouseDown="Border_MouseDown">
 
@@ -144,119 +148,112 @@
 
             </Border>
 
-            <Grid Grid.Row="1">
+            <!--background-->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.Background>
-                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                        <GradientStop Color="#FF00FF79" Offset="0.0"/>
-                        <GradientStop Color="#FF00FFBF" Offset="1"/>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#dafed6" Offset="0"/>
+                        <GradientStop Color="#003b51" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
-                
-                <!--background-->
-                <Border VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
-                    <Border.Effect>
-                        <BlurEffect Radius="20" KernelType="Gaussian"/>
-                    </Border.Effect>
-                    <Image Source="/Images/BENJAMIN transparent.png" Height="720" />
-                </Border>
-                
-                <!--contents-->
-                <Grid HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      Background="#99000000">
-                    <StackPanel HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Width="450">
-                        
-                        <!--header-->
-                        <TextBlock Foreground="White"
-                                   FontSize="50"
-                                   FontWeight="Bold"
-                                   TextAlignment="Center"
-                                   FontFamily="Arial Black">
-                            Benjamin's <LineBreak/>
-                            Service Tracker
-                        </TextBlock>
+            </Grid>
 
-                        <StackPanel Height="20"/>
-                        
-                        <!--employee ID textbox-->
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="130"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Employee ID: "
-                                       Grid.Column="0"
-                                       FontSize="20"
-                                       Foreground="White"
-                                       TextAlignment="Right"/>
+            <Canvas Panel.ZIndex="1" Grid.Row="1" Grid.ColumnSpan="2" >
+                <Image Source="/Images/TopLeft.png" Height="150" 
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Canvas.Top="0" Canvas.Left="0"/>
+
+                <Image Source="/Images/BotLeft.png" Height="150"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Canvas.Bottom="0" Canvas.Left="0"/>
+
+                <Image Source="/Images/TopRight.png" Height="150"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Top"
+                           Canvas.Top="0" Canvas.Right="0"/>
+
+                <Image Source="/Images/BotRight.png" Height="125"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Canvas.Bottom="0" Canvas.Right="0"/>
+            </Canvas>
+
+            <Image Source="/Images/BENJAMIN transparent.png"
+                   Grid.Row="1" Grid.Column="0"/>
+
+            <StackPanel Background="MintCream" Grid.Row="1" Grid.Column="1"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Panel.ZIndex="2" Margin="0,-50,0,0" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center">
+                    
+                    <!--header-->
+                    <TextBlock Text="Login"
+                               FontSize="64"
+                               FontWeight="Bold"
+                               TextAlignment="Center"/>
+                    
+                    <!--employee ID-->
+                    <StackPanel Margin="0,10,0,5">
+                        <TextBlock Text="Employee ID:"
+                                   FontSize="20"/>
+                        <TextBox Grid.Column="1"
+                                 FontSize="20"
+                                 Width="250"
+                                 Margin="0,5,0,0"
+                                 BorderThickness="0"
+                                 Background="LightGray"
+                                 Padding="5,0,5,0"
+                                 Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <!--employee PW-->
+                    <StackPanel Margin="0,10,0,10">
+                        <TextBlock Text="Password:"
+                                   FontSize="20"/>
+                        <Grid Margin="0,5,0,0">
+                            <PasswordBox Grid.Column="1"
+                                         FontSize="20"
+                                         PasswordChar="●"
+                                         MaxLength="64"
+                                         Background="LightGray"
+                                         BorderThickness="0"
+                                         x:Name="PWbox"/>
+
                             <TextBox Grid.Column="1"
                                      FontSize="20"
-                                     Background="White"
-                                     Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
+                                     MaxLength="64"
+                                     Background="LightGray"
+                                     x:Name="PWTbox"
+                                     BorderThickness="0"
+                                     Visibility="Collapsed"/>
+
+                            <ToggleButton Content="👁  "
+                                          BorderThickness="0"
+                                          Background="LightGray"
+                                          Foreground="Gray"
+                                          FontWeight="Bold"
+                                          FontSize="15"
+                                          HorizontalAlignment="Right"
+                                          Checked="ShowPassword_Checked"
+                                          Unchecked="ShowPassword_Unchecked"/>
                         </Grid>
-
-                        <StackPanel Height="20"/>
-
-                        <!--password passwordbox-->
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="130"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="Password: "
-                                       Grid.Column="0" Grid.Row="0"
-                                       FontSize="20"
-                                       Foreground="White"
-                                       TextAlignment="Right"/>
-
-                            <Grid Grid.Column="1">
-
-                                <PasswordBox Grid.Column="1"
-                                             FontSize="20"
-                                             PasswordChar="●"
-                                             MaxLength="64"
-                                             Background="White"
-                                             BorderThickness="0"
-                                             x:Name="PWbox"/>
-
-                                <TextBox Grid.Column="1"
-                                         FontSize="20"
-                                         MaxLength="64"
-                                         Background="White"
-                                         x:Name="PWTbox"
-                                         BorderThickness="0"
-                                         Visibility="Collapsed"/>
-                                
-                                <ToggleButton Content="👁"
-                                              BorderThickness="0"
-                                              Background="White"
-                                              Foreground="Gray"
-                                              FontWeight="Bold"
-                                              FontSize="15"
-                                              HorizontalAlignment="Right"
-                                              Checked="ShowPassword_Checked"
-                                              Unchecked="ShowPassword_Unchecked"/>
-                            </Grid>
-
-                        </Grid>
-
-                        <StackPanel Height="50"/>
-
-                        <!--button-->
-                        <Button Content="Login"
-                                FontSize="20"
-                                Height="35"
-                                FontWeight="Bold"
-                                Command="{Binding LoginCommand}" Click="Button_Click"/>
-
-
                     </StackPanel>
-                </Grid>
-            </Grid>
+
+                    <!--button-->
+                    <Button Content="Login"
+                            FontSize="15"
+                            Height="30"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Margin="0,50,0,0"
+                            Background="#b8ddb8"
+                            Command="{Binding LoginCommand}" Click="Button_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+
         </Grid>
     </Border>
 </Window>

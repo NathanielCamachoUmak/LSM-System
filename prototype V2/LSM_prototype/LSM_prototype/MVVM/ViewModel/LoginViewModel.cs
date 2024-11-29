@@ -16,6 +16,21 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             // Access the shared collection from the Accounts model
             SharedAccounts = AccountsData.Instance.AccountsList;
+
+            if (SharedAccounts.Count == 0)
+            {
+
+                // Open the new main window
+                RegisterView regWindow = new RegisterView();
+                Application.Current.MainWindow = regWindow; // Update the application's main window
+                regWindow.Show();
+
+                // Close the login window
+                Application.Current.Windows
+                    .OfType<LoginView>()
+                    .FirstOrDefault()?.Close();
+                return;
+            }
         }
 
         private string _empIDInput = string.Empty;
