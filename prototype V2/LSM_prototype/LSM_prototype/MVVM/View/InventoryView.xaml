@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LSM_prototype.MVVM.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              x:Name="Root"
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid MaxHeight="550" Width="1000">
@@ -39,37 +39,37 @@
                 <StackPanel Background="White">
                     <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0">
+                            <Grid Grid.Column="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="2.9*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Item Name: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding NewItemName, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Name" Text="{Binding NewItemName, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                             </Grid>
 
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Column="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="2.9*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Item Price: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding NewItemPrice, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Price" Text="{Binding NewItemPrice, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                             </Grid>
 
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="2.9*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding NewItemStock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Quantity" Text="{Binding NewItemStock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                             </Grid>
 
                         </Grid>
@@ -79,7 +79,7 @@
                 </StackPanel>
             </Expander>
         </StackPanel>
-        
+
         <!--datagrid grid-->
         <Grid Grid.Row="2">
             <DataGrid CanUserAddRows="False"
@@ -114,33 +114,38 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1*"/>
                                                     <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="1*"/>
                                                     <ColumnDefinition Width="100"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                </Grid.RowDefinitions>
 
-                                                <Grid Grid.Column="0" Grid.Row="1">
+                                                <Grid Grid.Column="0">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
+                                                        <ColumnDefinition Width="1.2*"/>
+                                                        <ColumnDefinition Width="3*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="Item Name: " FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                </Grid>
+
+                                                <Grid Grid.Column="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.1*"/>
+                                                        <ColumnDefinition Width="3*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Item Price: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat=Decimal}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Price" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
-                                                <Grid Grid.Column="1" Grid.Row="1">
+                                                <Grid Grid.Column="2">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
+                                                        <ColumnDefinition Width="3.2*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Quantity" Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
-                                                <Button Grid.Column="2" Grid.Row="1"
+                                                <Button Grid.Column="3"
                                                         Background="#FFFF8D8D"
                                                         FontWeight="Bold"
                                                         Content="DELETE"

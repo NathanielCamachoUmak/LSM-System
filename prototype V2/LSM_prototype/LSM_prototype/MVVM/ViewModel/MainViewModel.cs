@@ -1,4 +1,7 @@
 ﻿using LSM_prototype.Core;
+using LSM_prototype.MVVM.Model;
+using LSM_prototype.MVVM.View;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
@@ -11,12 +14,14 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand InventoryViewCommand { get; set; }
         public RelayCommand AccountsViewCommand { get; set; }
         public RelayCommand AnalyticsCommand { get; set; }
+        public RelayCommand LogoutCommand => new RelayCommand(execute => Logout());
 
         public HomeViewModel HomeVM { get; set; }
         public OngoingOrdersViewModel OngoingOrdersVM { get; set; }
         public ManageOrdersViewModel ManageOrdersVM { get; set; }
         public InventoryViewModel InventoryVM { get; set; }
         public AccountsViewModel AccountsVM { get; set; }
+        public ObservableCollection<Accounts> SharedAccounts { get; }
 
         private object _currentView;
 
@@ -32,6 +37,8 @@ namespace LSM_prototype.MVVM.ViewModel
 
         public MainViewModel()
         {
+            SharedAccounts = AccountsData.Instance.AccountsList;
+
             HomeVM = new HomeViewModel();
             OngoingOrdersVM = new OngoingOrdersViewModel();
             ManageOrdersVM = new ManageOrdersViewModel();
@@ -92,6 +99,39 @@ namespace LSM_prototype.MVVM.ViewModel
                     CurrentView = AccountsVM;
                 }
             });
+        }
+
+        private void Logout()
+        {
+
+            //ISRAEL HELPPPPPPPPPPPPPPPPPP
+            //when I delete all accounts and save to database it doesnt update the observable collection,
+            //and it still accepts the deleted account login details
+
+            if (SharedAccounts.Count == 0)
+            {
+                MessageBox.Show("register window");
+                // Open the new main window
+                RegisterView regWindow = new RegisterView();
+                Application.Current.MainWindow = regWindow;
+                regWindow.Show();
+
+                // Close the login window
+                Application.Current.Windows
+                    .OfType<MainWindow>()
+                    .FirstOrDefault()?.Close();
+            }
+            else
+            {
+                MessageBox.Show("login window");
+                LoginView loginWindow = new LoginView();
+                Application.Current.MainWindow = loginWindow;
+                loginWindow.Show();
+
+                Application.Current.Windows
+                    .OfType<MainWindow>()
+                    .FirstOrDefault()?.Close();
+            }
         }
     }
 }

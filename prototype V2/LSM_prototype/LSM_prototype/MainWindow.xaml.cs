@@ -1,4 +1,5 @@
 ﻿using LSM_prototype.MVVM.View;
+using LSM_prototype.MVVM.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,8 @@ namespace LSM_prototype
         public MainWindow()
         {
             InitializeComponent();
+            MainViewModel mainvm = new MainViewModel();
+            this.DataContext = mainvm;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,17 +69,6 @@ namespace LSM_prototype
                     button.IsChecked = false;
                 }
             }
-        }
-
-        private void Button_logout(object sender, RoutedEventArgs e)
-        {
-            LoginView loginWindow = new LoginView();
-            Application.Current.MainWindow = loginWindow;
-            loginWindow.Show();
-
-            Application.Current.Windows
-                .OfType<MainWindow>()
-                .FirstOrDefault()?.Close();
         }
     }
 }

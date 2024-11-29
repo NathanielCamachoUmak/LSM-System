@@ -13,10 +13,6 @@
         Background="Transparent"
         AllowsTransparency="True">
 
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
-
     <!--window control button style-->
     <Window.Resources>
         <!-- MouseOver Background Color -->
@@ -212,7 +208,7 @@
                               Margin="0,50,0,0"
                               FontSize="14"
                               Style="{StaticResource MenuButtonTheme}"
-                              Checked="Button_logout"/>
+                              Command="{Binding LogoutCommand}"/>
 
             </StackPanel>
 

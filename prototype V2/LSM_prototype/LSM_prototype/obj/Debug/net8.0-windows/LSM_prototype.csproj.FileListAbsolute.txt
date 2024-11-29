@@ -61,7 +61,6 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.pdb
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.genruntimeconfig.cache
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\ref\LSM_prototype.dll
-C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\tryThisNga.baml
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\WindowButtonTheme.baml
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\InventoryView.g.cs
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\InventoryView.baml
@@ -199,8 +198,6 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prot.A61016C0.Up2Date
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\LoginView.g.cs
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\LoginView.baml
-C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Window1.g.cs
-C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Window1.baml
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.exe
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.deps.json
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\LSM_prototype.runtimeconfig.json
@@ -426,3 +423,6 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.g.cs
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.baml
+C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\InputTextBox1.baml
