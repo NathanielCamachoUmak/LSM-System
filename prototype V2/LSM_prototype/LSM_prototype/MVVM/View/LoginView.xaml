@@ -183,7 +183,7 @@
             <Image Source="/Images/BENJAMIN transparent.png"
                    Grid.Row="1" Grid.Column="0"/>
 
-            <StackPanel Background="MintCream" Grid.Row="1" Grid.Column="1"/>
+            <StackPanel Background="#F2E6D5" Grid.Row="1" Grid.Column="1"/>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Panel.ZIndex="2" Margin="0,-50,0,0" VerticalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center">
@@ -203,7 +203,7 @@
                                  Width="250"
                                  Margin="0,5,0,0"
                                  BorderThickness="0"
-                                 Background="LightGray"
+                                 Background="#F5F5F5"
                                  Padding="5,0,5,0"
                                  Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
@@ -217,7 +217,7 @@
                                          FontSize="20"
                                          PasswordChar="●"
                                          MaxLength="64"
-                                         Background="LightGray"
+                                         Background="#F5F5F5"
                                          BorderThickness="0"
                                          x:Name="PWbox"/>
 
@@ -231,7 +231,7 @@
 
                             <ToggleButton Content="👁  "
                                           BorderThickness="0"
-                                          Background="LightGray"
+                                          Background="#F5F5F5"
                                           Foreground="Gray"
                                           FontWeight="Bold"
                                           FontSize="15"
@@ -248,7 +248,7 @@
                             FontWeight="Bold"
                             BorderThickness="0"
                             Margin="0,50,0,0"
-                            Background="#b8ddb8"
+                            Background="#B6FFBB"
                             Command="{Binding LoginCommand}" Click="Button_Click"/>
                 </StackPanel>
             </StackPanel>
