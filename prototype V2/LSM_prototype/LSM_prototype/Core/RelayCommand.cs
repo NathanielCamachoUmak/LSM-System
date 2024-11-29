@@ -22,7 +22,7 @@ namespace LSM_prototype.Core
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
-        }
+        }       
 
         public bool CanExecute(object? parameter) => _canExecute?.Invoke(parameter) ?? true;
 

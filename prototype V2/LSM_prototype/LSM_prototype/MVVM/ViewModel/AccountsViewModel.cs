@@ -1,74 +1,136 @@
 ﻿using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     class AccountsViewModel : ViewModelBase
     {
-        public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
-        public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => SelectedItem != null);
-        public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
-        public ObservableCollection<Accounts> SharedAccounts { get; }
+        public ObservableCollection<Accounts> AccountsList { get; set; } = new ObservableCollection<Accounts>();
+        public RelayCommand AddCommand => new RelayCommand(_ => AddAccount(), _ => IsValidAccount(NewAccount));
+        public RelayCommand DeleteCommand => new RelayCommand(_ => DeleteAccount(), _ => SelectedAccount != null);
+        public RelayCommand SaveCommand => new RelayCommand(_ => Save(), _ => AccountsList.All(IsValidAccount));
 
-        public AccountsViewModel()
+        private Accounts _newAccount = new Accounts();
+        public Accounts NewAccount
         {
-            // Access the shared collection from the Accounts model
-            SharedAccounts = AccountsData.Instance.AccountsList;
+            get => _newAccount;
+            set { _newAccount = value; OnPropertyChanged(); }
         }
 
-        private Accounts? _selectedItem;
+        private Accounts? _selectedAccount;
 
-        public Accounts SelectedItem
+        public Accounts? SelectedAccount
         {
-            get { return _selectedItem; }
+            get => _selectedAccount;
             set
             {
-                _selectedItem = value;
+                _selectedAccount = value;
                 OnPropertyChanged();
             }
         }
 
-        //can we check if item is already in database? using name as primary key
-        private void AddItem()
+        public AccountsViewModel()
         {
-            SharedAccounts.Add(new Accounts
-            {
-                Name = "NEW ACCOUNT",
-                Gender = "Male/Female",
-                Age = 0,
-                Birthdate = "2004 / 03 / 31",
-                PhoneNumber = "09XX-XXX-XXX",
-                Email = "email@email.com",
-                HireDate = "2004 / 03 / 30",
-                Role = "ROLE"
-            });
+            LoadAccountsFromDatabase();
         }
 
-        private void DeleteItem()
+        private void LoadAccountsFromDatabase()
         {
-            var result = MessageBox.Show($"Are you sure you want to delete {SelectedItem.Name}?",
-                                         $"ITEM DELETION CONFIRMATION",
+            using (var context = new BenjaminDbContext())
+            {
+                var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
+                foreach (var account in accountsFromDb)
+                {
+                    AccountsList.Add(account);
+                }
+            }
+        }
+
+        private void AddAccount()
+        {
+            if (!IsValidAccount(NewAccount)) return;
+
+            AccountsList.Add(new Accounts
+            {
+                EmpID = NewAccount.EmpID,
+                Name = NewAccount.Name,
+                Age = NewAccount.Age,
+                Gender = NewAccount.Gender,
+                Birthdate = NewAccount.Birthdate,
+                PhoneNumber = NewAccount.PhoneNumber,
+                Email = NewAccount.Email,
+                HireDate = NewAccount.HireDate,
+                Role = NewAccount.Role,
+                EmpPW = NewAccount.EmpPW,
+                AccessLevel = NewAccount.AccessLevel
+            });
+
+            ResetNewAccountFields();
+            MessageBox.Show("Account added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void DeleteAccount()
+        {
+            if (SelectedAccount == null) return;
+
+            var result = MessageBox.Show($"Are you sure you want to delete {SelectedAccount.Name}?",
+                                         "Account Deletion Confirmation",
                                          MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.Yes)
             {
-                SharedAccounts.Remove(SelectedItem);
+                using (var context = new BenjaminDbContext())
+                {
+                    if (SelectedAccount.AccountID != 0)
+                    {
+                        var accountToRemove = context.Accounts.Find(SelectedAccount.AccountID);
+                        if (accountToRemove != null)
+                        {
+                            context.Accounts.Remove(accountToRemove);
+                            context.SaveChanges();
+                        }
+                    }
+                }
+
+                AccountsList.Remove(SelectedAccount);
+                MessageBox.Show("Account deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
-        //save to database using this
         private void Save()
         {
+            if (!AccountsList.All(IsValidAccount)) return;
 
+            using (var context = new BenjaminDbContext())
+            {
+                foreach (var account in AccountsList)
+                {
+                    if (account.AccountID == 0)
+                        context.Accounts.Add(account);
+                    else
+                        context.Accounts.Update(account);
+                }
+                context.SaveChanges();
+            }
+
+            MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        //add a check to see if database is up and items can e saved
-        private bool CanSave()
+        private bool IsValidAccount(Accounts account)
         {
-            //if ok, return true
-            return true;
+            return !string.IsNullOrWhiteSpace(account.EmpID) &&
+                   !string.IsNullOrWhiteSpace(account.Name) &&
+                   account.Age > 0 &&
+                   !string.IsNullOrWhiteSpace(account.Email) &&
+                   account.Email.Contains("@");
+        }
+
+        private void ResetNewAccountFields()
+        {
+            NewAccount = new Accounts();
         }
     }
 }

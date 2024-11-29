@@ -5510,19 +5510,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andre\\.nuget\\packages\\": {}
+    "C:\\Users\\israel\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\LSM_prototype.csproj",
+      "projectUniqueName": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\LSM_prototype.csproj",
       "projectName": "LSM_prototype",
-      "projectPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\LSM_prototype.csproj",
-      "packagesPath": "C:\\Users\\Andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\obj\\",
+      "projectPath": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\LSM_prototype.csproj",
+      "packagesPath": "C:\\Users\\israel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\israel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5546,8 +5551,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -5595,7 +5601,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
