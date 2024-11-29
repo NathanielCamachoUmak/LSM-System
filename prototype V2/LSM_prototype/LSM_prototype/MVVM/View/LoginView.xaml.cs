@@ -1,24 +1,10 @@
 ﻿using LSM_prototype.MVVM.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace LSM_prototype.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
     public partial class LoginView : Window
     {
         private readonly LoginViewModel viewModel;
@@ -33,8 +19,27 @@ namespace LSM_prototype.MVVM.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve the password and assign it to the ViewModel's property
+            PWbox.Password = PWTbox.Text;
             SecureString inputText = PWbox.SecurePassword;
             viewModel.empPWInput = inputText;
+        }
+
+        // When the checkbox is checked, show the password as plain text
+        private void ShowPassword_Checked(object sender, RoutedEventArgs e)
+        {
+            // Transfer the password to the TextBox and show it
+            PWTbox.Text = PWbox.Password;
+            PWTbox.Visibility = Visibility.Visible;
+            PWbox.Visibility = Visibility.Collapsed;
+        }
+
+        // When the checkbox is unchecked, hide the password and show the PasswordBox again
+        private void ShowPassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Transfer the plain text back to the PasswordBox and hide the TextBox
+            PWbox.Password = PWTbox.Text;
+            PWbox.Visibility = Visibility.Visible;
+            PWTbox.Visibility = Visibility.Collapsed;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

@@ -59,7 +59,7 @@ namespace LSM_prototype.MVVM.ViewModel
 
         private bool Verify()
         {
-            string IDinput = empIDInput.ToUpper().Trim();
+            string IDinput = empIDInput.Trim();
             string PWinput = empPWInput.ToUnsecureString();
 
             for (int i = 0; i < SharedAccounts.Count; i++)
