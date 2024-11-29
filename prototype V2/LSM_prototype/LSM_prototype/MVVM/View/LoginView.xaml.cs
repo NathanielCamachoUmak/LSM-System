@@ -33,8 +33,27 @@ namespace LSM_prototype.MVVM.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve the password and assign it to the ViewModel's property
+            PWbox.Password = PWTbox.Text;
             SecureString inputText = PWbox.SecurePassword;
             viewModel.empPWInput = inputText;
+        }
+
+        // When the checkbox is checked, show the password as plain text
+        private void ShowPassword_Checked(object sender, RoutedEventArgs e)
+        {
+            // Transfer the password to the TextBox and show it
+            PWTbox.Text = PWbox.Password;
+            PWTbox.Visibility = Visibility.Visible;
+            PWbox.Visibility = Visibility.Collapsed;
+        }
+
+        // When the checkbox is unchecked, hide the password and show the PasswordBox again
+        private void ShowPassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Transfer the plain text back to the PasswordBox and hide the TextBox
+            PWbox.Password = PWTbox.Text;
+            PWbox.Visibility = Visibility.Visible;
+            PWTbox.Visibility = Visibility.Collapsed;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

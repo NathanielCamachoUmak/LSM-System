@@ -194,7 +194,7 @@
                                        TextAlignment="Right"/>
                             <TextBox Grid.Column="1"
                                      FontSize="20"
-                                     MaxLength="10"
+                                     Background="White"
                                      Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
 
@@ -206,16 +206,42 @@
                                 <ColumnDefinition Width="130"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
+
                             <TextBlock Text="Password: "
-                                       Grid.Column="0"
+                                       Grid.Column="0" Grid.Row="0"
                                        FontSize="20"
                                        Foreground="White"
                                        TextAlignment="Right"/>
-                            <PasswordBox Grid.Column="1"
+
+                            <Grid Grid.Column="1">
+
+                                <PasswordBox Grid.Column="1"
+                                             FontSize="20"
+                                             PasswordChar="●"
+                                             MaxLength="64"
+                                             Background="White"
+                                             BorderThickness="0"
+                                             x:Name="PWbox"/>
+
+                                <TextBox Grid.Column="1"
                                          FontSize="20"
-                                         PasswordChar="#"
                                          MaxLength="64"
-                                         Name="PWbox"/>
+                                         Background="White"
+                                         x:Name="PWTbox"
+                                         BorderThickness="0"
+                                         Visibility="Collapsed"/>
+                                
+                                <ToggleButton Content="👁"
+                                              BorderThickness="0"
+                                              Background="White"
+                                              Foreground="Gray"
+                                              FontWeight="Bold"
+                                              FontSize="15"
+                                              HorizontalAlignment="Right"
+                                              Checked="ShowPassword_Checked"
+                                              Unchecked="ShowPassword_Unchecked"/>
+                            </Grid>
+
                         </Grid>
 
                         <StackPanel Height="50"/>

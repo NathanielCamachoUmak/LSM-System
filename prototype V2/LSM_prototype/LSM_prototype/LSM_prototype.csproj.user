@@ -48,13 +48,13 @@
     <Page Update="MVVM\View\OngoingOrdersView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Theme\InputTextBox1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Theme\TextBoxTheme.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Theme\tryThisNga.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
