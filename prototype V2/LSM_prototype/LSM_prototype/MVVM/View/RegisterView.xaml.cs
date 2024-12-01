@@ -15,6 +15,7 @@ namespace LSM_prototype.MVVM.View
             InitializeComponent();
             viewModel = new RegisterViewModel();
             this.DataContext = viewModel;
+            accName.Focus();
         }
 
         bool PWvisible;
@@ -68,10 +69,14 @@ namespace LSM_prototype.MVVM.View
             if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
             {
                 Application.Current.MainWindow.WindowState = WindowState.Maximized;
+                windowBorder.BorderThickness = new Thickness(0);
+                windowBorder.CornerRadius = new CornerRadius(0);
             }
             else
             {
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
+                windowBorder.BorderThickness = new Thickness(10, 0, 10, 10);
+                windowBorder.CornerRadius = new CornerRadius(10);
             }
         }
 

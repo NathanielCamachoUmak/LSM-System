@@ -84,7 +84,11 @@
         </ControlTemplate>
     </Window.Resources>
 
-    <Border Background="#021526">
+    <Border Background="#021526"
+            BorderThickness="0"
+            CornerRadius="0"
+            BorderBrush="#252525"
+            x:Name="windowBorder">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>

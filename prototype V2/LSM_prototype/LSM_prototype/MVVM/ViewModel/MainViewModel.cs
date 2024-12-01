@@ -103,14 +103,10 @@ namespace LSM_prototype.MVVM.ViewModel
 
         private void Logout()
         {
-
-            //ISRAEL HELPPPPPPPPPPPPPPPPPP
-            //when I delete all accounts and save to database it doesnt update the observable collection,
-            //and it still accepts the deleted account login details
+            SharedAccounts.Clear();
 
             if (SharedAccounts.Count == 0)
             {
-                MessageBox.Show("register window");
                 // Open the new main window
                 RegisterView regWindow = new RegisterView();
                 Application.Current.MainWindow = regWindow;
@@ -123,7 +119,6 @@ namespace LSM_prototype.MVVM.ViewModel
             }
             else
             {
-                MessageBox.Show("login window");
                 LoginView loginWindow = new LoginView();
                 Application.Current.MainWindow = loginWindow;
                 loginWindow.Show();

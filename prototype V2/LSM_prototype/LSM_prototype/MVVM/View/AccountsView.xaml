@@ -162,7 +162,7 @@
         <Grid Grid.Row="2">
             <DataGrid CanUserAddRows="False"
                       CanUserDeleteRows="False"
-                      ItemsSource="{Binding AccountsList}"
+                      ItemsSource="{Binding SharedAccounts}"
                       SelectedItem="{Binding SelectedAccount}"
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"

@@ -9,6 +9,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+        Background="Transparent"
         AllowsTransparency="True">
 
     <!--window control button style-->
@@ -82,7 +83,11 @@
         </ControlTemplate>
     </Window.Resources>
 
-    <Border Background="#021526">
+    <Border Background="#021526"
+            BorderThickness="10,0,10,10"
+            CornerRadius="10"
+            BorderBrush="#252525"
+            x:Name="windowBorder">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
@@ -205,6 +210,7 @@
                                  BorderThickness="0"
                                  Background="#F5F5F5"
                                  Padding="5,0,5,0"
+                                 x:Name="empID"
                                  Text="{Binding empIDInput, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
