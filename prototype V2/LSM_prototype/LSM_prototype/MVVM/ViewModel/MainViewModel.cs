@@ -57,6 +57,10 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
                 else
                 {
+                    OngoingOrdersVM.LoadItemsFromDatabase();
+
+                    SharedAccounts.Clear();
+                    LoadAccountsFromDatabase();
                     CurrentView = OngoingOrdersVM;
                 }
             });
@@ -70,6 +74,10 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
                 else
                 {
+                    ManageOrdersVM.LoadItemsFromDatabase();
+
+                    SharedAccounts.Clear();
+                    LoadAccountsFromDatabase();
                     CurrentView = ManageOrdersVM;
                 }
             });
@@ -105,6 +113,8 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             SharedAccounts.Clear();
 
+            LoadAccountsFromDatabase();
+
             if (SharedAccounts.Count == 0)
             {
                 // Open the new main window
@@ -126,6 +136,21 @@ namespace LSM_prototype.MVVM.ViewModel
                 Application.Current.Windows
                     .OfType<MainWindow>()
                     .FirstOrDefault()?.Close();
+            }
+        }
+
+        private void LoadAccountsFromDatabase()
+        {
+            using (var context = new BenjaminDbContext())
+            {
+                // Assuming you want to load all accounts from the database again
+                var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
+
+                // Add the accounts to the SharedAccounts collection
+                foreach (var account in accountsFromDb)
+                {
+                    SharedAccounts.Add(account);
+                }
             }
         }
     }

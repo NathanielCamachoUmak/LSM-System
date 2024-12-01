@@ -9,26 +9,15 @@
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid MaxHeight="550" Width="1000">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="1*" Name="row1"/>
             <RowDefinition Height="9*" Name="row2"/>
         </Grid.RowDefinitions>
-
-        <!--save button-->
-        <Button Height="auto"
-                Grid.Row="0"
-                BorderThickness="0"
-                Background="White"
-                Command="{Binding SaveCommand}">
-
-            <TextBlock Text="SAVE CHANGES TO DATABASE" FontSize="20"/>
-        </Button>
 
         <!--add accounts expander-->
         <StackPanel Height="auto"
                     Background="White"
                     Margin="0,5,0,5"
-                    Grid.Row="1">
+                    Grid.Row="0">
             <Expander Header="Add Item"
                       VerticalContentAlignment="Top"
                       Expanded="Expander_StateChanged"
@@ -81,7 +70,7 @@
         </StackPanel>
 
         <!--datagrid grid-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <DataGrid CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       ItemsSource="{Binding Items}"
@@ -108,8 +97,12 @@
                                 <!-- Expander inside DataGrid -->
 
                                 <Expander Header="{Binding Name}" VerticalAlignment="Top">
-                                    <StackPanel Background="White">
-                                        <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3">
+                                    <Grid Background="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3" Grid.Column="0">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1*"/>
@@ -144,18 +137,27 @@
                                                     <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
                                                     <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Quantity" Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
-
-                                                <Button Grid.Column="3"
-                                                        Background="#FFFF8D8D"
-                                                        FontWeight="Bold"
-                                                        Content="DELETE"
-                                                        Width="75"
-                                                        Height="20"
-                                                        Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
-
                                             </Grid>
                                         </GroupBox>
-                                    </StackPanel>
+
+
+                                        <StackPanel Background="White" Grid.Column="1">
+                                            <!--save button-->
+                                            <Button Grid.Column="2" Grid.RowSpan="4"
+                                                    Background="White"
+                                                    FontWeight="Bold"
+                                                    Margin="10"
+                                                    Content="SAVE CHANGES"
+                                                    Command="{Binding SaveCommand}"/>
+
+                                            <Button Grid.Column="2" Grid.RowSpan="4"
+                                                    Background="#FFFF8D8D"
+                                                    FontWeight="Bold"
+                                                    Margin="10"
+                                                    Content="DELETE ITEM"
+                                                    Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </Expander>
 
                             </DataTemplate>

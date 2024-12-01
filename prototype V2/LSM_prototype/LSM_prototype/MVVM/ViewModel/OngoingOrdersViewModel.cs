@@ -21,11 +21,16 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => SelectedItem != null);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
         public ObservableCollection<Orders> SharedOrders { get; }
+        public ObservableCollection<Accounts> SharedAccounts { get; }
+
+        public ObservableCollection<Item> inventory { get; }
 
         public OngoingOrdersViewModel()
         {
-            // Access the shared collection
+            inventory = new ObservableCollection<Item>();
             SharedOrders = OrdersData.Instance.OrdersList;
+            SharedAccounts = AccountsData.Instance.SharedAccounts;
+            LoadItemsFromDatabase();
         }
 
         private Orders _selectedItem;
@@ -78,6 +83,20 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             //if ok, return true
             return true;
+        }
+
+        public void LoadItemsFromDatabase()
+        {
+            inventory.Clear();
+
+            using (var context = new BenjaminDbContext())
+            {
+                var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
+                foreach (var item in itemsFromDb)
+                {
+                    inventory.Add(item);
+                }
+            }
         }
     }
 }

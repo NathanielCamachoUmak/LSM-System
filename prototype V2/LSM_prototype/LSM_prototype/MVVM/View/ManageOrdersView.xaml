@@ -10,25 +10,15 @@
 
     <Grid MaxHeight="550" Width="1000">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="1*" Name="row1"/>
             <RowDefinition Height="9*" Name="row2"/>
         </Grid.RowDefinitions>
-
-        <!--save button-->
-        <Button Height="auto"
-                Grid.Row="0"
-                BorderThickness="0"
-                Background="White">
-
-            <TextBlock Text="SAVE CHANGES TO DATABASE" FontSize="20"/>
-        </Button>
 
         <!--add accounts expander-->
         <StackPanel Height="auto"
                     Background="White"
                     Margin="0,5,0,5"
-                    Grid.Row="1">
+                    Grid.Row="0">
             <Expander Header="Add Order"
                       VerticalContentAlignment="Top"
                       Expanded="Expander_StateChanged"
@@ -40,53 +30,45 @@
                     <GroupBox Header="Order Information" FontSize="15" BorderThickness="3">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="0.6*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="10*"/>
                             </Grid.RowDefinitions>
 
                             <!--item name-->
-                            <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="95"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5"/>
+                                <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5" TextAlignment="Right"/>
                                 <TextBox Grid.Column="1" Text="{Binding Item}" FontSize="14" Margin="5"/>
                             </Grid>
 
-                            <!--item ETA-->
+                            <!--item Technician-->
                             <Grid Grid.Column="0" Grid.Row="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="95"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="ETA: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding ETA}" FontSize="14" Margin="5"/>
-                            </Grid>
-
-                            <!--item Technician-->
-                            <Grid Grid.Column="0" Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Technician: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding Technician}" FontSize="14" Margin="5"/>
+                                <TextBlock Grid.Column="0" Text="Employee Assigned: " FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
+                                <ComboBox Grid.Column="1" ItemsSource="{Binding SharedAccounts, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" FontSize="14" Margin="5">
+                                </ComboBox>
                             </Grid>
 
                             <!--item Status-->
-                            <Grid Grid.Column="0" Grid.Row="3">
+                            <Grid Grid.Column="1" Grid.Row="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5"/>
+                                <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
                                 <ComboBox Grid.Column="1" Text="{Binding Status}" FontSize="14" Margin="5">
                                     <ComboBoxItem Content="Ongoing"/>
                                     <ComboBoxItem Content="Complete"/>
@@ -95,23 +77,74 @@
                             </Grid>
 
                             <!--item Problem-->
-                            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                            <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="95"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
+                                <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
 
-                            <!--item Other Notes-->
-                            <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
+                            <!--item Other Details-->
+                            <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="95"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Other Notes: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
+                                <TextBlock Grid.Column="0" Text="Other Details: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
+                            </Grid>
+
+                            <!--item Components used-->
+                            <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Height="185">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Text="Components list: " FontSize="14"/>
+                                <Grid Grid.Row="1" Margin="0,-5,5,5" Background="LightGray">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Margin="6,0,6,0" Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="1" FontSize="10" Text="Name"/>
+                                        <TextBlock Grid.Column="2" FontSize="10" Text="Price"/>
+                                        <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
+                                    </Grid>
+                                    <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderThickness="0" Background="LightGray" ItemsSource="{Binding inventory, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="20"/>
+                                                        <ColumnDefinition Width="1*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <!-- CheckBox bound to IsSelected property -->
+                                                    <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+
+                                                    <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="1*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Price}"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding Stock}"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
                             </Grid>
 
                         </Grid>
@@ -121,17 +154,15 @@
                     <GroupBox Header="Customer Information" FontSize="15" BorderThickness="3">
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
 
                             <!--customer name-->
-                            <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid Grid.Column="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Name: " FontSize="14" Margin="5"/>
@@ -139,22 +170,22 @@
                             </Grid>
 
                             <!--customer PhoneNum-->
-                            <Grid Grid.Column="0" Grid.Row="1">
+                            <Grid Grid.Column="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Phone #: " FontSize="14" Margin="5"/>
                                 <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
                             </Grid>
 
                             <!--item Technician-->
-                            <Grid Grid.Column="0" Grid.Row="2">
+                            <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="CustEmail: " FontSize="14" Margin="5"/>
+                                <TextBlock Grid.Column="0" Text="Email: " FontSize="14" Margin="5"/>
                                 <TextBox Grid.Column="1" Text="{Binding CustEmail}" FontSize="14" Margin="5"/>
                             </Grid>
 
@@ -167,7 +198,7 @@
         </StackPanel>
 
         <!--datagrid grid-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
 
             <!--datagrid grid-->
             <DataGrid CanUserAddRows="False"
@@ -193,143 +224,209 @@
                         </DataGridColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <!-- Expander inside DataGrid -->
 
                                 <Expander Header="{Binding OrderID}" VerticalAlignment="Top">
-                                    <StackPanel Background="White">
-                                        <!--order information-->
-                                        <GroupBox Header="Order Information" FontSize="15" BorderThickness="3">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                                <!--item name-->
-                                                <Grid Grid.Column="0" Grid.Row="0">
+                                        <StackPanel Background="White" Grid.Column="0">
+                                            <!--order information-->
+                                            <GroupBox Header="Order Information" FontSize="15" BorderThickness="3">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.2*"/>
+                                                        <ColumnDefinition Width="0.6*"/>
+                                                        <ColumnDefinition Width="1*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="1*"/>
+                                                        <RowDefinition Height="1*"/>
+                                                        <RowDefinition Height="10*"/>
+                                                        <RowDefinition Height="10*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <!--item name-->
+                                                    <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="95"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5" TextAlignment="Right"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding Item}" FontSize="14" Margin="5"/>
+                                                    </Grid>
+
+                                                    <!--item Technician-->
+                                                    <Grid Grid.Column="0" Grid.Row="1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="95"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Employee Assigned: " FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
+                                                        <ComboBox Grid.Column="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.SharedAccounts, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" FontSize="14" Margin="5">
+                                                        </ComboBox>
+                                                    </Grid>
+
+                                                    <!--item Status-->
+                                                    <Grid Grid.Column="1" Grid.Row="1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
+                                                        <ComboBox Grid.Column="1" Text="{Binding Status}" FontSize="14" Margin="5">
+                                                            <ComboBoxItem Content="Ongoing"/>
+                                                            <ComboBoxItem Content="Complete"/>
+                                                            <ComboBoxItem Content="Cancelled"/>
+                                                        </ComboBox>
+                                                    </Grid>
+
+                                                    <!--item Problem-->
+                                                    <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="95"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
+                                                    </Grid>
+
+                                                    <!--item Other Details-->
+                                                    <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="95"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Other Details: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
+                                                    </Grid>
+
+                                                    <!--item Components used-->
+                                                    <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Height="185">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="1*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Components list: " FontSize="14"/>
+                                                        <Grid Grid.Row="1" Margin="0,-5,5,5" Background="LightGray">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="15"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid Margin="6,0,6,0" Grid.Row="0">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="20"/>
+                                                                    <ColumnDefinition Width="1*"/>
+                                                                    <ColumnDefinition Width="1*"/>
+                                                                    <ColumnDefinition Width="1*"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock Grid.Column="1" FontSize="10" Text="Name"/>
+                                                                <TextBlock Grid.Column="2" FontSize="10" Text="Price"/>
+                                                                <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
+                                                            </Grid>
+                                                            <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel"
+                                                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                                                      BorderThickness="0" Background="LightGray"
+                                                                      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.inventory, UpdateSourceTrigger=PropertyChanged}" 
+                                                                      HorizontalContentAlignment="Stretch">
+                                                                <ListView.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <Grid>
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="20"/>
+                                                                                <ColumnDefinition Width="1*"/>
+                                                                            </Grid.ColumnDefinitions>
+                                                                            <!-- CheckBox bound to IsSelected property -->
+                                                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+
+                                                                            <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                    <ColumnDefinition Width="1*"/>
+                                                                                    <ColumnDefinition Width="1*"/>
+                                                                                    <ColumnDefinition Width="1*"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                                                                <TextBlock Grid.Column="1" Text="{Binding Price}"/>
+                                                                                <TextBlock Grid.Column="2" Text="{Binding Stock}"/>
+                                                                            </Grid>
+                                                                        </Grid>
+                                                                    </DataTemplate>
+                                                                </ListView.ItemTemplate>
+                                                            </ListView>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                </Grid>
+                                            </GroupBox>
+
+                                            <!--customer information-->
+                                            <GroupBox Header="Customer Information" FontSize="15" BorderThickness="3">
+                                                <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Item, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
-                                                </Grid>
-
-                                                <!--item ETA-->
-                                                <Grid Grid.Column="0" Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="ETA: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding ETA, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
-                                                </Grid>
-
-                                                <!--item Technician-->
-                                                <Grid Grid.Column="0" Grid.Row="2">
-                                                    <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Technician: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Technician, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+
+                                                    <!--customer name-->
+                                                    <Grid Grid.Column="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition Width="5*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Name: " FontSize="14" Margin="5"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding CustName}" FontSize="14" Margin="5"/>
+                                                    </Grid>
+
+                                                    <!--customer PhoneNum-->
+                                                    <Grid Grid.Column="1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="65"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Phone #: " FontSize="14" Margin="5"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
+                                                    </Grid>
+
+                                                    <!--item Technician-->
+                                                    <Grid Grid.Column="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Email: " FontSize="14" Margin="5"/>
+                                                        <TextBox Grid.Column="1" Text="{Binding CustEmail}" FontSize="14" Margin="5"/>
+                                                    </Grid>
+
                                                 </Grid>
+                                            </GroupBox>
+                                        </StackPanel>
 
-                                                <!--item Status-->
-                                                <Grid Grid.Column="0" Grid.Row="3">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5"/>
-                                                    <ComboBox Grid.Column="1" Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5">
-                                                        <ComboBoxItem Content="Ongoing"/>
-                                                        <ComboBoxItem Content="Complete"/>
-                                                        <ComboBoxItem Content="Cancelled"/>
-                                                    </ComboBox>
-                                                </Grid>
+                                        <StackPanel Background="White" Grid.Column="1">
+                                            <!--save button-->
+                                            <Button Grid.Column="2" Grid.RowSpan="4"
+                                                    Background="White"
+                                                    FontWeight="Bold"
+                                                    Margin="10"
+                                                    Content="SAVE CHANGES"/>
 
-                                                <!--item Problem-->
-                                                <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Problem, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
-                                                </Grid>
+                                            <Button Grid.Column="2" Grid.RowSpan="4"
+                                                    Background="White"
+                                                    FontWeight="Bold"
+                                                    Margin="10"
+                                                    Content="PRINT RECIEPT"/>
 
-                                                <!--item Other Notes-->
-                                                <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Other Notes: " FontSize="14" Margin="5" TextWrapping="Wrap"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding OtherNotes, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5" TextWrapping="Wrap" MaxHeight="50" VerticalScrollBarVisibility="Visible"/>
-                                                </Grid>
+                                            <Button Grid.Column="2" Grid.RowSpan="4"
+                                                    Background="#FFFF8D8D"
+                                                    FontWeight="Bold"
+                                                    Margin="10"
+                                                    Content="DELETE ITEM"
+                                                    Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
+                                        </StackPanel>
 
-                                                <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="#FFFF8D8D"
-                                                            FontWeight="Bold"
-                                                            Margin="10"
-                                                            Content="DELETE"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
-
-                                            </Grid>
-                                        </GroupBox>
-
-                                        <!--customer information-->
-                                        <GroupBox Header="Customer Information" FontSize="15" BorderThickness="3">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                    <RowDefinition Height="1*"/>
-                                                </Grid.RowDefinitions>
-
-                                                <!--customer name-->
-                                                <Grid Grid.Column="0" Grid.Row="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Name: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustName, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
-                                                </Grid>
-
-                                                <!--customer PhoneNum-->
-                                                <Grid Grid.Column="0" Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Phone #: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustPhoneNum, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
-                                                </Grid>
-
-                                                <!--item Technician-->
-                                                <Grid Grid.Column="0" Grid.Row="2">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="5*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="CustEmail: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding CustEmail, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </GroupBox>
-                                    </StackPanel>
+                                    </Grid>
                                 </Expander>
 
                             </DataTemplate>
