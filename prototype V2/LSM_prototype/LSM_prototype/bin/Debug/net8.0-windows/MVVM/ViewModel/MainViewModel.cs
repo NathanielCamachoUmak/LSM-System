@@ -37,7 +37,7 @@ namespace LSM_prototype.MVVM.ViewModel
 
         public MainViewModel()
         {
-            SharedAccounts = AccountsData.Instance.AccountsList;
+            SharedAccounts = AccountsData.Instance.SharedAccounts;
 
             HomeVM = new HomeViewModel();
             OngoingOrdersVM = new OngoingOrdersViewModel();

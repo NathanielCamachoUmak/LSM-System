@@ -8,10 +8,10 @@ namespace LSM_prototype.MVVM.ViewModel
 {
     class AccountsViewModel : ViewModelBase
     {
-        public ObservableCollection<Accounts> AccountsList { get; set; } = new ObservableCollection<Accounts>();
+        public ObservableCollection<Accounts> SharedAccounts { get; set; } = new ObservableCollection<Accounts>();
         public RelayCommand AddCommand => new RelayCommand(_ => AddAccount(), _ => IsValidAccount(NewAccount));
         public RelayCommand DeleteCommand => new RelayCommand(_ => DeleteAccount(), _ => SelectedAccount != null);
-        public RelayCommand SaveCommand => new RelayCommand(_ => Save(), _ => AccountsList.All(IsValidAccount));
+        public RelayCommand SaveCommand => new RelayCommand(_ => Save(), _ => SharedAccounts.All(IsValidAccount));
 
         private Accounts _newAccount = new Accounts();
         public Accounts NewAccount
@@ -44,7 +44,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
                 foreach (var account in accountsFromDb)
                 {
-                    AccountsList.Add(account);
+                    SharedAccounts.Add(account);
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             if (!IsValidAccount(NewAccount)) return;
 
-            AccountsList.Add(new Accounts
+            SharedAccounts.Add(new Accounts
             {
                 EmpID = NewAccount.EmpID,
                 Name = NewAccount.Name,
@@ -95,18 +95,18 @@ namespace LSM_prototype.MVVM.ViewModel
                     }
                 }
 
-                AccountsList.Remove(SelectedAccount);
+                SharedAccounts.Remove(SelectedAccount);
                 MessageBox.Show("Account deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void Save()
         {
-            if (!AccountsList.All(IsValidAccount)) return;
+            if (!SharedAccounts.All(IsValidAccount)) return;
 
             using (var context = new BenjaminDbContext())
             {
-                foreach (var account in AccountsList)
+                foreach (var account in SharedAccounts)
                 {
                     if (account.AccountID == 0)
                         context.Accounts.Add(account);

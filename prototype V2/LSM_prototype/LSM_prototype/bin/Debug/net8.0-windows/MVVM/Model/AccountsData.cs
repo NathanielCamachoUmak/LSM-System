@@ -7,7 +7,7 @@ namespace LSM_prototype.MVVM.Model
         private static AccountsData? _instance;
         public static AccountsData Instance => _instance ??= new AccountsData();
 
-        public ObservableCollection<Accounts> AccountsList { get; } = new ObservableCollection<Accounts>();
+        public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
 
         private AccountsData()
         {
@@ -16,8 +16,18 @@ namespace LSM_prototype.MVVM.Model
                 var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
                 foreach (var account in accountsFromDb)
                 {
-                    AccountsList.Add(account);
+                    SharedAccounts.Add(account);
                 }
+            }
+        }
+
+        public void SaveChangesToDatabase()
+        {
+            using (var context = new BenjaminDbContext())
+            {
+                context.Accounts.RemoveRange(context.Accounts); // Clear current database entries
+                context.Accounts.AddRange(SharedAccounts);     // Add updated accounts
+                context.SaveChanges();                         // Commit changes
             }
         }
     }

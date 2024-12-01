@@ -15,7 +15,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public LoginViewModel()
         {
             // Access the shared collection from the Accounts model
-            SharedAccounts = AccountsData.Instance.AccountsList;
+            SharedAccounts = AccountsData.Instance.SharedAccounts;
 
             //checks if database accounts is 0
             if (SharedAccounts.Count == 0)

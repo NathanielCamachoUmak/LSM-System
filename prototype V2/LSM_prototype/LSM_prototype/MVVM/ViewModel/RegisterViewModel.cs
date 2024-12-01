@@ -3,55 +3,66 @@ using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.View;
 using System.Collections.ObjectModel;
 using System.Security;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     internal class RegisterViewModel : ViewModelBase
     {
-        public string Name { get; set; }
-        public string Age { get; set; }
-        public string Gender { get; set; }
-        public string PNum { get; set; }
-        public string Email { get; set; }
-        public string Role { get; set; }
-        public string ID { get; set; }
-        public SecureString PW { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Age { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
+        public string PNum { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
+        public string ID { get; set; } = string.Empty;
+        public SecureString PW { get; set; } = new SecureString();
 
         public RelayCommand RegisterCommand => new RelayCommand(execute => Register());
         public ObservableCollection<Accounts> SharedAccounts { get; }
 
         public RegisterViewModel()
         {
-            SharedAccounts = AccountsData.Instance.AccountsList;
+            SharedAccounts = AccountsData.Instance.SharedAccounts;
         }
 
         public void Register()
         {
-            int age = Int32.Parse(Age);
             string IDinput = ID.Trim();
             string PWinput = PW.ToUnsecureString();
-            string AccessLevel;
 
-            //change the condition to check if database has no accounts
-            if (SharedAccounts.Count == 0)
+            // Checks if the inputs are valid
+            if (!ValidateInputs())
             {
-                AccessLevel = "Admin";
-            }
-            else
-            {
-                AccessLevel = "User";
+                MessageBox.Show("Please correct the invalid fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
+            // Assign AccessLevel based on the number of accounts in the database you get the drill
+            string accessLevel = SharedAccounts.Count == 0 ? "Admin" : "User";
 
-            //save this to the database pls
-            //iba pala pagkagawa mo ng lists sa AccountsViewModel
-            //the new account is saved in SharedAccounts naman na
-            SharedAccounts.Add(new Accounts { Name = Name, Age = age, Gender = Gender, PhoneNumber = PNum,
-                                              Email = Email, Role = Role, EmpID = IDinput, EmpPW = PWinput,
-                                              Birthdate = "XX/XX/XXXX", HireDate = "XX/XX/XXXX", AccessLevel = AccessLevel
-            });
+            // Add the new account to the SharedAccounts and database
+            var newAccount = new Accounts
+            {
+                Name = Name,
+                Age = int.Parse(Age),
+                Gender = Gender,
+                PhoneNumber = PNum,
+                Email = Email,
+                Role = Role,
+                EmpID = ID.Trim(),
+                EmpPW = PW.ToUnsecureString(),
+                Birthdate = "XX/XX/XXXX", // Replace with actual value if available
+                HireDate = "XX/XX/XXXX", // Replace with actual value if available
+                AccessLevel = accessLevel
+            };
 
+            SharedAccounts.Add(newAccount);
+
+            AccountsData.Instance.SaveChangesToDatabase(); // Save changes to the database
+
+            MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
             LoginView loginWindow = new LoginView();
             Application.Current.MainWindow = loginWindow;
@@ -60,6 +71,43 @@ namespace LSM_prototype.MVVM.ViewModel
             Application.Current.Windows
                 .OfType<RegisterView>()
                 .FirstOrDefault()?.Close();
+        }
+
+        private bool ValidateInputs()
+        {
+            // Validate Name
+            if (string.IsNullOrWhiteSpace(Name))
+                return false;
+
+            // Validate Age (must be a valid positive number)
+            if (!int.TryParse(Age, out int age) || age <= 0)
+                return false;
+
+            // Validate Gender
+            if (string.IsNullOrWhiteSpace(Gender))
+                return false;
+
+            // Validate Phone Number (basic numeric check, can be expanded)
+            if (string.IsNullOrWhiteSpace(PNum) || !Regex.IsMatch(PNum, @"^\d+$"))
+                return false;
+
+            // Validate Email (simple regex for email structure)
+            if (string.IsNullOrWhiteSpace(Email) || !Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                return false;
+
+            // Validate Role
+            if (string.IsNullOrWhiteSpace(Role))
+                return false;
+
+            // Validate EmpID
+            if (string.IsNullOrWhiteSpace(ID))
+                return false;
+
+            // Validate Password (must not be empty)
+            if (PW == null || PW.Length == 0)
+                return false;
+
+            return true;
         }
     }
 }
