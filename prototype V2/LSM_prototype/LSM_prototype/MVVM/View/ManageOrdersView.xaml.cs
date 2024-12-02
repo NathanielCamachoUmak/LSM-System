@@ -21,7 +21,7 @@ namespace LSM_prototype.MVVM.View
             {
                 if (expander.IsExpanded)
                 {
-                    row1.Height = new GridLength(2.2, GridUnitType.Star);
+                    row1.Height = new GridLength(2.75, GridUnitType.Star);
                     row2.Height = new GridLength(1, GridUnitType.Star);
                 }
                 else

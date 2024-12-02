@@ -3,21 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LSM_prototype.MVVM.View"
+             xmlns:local="clr-namespace:LSM_prototype.Core"
              mc:Ignorable="d"
              x:Name="Root"
-             d:DesignHeight="600" d:DesignWidth="1000">
-    <Grid MaxHeight="550" Width="1000">
+             d:DesignHeight="500" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <local:RectConverter x:Key="RectConverter"/>
+    </UserControl.Resources>
+
+    <Grid Height="500" Width="1000">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" Name="row1"/>
             <RowDefinition Height="9*" Name="row2"/>
         </Grid.RowDefinitions>
 
         <!--add accounts expander-->
-        <StackPanel Height="auto"
-                    Background="White"
-                    Margin="0,5,0,5"
-                    Grid.Row="0">
+        <Border Grid.Row="0"
+                Height="auto"
+                Background="White"
+                Margin="0,5,0,5"
+                CornerRadius="25"
+                Padding="15,0,15,0">
             <Expander Header="Add Item"
                       VerticalContentAlignment="Top"
                       Expanded="Expander_StateChanged"
@@ -67,94 +74,116 @@
                     <Button Content="Add Item" Command="{Binding AddCommand}"/>
                 </StackPanel>
             </Expander>
-        </StackPanel>
+        </Border>
 
         <!--datagrid grid-->
-        <Grid Grid.Row="1">
+        <Border Grid.Row="1"
+                Height="auto"
+                Background="White"
+                Margin="0,5,0,5"
+                CornerRadius="25"
+                x:Name="ClippedBorder">
+            <Border.Clip>
+                <RectangleGeometry RadiusX="25" RadiusY="25">
+                    <RectangleGeometry.Rect>
+                        <MultiBinding Converter="{StaticResource RectConverter}">
+                            <Binding ElementName="ClippedBorder" Path="ActualWidth"/>
+                            <Binding ElementName="ClippedBorder" Path="ActualHeight"/>
+                        </MultiBinding>
+                    </RectangleGeometry.Rect>
+                </RectangleGeometry>
+            </Border.Clip>
             <DataGrid CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       ItemsSource="{Binding Items}"
                       SelectedItem="{Binding SelectedItem}"
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
+                      CanUserSortColumns="True"
                       VerticalScrollBarVisibility="Visible"
                       HorizontalScrollBarVisibility="Disabled"
                       RowHeaderWidth="0"
-                      VirtualizingPanel.ScrollUnit="Pixel">
+                      VirtualizingPanel.ScrollUnit="Pixel"
+                      BorderThickness="0">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White"/>
+                </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <!-- Other columns -->
 
                     <!-- Template column with Expander inside -->
-                    <DataGridTemplateColumn Header="Inventory" Width="*">
+                    <DataGridTemplateColumn Header="Inventory" Width="*" SortMemberPath="Name">
                         <DataGridColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="30,10,0,10"/>
                             </Style>
                         </DataGridColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <!-- Expander inside DataGrid -->
 
-                                <Expander Header="{Binding Name}" VerticalAlignment="Top">
-                                    <Grid Background="White">
+                                <Expander Header="{Binding Name}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
+                                    <Grid Background="White" Margin="10">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
-                                        <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3" Grid.Column="0">
+                                        <GroupBox Header="Employee Information" FontSize="15" BorderThickness="3" Grid.Column="0" VerticalAlignment="Center">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1*"/>
                                                     <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="100"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="1*"/>
+                                                    <RowDefinition Height="1*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Grid Grid.Column="0">
+                                                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1.2*"/>
+                                                        <ColumnDefinition Width="80"/>
                                                         <ColumnDefinition Width="3*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Item Name: " FontSize="14" Margin="5"/>
+                                                    <TextBlock Grid.Column="0" Text="Item Name:" FontSize="14" Margin="5" TextAlignment="Right"/>
                                                     <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
-                                                <Grid Grid.Column="1">
+                                                <Grid Grid.Column="0" Grid.Row="1">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1.1*"/>
+                                                        <ColumnDefinition Width="80"/>
                                                         <ColumnDefinition Width="3*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Item Price: " FontSize="14" Margin="5"/>
+                                                    <TextBlock Grid.Column="0" Text="Item Price:" FontSize="14" Margin="5" TextAlignment="Right"/>
                                                     <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Price" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
 
-                                                <Grid Grid.Column="2">
+                                                <Grid Grid.Column="1" Grid.Row="1">
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="3.2*"/>
+                                                        <ColumnDefinition Width="65"/>
+                                                        <ColumnDefinition Width="3*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="Quantity: " FontSize="14" Margin="5"/>
+                                                    <TextBlock Grid.Column="0" Text="Quantity:" FontSize="14" Margin="5" TextAlignment="Right"/>
                                                     <TextBox Grid.Column="1" Background="LightGray" Style="{StaticResource CustomTextBoxStyle}" Tag="Item Quantity" Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
                                                 </Grid>
                                             </Grid>
                                         </GroupBox>
 
 
-                                        <StackPanel Background="White" Grid.Column="1">
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <!--save button-->
-                                            <Button Grid.Column="2" Grid.RowSpan="4"
-                                                    Background="White"
+                                            <Button Margin="10"
                                                     FontWeight="Bold"
-                                                    Margin="10"
                                                     Content="SAVE CHANGES"
-                                                    Command="{Binding SaveCommand}"/>
+                                                    Background="LightGray"
+                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
 
-                                            <Button Grid.Column="2" Grid.RowSpan="4"
-                                                    Background="#FFFF8D8D"
+                                            <Button Margin="10"
                                                     FontWeight="Bold"
-                                                    Margin="10"
                                                     Content="DELETE ITEM"
+                                                    Background="#FFFF8D8D"
                                                     Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
                                         </StackPanel>
                                     </Grid>
@@ -165,6 +194,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </Grid>
+        </Border>
     </Grid>
 </UserControl>

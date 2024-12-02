@@ -24,10 +24,6 @@ namespace LSM_prototype.MVVM.View
         {
             InitializeComponent();
         }
-        private void MyCalendar_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Mouse.Capture(null);
-        }
 
     }
 }

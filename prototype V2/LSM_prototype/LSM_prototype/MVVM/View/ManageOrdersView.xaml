@@ -3,22 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LSM_prototype.MVVM.View"
+             xmlns:local="clr-namespace:LSM_prototype.Core"
              mc:Ignorable="d" 
              x:Name="Root"
-             d:DesignHeight="600" d:DesignWidth="1000">
+             d:DesignHeight="500" d:DesignWidth="1000">
 
-    <Grid MaxHeight="550" Width="1000">
+    <UserControl.Resources>
+        <local:RectConverter x:Key="RectConverter"/>
+        <local:ColumnWidthConverter x:Key="ColumnWidthConverter"/>
+    </UserControl.Resources>
+
+    <Grid Height="500" Width="1000">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" Name="row1"/>
             <RowDefinition Height="9*" Name="row2"/>
         </Grid.RowDefinitions>
 
-        <!--add accounts expander-->
-        <StackPanel Height="auto"
-                    Background="White"
-                    Margin="0,5,0,5"
-                    Grid.Row="0">
+        <!--add orders expander-->
+        <Border Grid.Row="0"
+                Height="auto"
+                Background="White"
+                Margin="0,5,0,5"
+                CornerRadius="25"
+                Padding="15,0,15,0">
             <Expander Header="Add Order"
                       VerticalContentAlignment="Top"
                       Expanded="Expander_StateChanged"
@@ -47,7 +54,7 @@
                                     <ColumnDefinition Width="95"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Item: " FontSize="14" Margin="5" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
                                 <TextBox Grid.Column="1" Text="{Binding Item}" FontSize="14" Margin="5"/>
                             </Grid>
 
@@ -57,23 +64,19 @@
                                     <ColumnDefinition Width="95"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Employee Assigned: " FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
                                 <ComboBox Grid.Column="1" ItemsSource="{Binding SharedAccounts, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" FontSize="14" Margin="5">
                                 </ComboBox>
                             </Grid>
 
                             <!--item Status-->
-                            <Grid Grid.Column="1" Grid.Row="1">
+                            <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                <ComboBox Grid.Column="1" Text="{Binding Status}" FontSize="14" Margin="5">
-                                    <ComboBoxItem Content="Ongoing"/>
-                                    <ComboBoxItem Content="Complete"/>
-                                    <ComboBoxItem Content="Cancelled"/>
-                                </ComboBox>
+                                <TextBlock Grid.Column="0" Text="Status:" FontSize="14" Margin="5" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="1" Text="Ongoing" FontSize="14" Margin="5"/>
                             </Grid>
 
                             <!--item Problem-->
@@ -82,7 +85,7 @@
                                     <ColumnDefinition Width="95"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Problem: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="0" Text="Problem:" FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
                                 <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
 
@@ -92,7 +95,7 @@
                                     <ColumnDefinition Width="95"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Other Details: " FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
+                                <TextBlock Grid.Column="0" Text="Other Details:" FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
                                 <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
 
@@ -102,7 +105,7 @@
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Text="Components list: " FontSize="14"/>
+                                <TextBlock Grid.Column="0" Text="Components list:" FontSize="14"/>
                                 <Grid Grid.Row="1" Margin="0,-5,5,5" Background="LightGray">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="15"/>
@@ -111,7 +114,7 @@
                                     <Grid Margin="6,0,6,0" Grid.Row="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="20"/>
-                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*"/>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
@@ -128,17 +131,17 @@
                                                         <ColumnDefinition Width="1*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <!-- CheckBox bound to IsSelected property -->
-                                                    <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                    <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center"/>
 
                                                     <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="1*"/>
-                                                            <ColumnDefinition Width="1*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="1.5*"/>
                                                             <ColumnDefinition Width="1*"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="{Binding Name}"/>
-                                                        <TextBlock Grid.Column="1" Text="{Binding Price}"/>
-                                                        <TextBlock Grid.Column="2" Text="{Binding Stock}"/>
+                                                        <TextBlock Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource ColumnWidthConverter}, ConverterParameter=2/4}"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Price}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding Stock}" VerticalAlignment="Center"/>
                                                     </Grid>
                                                 </Grid>
                                             </DataTemplate>
@@ -146,7 +149,6 @@
                                     </ListView>
                                 </Grid>
                             </Grid>
-
                         </Grid>
                     </GroupBox>
 
@@ -195,38 +197,60 @@
                     <Button Content="test" Command="{Binding AddCommand}"/>
                 </StackPanel>
             </Expander>
-        </StackPanel>
+        </Border>
 
         <!--datagrid grid-->
-        <Grid Grid.Row="1">
+        <Border Grid.Row="1"
+                Height="auto"
+                Background="White"
+                Margin="0,5,0,5"
+                CornerRadius="25"
+                x:Name="ClippedBorder">
+            <Border.Clip>
+                <RectangleGeometry RadiusX="25" RadiusY="25">
+                    <RectangleGeometry.Rect>
+                        <MultiBinding Converter="{StaticResource RectConverter}">
+                            <Binding ElementName="ClippedBorder" Path="ActualWidth"/>
+                            <Binding ElementName="ClippedBorder" Path="ActualHeight"/>
+                        </MultiBinding>
+                    </RectangleGeometry.Rect>
+                </RectangleGeometry>
+            </Border.Clip>
 
             <!--datagrid grid-->
             <DataGrid CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          SelectedItem="{Binding SelectedItem}"
-                          ItemsSource="{Binding SharedOrders}"
-                          AutoGenerateColumns="False"
-                          CanUserResizeColumns="False"
-                          VerticalScrollBarVisibility="Visible"
-                          HorizontalScrollBarVisibility="Disabled"
-                          RowHeaderWidth="0"
-                          VirtualizingPanel.ScrollUnit="Pixel">
+                      CanUserDeleteRows="False"
+                      SelectedItem="{Binding SelectedItem}"
+                      ItemsSource="{Binding SharedOrders}"
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserSortColumns="True"
+                      VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Disabled"
+                      RowHeaderWidth="0"
+                      VirtualizingPanel.ScrollUnit="Pixel"
+                      BorderThickness="0">
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White"/>
+                </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <!-- Other columns -->
 
                     <!-- Template column with Expander inside -->
-                    <DataGridTemplateColumn Header="Ongoing Orders" Width="*">
+                    <DataGridTemplateColumn Header="Orders" Width="*" SortMemberPath="OrderID">
                         <DataGridColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="30,10,0,10"/>
                             </Style>
                         </DataGridColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <Expander Header="{Binding OrderID}" VerticalAlignment="Top">
-                                    <Grid>
+                                <Expander Header="{Binding OrderID}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
+                                    <Grid Background="White" Margin="10">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="1*"/>
@@ -240,6 +264,7 @@
                                                         <ColumnDefinition Width="1.2*"/>
                                                         <ColumnDefinition Width="0.6*"/>
                                                         <ColumnDefinition Width="1*"/>
+                                                        <ColumnDefinition Width="0.5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="1*"/>
@@ -270,7 +295,7 @@
                                                     </Grid>
 
                                                     <!--item Status-->
-                                                    <Grid Grid.Column="1" Grid.Row="1">
+                                                    <Grid Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="50"/>
                                                             <ColumnDefinition Width="*"/>
@@ -309,7 +334,7 @@
                                                             <RowDefinition Height="25"/>
                                                             <RowDefinition Height="1*"/>
                                                         </Grid.RowDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Components list: " FontSize="14"/>
+                                                        <TextBlock Grid.Column="0" Text="Components list:" FontSize="14"/>
                                                         <Grid Grid.Row="1" Margin="0,-5,5,5" Background="LightGray">
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="15"/>
@@ -318,7 +343,7 @@
                                                             <Grid Margin="6,0,6,0" Grid.Row="0">
                                                                 <Grid.ColumnDefinitions>
                                                                     <ColumnDefinition Width="20"/>
-                                                                    <ColumnDefinition Width="1*"/>
+                                                                    <ColumnDefinition Width="2*"/>
                                                                     <ColumnDefinition Width="1*"/>
                                                                     <ColumnDefinition Width="1*"/>
                                                                 </Grid.ColumnDefinitions>
@@ -339,22 +364,64 @@
                                                                                 <ColumnDefinition Width="1*"/>
                                                                             </Grid.ColumnDefinitions>
                                                                             <!-- CheckBox bound to IsSelected property -->
-                                                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+                                                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center"/>
 
                                                                             <Grid Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                                                                 <Grid.ColumnDefinitions>
-                                                                                    <ColumnDefinition Width="1*"/>
-                                                                                    <ColumnDefinition Width="1*"/>
+                                                                                    <ColumnDefinition Width="3*"/>
+                                                                                    <ColumnDefinition Width="1.5*"/>
                                                                                     <ColumnDefinition Width="1*"/>
                                                                                 </Grid.ColumnDefinitions>
-                                                                                <TextBlock Grid.Column="0" Text="{Binding Name}"/>
-                                                                                <TextBlock Grid.Column="1" Text="{Binding Price}"/>
-                                                                                <TextBlock Grid.Column="2" Text="{Binding Stock}"/>
+                                                                                <TextBlock Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Converter={StaticResource ColumnWidthConverter}, ConverterParameter=2/4}"/>
+                                                                                <TextBlock Grid.Column="1" Text="{Binding Price}" VerticalAlignment="Center"/>
+                                                                                <TextBlock Grid.Column="2" Text="{Binding Stock}" VerticalAlignment="Center"/>
                                                                             </Grid>
                                                                         </Grid>
                                                                     </DataTemplate>
                                                                 </ListView.ItemTemplate>
                                                             </ListView>
+                                                        </Grid>
+                                                    </Grid>
+
+                                                    <!--order total price-->
+                                                    <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="4">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                            <RowDefinition Height="1*"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid Grid.Row="0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="Total price of Components used:" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="1,000"/>
+                                                        </Grid>
+                                                        <Grid Grid.Row="1">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="9.5" FontWeight="Bold" Text="20% service charge:" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="200"/>
+                                                        </Grid>
+                                                        <Grid Grid.Row="2">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="10% VAT:" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="120"/>
+                                                        </Grid>
+                                                        <Grid Grid.Row="3">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2*"/>
+                                                                <ColumnDefinition Width="1*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="Order total:" TextWrapping="Wrap"/>
+                                                            <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="1,320"/>
                                                         </Grid>
                                                     </Grid>
 
@@ -404,19 +471,21 @@
                                             </GroupBox>
                                         </StackPanel>
 
-                                        <StackPanel Background="White" Grid.Column="1">
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <!--save button-->
                                             <Button Grid.Column="2" Grid.RowSpan="4"
                                                     Background="White"
                                                     FontWeight="Bold"
                                                     Margin="10"
-                                                    Content="SAVE CHANGES"/>
+                                                    Content="SAVE CHANGES"
+                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
 
                                             <Button Grid.Column="2" Grid.RowSpan="4"
                                                     Background="White"
                                                     FontWeight="Bold"
                                                     Margin="10"
-                                                    Content="PRINT RECIEPT"/>
+                                                    Content="PRINT RECIEPT"
+                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/> <!--temporary command, will change later-->
 
                                             <Button Grid.Column="2" Grid.RowSpan="4"
                                                     Background="#FFFF8D8D"
@@ -434,7 +503,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </Grid>
+        </Border>
     </Grid>
 </UserControl>
 

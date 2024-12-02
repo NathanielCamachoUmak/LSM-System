@@ -66,7 +66,7 @@ namespace LSM_prototype
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (var button in new[] { Button_win1, Button_win2, Button_win3, Button_win4, Button_win5 })
+            foreach (var button in new[] { Button_win1, Button_win2, Button_win3, Logout })
             {
                 if (button != sender && button.IsChecked == true)
                 {
