@@ -58,6 +58,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 else
                 {
                     ManageOrdersVM.LoadItemsFromDatabase();
+                    ManageOrdersVM.PopulateAccountsOptions();
 
                     SharedAccounts.Clear();
                     LoadAccountsFromDatabase();

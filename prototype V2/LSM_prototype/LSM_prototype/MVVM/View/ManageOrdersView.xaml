@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LSM_prototype.Core"
+             xmlns:local="clr-namespace:LSM_prototype.Core" xmlns:viewmodel="clr-namespace:LSM_prototype.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ManageOrdersViewModel}"
              mc:Ignorable="d" 
              x:Name="Root"
              d:DesignHeight="500" d:DesignWidth="1000">
@@ -54,7 +54,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                <TextBox Grid.Column="1" Text="{Binding DeviceName}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.DeviceName}" FontSize="14" Margin="5"/>
                             </Grid>
 
                             <!--item Technician-->
@@ -64,8 +64,9 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
-                                <ComboBox Grid.Column="1" ItemsSource="{Binding SharedAccounts, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" FontSize="14" Margin="5">
-                                </ComboBox>
+                                <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                          SelectedItem="{Binding NewOrder.Employee, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
 
                             <!--item Status-->
@@ -75,11 +76,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                <ComboBox Grid.Column="1" SelectedItem="Cancelled" Text="{Binding Status}" FontSize="14" Margin="5">
-                                    <ComboBoxItem Content="Ongoing"/>
-                                    <ComboBoxItem Content="Complete"/>
-                                    <ComboBoxItem Content="Cancelled"/>
-                                </ComboBox>
+                                <TextBlock Grid.Column="1" Text="Ongoing" FontSize="14" Margin="5"/>
                             </Grid>
 
                             <!--item Problem-->
@@ -89,7 +86,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Problem:" FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
-                                <TextBox Grid.Column="1" Text="{Binding Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.Problem}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
 
                             <!--item Other Details-->
@@ -99,7 +96,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Other Details:" FontSize="14" Margin="5" TextWrapping="Wrap" TextAlignment="Right"/>
-                                <TextBox Grid.Column="1" Text="{Binding OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.OtherNotes}" FontSize="14" Margin="5" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible"/>
                             </Grid>
 
                             <!--item Components used
@@ -170,7 +167,7 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Name: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding CustName}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.CustName}" FontSize="14" Margin="5"/>
                             </Grid>
 
                             <!--customer PhoneNum-->
@@ -180,17 +177,17 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Phone #: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.CustPhoneNum}" FontSize="14" Margin="5"/>
                             </Grid>
 
-                            <!--item Technician-->
+                            <!--item Email-->
                             <Grid Grid.Column="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Email: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding CustEmail}" FontSize="14" Margin="5"/>
+                                <TextBox Grid.Column="1" Text="{Binding NewOrder.CustEmail}" FontSize="14" Margin="5"/>
                             </Grid>
 
                         </Grid>
@@ -291,8 +288,9 @@
                                                             <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="Employee Assigned: " FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
-                                                        <ComboBox Grid.Column="1" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.SharedAccounts, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" FontSize="14" Margin="5">
-                                                        </ComboBox>
+                                                        <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                                  SelectedItem="{Binding Employee, UpdateSourceTrigger=PropertyChanged}"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
                                                     </Grid>
 
                                                     <!--item Status-->
@@ -302,11 +300,9 @@
                                                             <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <ComboBox Grid.Column="1" SelectedItem="Cancelled" Text="{Binding Status}" FontSize="14" Margin="5">
-                                                            <ComboBoxItem Content="Ongoing"/>
-                                                            <ComboBoxItem Content="Complete"/>
-                                                            <ComboBoxItem Content="Cancelled"/>
-                                                        </ComboBox>
+                                                        <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                                  SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.StatusOptions}"/>
                                                     </Grid>
 
                                                     <!--item Problem-->
@@ -383,7 +379,7 @@
                                                         </Grid>
                                                     </Grid>-->
 
-                                                    <!--order total price-->
+                                                    <!--order total price
                                                     <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="4">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="1*"/>
@@ -423,7 +419,7 @@
                                                             <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="Order total:" TextWrapping="Wrap"/>
                                                             <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="1,320"/>
                                                         </Grid>
-                                                    </Grid>
+                                                    </Grid>-->
 
                                                 </Grid>
                                             </GroupBox>
@@ -457,7 +453,7 @@
                                                         <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
                                                     </Grid>
 
-                                                    <!--item Technician-->
+                                                    <!--item Email-->
                                                     <Grid Grid.Column="2">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="50"/>
@@ -485,7 +481,8 @@
                                                     FontWeight="Bold"
                                                     Margin="10"
                                                     Content="PRINT RECIEPT"
-                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/> <!--temporary command, will change later-->
+                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
+                                            <!--temporary command, will change later-->
 
                                             <Button Grid.Column="2" Grid.RowSpan="4"
                                                     Background="#FFFF8D8D"

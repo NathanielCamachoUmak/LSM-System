@@ -65,7 +65,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 HireDate = NewAccount.HireDate,
                 Role = NewAccount.Role,
                 EmpPW = NewAccount.EmpPW,
-                AccessLevel = NewAccount.AccessLevel
+                AccessLevel = "User"
             });
 
             ResetNewAccountFields();
