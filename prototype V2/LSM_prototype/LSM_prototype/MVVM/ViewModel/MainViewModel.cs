@@ -9,19 +9,19 @@ namespace LSM_prototype.MVVM.ViewModel
     internal class MainViewModel : ObservableObjects
     {
         public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand OngoingOrdersViewCommand { get; set; }
         public RelayCommand ManageOrdersViewCommand { get; set; }
         public RelayCommand InventoryViewCommand { get; set; }
         public RelayCommand AccountsViewCommand { get; set; }
-        public RelayCommand AnalyticsCommand { get; set; }
+        public RelayCommand MyAccountsViewCommand { get; set; }
         public RelayCommand LogoutCommand => new RelayCommand(execute => Logout());
 
         public HomeViewModel HomeVM { get; set; }
-        public OngoingOrdersViewModel OngoingOrdersVM { get; set; }
         public ManageOrdersViewModel ManageOrdersVM { get; set; }
         public InventoryViewModel InventoryVM { get; set; }
         public AccountsViewModel AccountsVM { get; set; }
+        public MyAccountsViewModel MyAccountsVM { get; set; }
         public ObservableCollection<Accounts> SharedAccounts { get; }
+        public ObservableCollection<Accounts> User { get; }
 
         private object _currentView;
 
@@ -38,32 +38,15 @@ namespace LSM_prototype.MVVM.ViewModel
         public MainViewModel()
         {
             SharedAccounts = AccountsData.Instance.SharedAccounts;
+            User = CurrentUser.Instance.User;
 
             HomeVM = new HomeViewModel();
-            OngoingOrdersVM = new OngoingOrdersViewModel();
             ManageOrdersVM = new ManageOrdersViewModel();
             InventoryVM = new InventoryViewModel();
             AccountsVM = new AccountsViewModel();
+            MyAccountsVM = new MyAccountsViewModel();
 
             CurrentView = HomeVM;
-
-            OngoingOrdersViewCommand = new RelayCommand(o =>
-            {
-
-                if (CurrentView == OngoingOrdersVM)
-                {
-                    // If the current view is the same, close it (set to HomeVM)
-                    CurrentView = HomeVM;
-                }
-                else
-                {
-                    OngoingOrdersVM.LoadItemsFromDatabase();
-
-                    SharedAccounts.Clear();
-                    LoadAccountsFromDatabase();
-                    CurrentView = OngoingOrdersVM;
-                }
-            });
 
             ManageOrdersViewCommand = new RelayCommand(o =>
             {
@@ -107,11 +90,25 @@ namespace LSM_prototype.MVVM.ViewModel
                     CurrentView = AccountsVM;
                 }
             });
+
+            MyAccountsViewCommand = new RelayCommand(o =>
+            {
+                if (CurrentView == MyAccountsVM)
+                {
+                    // If the current view is the same, close it (set to HomeVM)
+                    CurrentView = HomeVM;
+                }
+                else
+                {
+                    CurrentView = MyAccountsVM;
+                }
+            });
         }
 
         private void Logout()
         {
             SharedAccounts.Clear();
+            User.Clear();
 
             LoadAccountsFromDatabase();
 

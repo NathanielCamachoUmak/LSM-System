@@ -1,8 +1,11 @@
-﻿using LSM_prototype.MVVM.View;
+﻿using LSM_prototype.MVVM.Model;
+using LSM_prototype.MVVM.View;
 using LSM_prototype.MVVM.ViewModel;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,11 +21,26 @@ namespace LSM_prototype
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Accounts> User { get; }
         public MainWindow()
         {
             InitializeComponent();
             MainViewModel mainvm = new MainViewModel();
             this.DataContext = mainvm;
+
+
+            User = CurrentUser.Instance.User;
+
+            if (User[0].AccessLevel != "Admin")
+            {
+                Acc_btn.Visibility = Visibility.Collapsed;
+                MyAcc_btn.Visibility = Visibility.Visible;
+            }
+            else if (User[0].AccessLevel == "Admin")
+            {
+                Acc_btn.Visibility = Visibility.Visible;
+                MyAcc_btn.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,7 +84,7 @@ namespace LSM_prototype
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (var button in new[] { Button_win1, Button_win2, Button_win3, Logout })
+            foreach (var button in new[] { Ord_btn, Inv_btn, Acc_btn, MyAcc_btn, Logout })
             {
                 if (button != sender && button.IsChecked == true)
                 {

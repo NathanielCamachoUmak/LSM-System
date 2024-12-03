@@ -186,14 +186,17 @@
                         <StackPanel HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Orientation="Vertical">
-                            <TextBlock Text="EMPLOYEEE NAME HERE" FontWeight="Bold" FontSize="16"/>
-                            <TextBlock Text="EMPLOYEEE ID: 3123112312312312321" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding User[0].Name, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" FontSize="16"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="EMPLOYEEE ID: " FontWeight="Bold"/>
+                                <TextBlock Text="{Binding User[0].EmpID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontWeight="Bold"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
 
                     <StackPanel Background="Black" Grid.Column="1"/>
 
-                    <ToggleButton Name="Button_win1"
+                    <ToggleButton Name="Ord_btn"
                                   Content="ORDERS"
                                   Height="50"
                                   FontSize="14"
@@ -206,7 +209,7 @@
 
                     <StackPanel Background="Black" Grid.Column="3"/>
 
-                    <ToggleButton Name="Button_win2"
+                    <ToggleButton Name="Inv_btn"
                                   Content="INVENTORY"
                                   Height="50"
                                   FontSize="14"
@@ -219,7 +222,7 @@
 
                     <StackPanel Background="Black" Grid.Column="5"/>
 
-                    <ToggleButton Name="Button_win3"
+                    <ToggleButton Name="Acc_btn"
                                   Content="ACCOUNTS"
                                   Height="50"
                                   FontSize="14"
@@ -228,6 +231,17 @@
                                   HorizontalAlignment="Stretch"
                                   Style="{StaticResource MenuButtonTheme}"
                                   Command="{Binding AccountsViewCommand}"
+                                  Checked="ToggleButton_Checked"/>
+
+                    <ToggleButton Name="MyAcc_btn"
+                                  Content="MY ACCOUNT"
+                                  Height="50"
+                                  FontSize="14"
+                                  Grid.Column="6"
+                                  FontWeight="Black"
+                                  HorizontalAlignment="Stretch"
+                                  Style="{StaticResource MenuButtonTheme}"
+                                  Command="{Binding MyAccountsViewCommand}"
                                   Checked="ToggleButton_Checked"/>
 
                     <StackPanel Background="Black" Grid.Column="7"/>
