@@ -1,25 +1,65 @@
 ﻿using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.ObjectModel;
+using System.Security.Principal;
 using System.Windows;
+using System.Windows.Controls;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
-    class ManageOrdersViewModel: ViewModelBase
+    class ManageOrdersViewModel : ViewModelBase
     {
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
-        public RelayCommand DeleteCommand => new RelayCommand(execute => DeleteItem(), canExecute => SelectedItem != null);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
-        public ObservableCollection<Orders> SharedOrders { get; }
-        public ObservableCollection<Accounts> SharedAccounts { get; }
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
+        public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
+        public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
 
-        public ObservableCollection<Item> inventory { get; }
+        private Orders _newOrder = new Orders();
+        public Orders NewOrder
+        {
+            get => _newOrder;
+            set
+            { 
+                _newOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<string> AccountsOptions { get; set; } = new ObservableCollection<string>();
+
+        public ObservableCollection<string> StatusOptions { get; set; } = new ObservableCollection<string>
+        {
+            "Ongoing",
+            "Cancelled",
+            "Completed"
+        };
+        public string Status { get; set; } = "Ongoing";
+
         public ManageOrdersViewModel()
         {
-            inventory = new ObservableCollection<Item>();
-            SharedOrders = OrdersData.Instance.OrdersList;
-            SharedAccounts = AccountsData.Instance.SharedAccounts;
+            LoadAccountsFromDatabase();
             LoadItemsFromDatabase();
+            PopulateAccountsOptions();
+        }
+
+        public void PopulateAccountsOptions()
+        {
+            AccountsOptions.Clear();
+            LoadAccountsFromDatabase();
+
+            foreach (var account in SharedAccounts)
+            {
+                if (account.AccessLevel != "Admin")
+                {
+                    AccountsOptions.Add(account.Name);
+                }
+            }
         }
 
         private Orders _selectedItem;
@@ -34,39 +74,65 @@ namespace LSM_prototype.MVVM.ViewModel
             }
         }
 
-        private void AddItem()
+        private Accounts _selectedAccount;
+        public Accounts SelectedAccount
         {
-            SharedOrders.Add(new Orders
+            get => _selectedAccount;
+            set
             {
-                OrderID = "123412142412",
-                Item = "Laptop",
-                ETA = "5 business days",
-                Status = "Ongoing",
-                Technician = "God Hand",
-                Problem = "screen replacement",
-                OtherNotes = null
-            });
+                _selectedAccount = value;
+                OnPropertyChanged();
+            }
         }
 
-        private void DeleteItem()
+        private void AddItem()
         {
-            var result = MessageBox.Show($"Are you sure you want to delete {SelectedItem.OrderID}?",
-                                         $"ITEM DELETION CONFIRMATION",
-                                         MessageBoxButton.YesNo);
-
-            if (result == MessageBoxResult.Yes)
+            MessageBox.Show("test");
+            if (!IsValidInput())
             {
-                SharedOrders.Remove(SelectedItem);
+                MessageBox.Show("adsasddas");
+                return;
             }
+            MessageBox.Show(NewOrder.Employee);
+
+            SharedOrders.Add(new Orders
+            {
+                DeviceName = NewOrder.DeviceName,
+                Status = "Ongoing",
+                Problem = NewOrder.Problem,
+                OtherNotes = NewOrder.OtherNotes,
+                Employee = NewOrder.Employee,
+                CustName = NewOrder.CustName,
+                CustPhoneNum = NewOrder.CustPhoneNum,
+                CustEmail = NewOrder.CustEmail,
+                AccountID = SelectedAccount?.AccountID ?? 0
+            });
+
+            ResetNewOrderFields();
+            MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
         //save to database using this
         private void Save()
         {
+            if (!SharedOrders.All(IsValidOrder)) return;
 
+            using (var context = new BenjaminDbContext())
+            {
+                foreach (var order in SharedOrders)
+                {
+                    if (order.OrderID == 0)
+                        context.Orders.Add(order);
+                    else
+                        context.Orders.Update(order);
+                }
+                context.SaveChanges();
+            }
+
+            MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        //add a check to see if database is up and items can e saved
         private bool CanSave()
         {
             //if ok, return true
@@ -75,15 +141,101 @@ namespace LSM_prototype.MVVM.ViewModel
 
         public void LoadItemsFromDatabase()
         {
-            inventory.Clear();
-
+            SharedOrders.Clear();
             using (var context = new BenjaminDbContext())
             {
-                var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
-                foreach (var item in itemsFromDb)
+                var ordersFromDb = context.Orders?.ToList() ?? new List<Orders>();
+                foreach (var order in ordersFromDb)
                 {
-                    inventory.Add(item);
+                    SharedOrders.Add(order);
                 }
+            }
+        }
+
+        private void LoadAccountsFromDatabase()
+        {
+            SharedAccounts.Clear();
+            using (var context = new BenjaminDbContext())
+            {
+                var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
+                foreach (var account in accountsFromDb)
+                {
+                    SharedAccounts.Add(account);
+                }
+            }
+        }
+
+        private bool IsValidInput()
+        {
+            return !string.IsNullOrWhiteSpace(NewOrder.DeviceName) &&
+                   !string.IsNullOrWhiteSpace(NewOrder.Problem) &&
+                   !string.IsNullOrWhiteSpace(NewOrder.CustName) &&
+                   !string.IsNullOrWhiteSpace(NewOrder.CustPhoneNum) &&
+                   //NewOrder.Status == "Ongoing" &&
+                   NewOrder.CustEmail.Contains("@");
+        }
+        private bool IsValidOrder(Orders order)
+        {
+            return !string.IsNullOrWhiteSpace(order.DeviceName) &&
+                   !string.IsNullOrWhiteSpace(order.Problem) &&
+                   !string.IsNullOrWhiteSpace(order.CustName) &&
+                   !string.IsNullOrWhiteSpace(order.CustPhoneNum) &&
+                   order.CustEmail.Contains("@");
+        }
+
+        private void ResetNewOrderFields()
+        {
+            NewOrder = new Orders();
+        }
+
+        public void ExportToPDF()
+        {
+            if (SelectedItem == null)
+            {
+                MessageBox.Show("No order selected to export!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Define the file path for saving the PDF
+            string filePath = $"..\\..\\..\\Exports\\Order_{SelectedItem.CustName}.pdf";
+
+            try
+            {
+                // Create a PDF writer
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
+
+                    // Add a title
+                    var title = new iText.Layout.Element.Paragraph($"Order Details - ID: {SelectedItem.OrderID}")
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetFontSize(20);
+                    document.Add(title);
+
+                    // Add customer information
+                    document.Add(new iText.Layout.Element.Paragraph("Customer Information").SetFontSize(16));
+                    document.Add(new iText.Layout.Element.Paragraph($"Name: {SelectedItem.CustName}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Phone Number: {SelectedItem.CustPhoneNum}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Email: {SelectedItem.CustEmail}"));
+
+                    // Add order information
+                    document.Add(new iText.Layout.Element.Paragraph("\nOrder Details").SetFontSize(16));
+                    document.Add(new iText.Layout.Element.Paragraph($"Device: {SelectedItem.DeviceName}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Employee Assigned: {SelectedItem.Employee}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Status: {SelectedItem.Status}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Problem: {SelectedItem.Problem}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Other Notes: {SelectedItem.OtherNotes}"));
+
+                    // Close the document
+                    document.Close();
+                }
+
+                MessageBox.Show($"Order exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export order: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

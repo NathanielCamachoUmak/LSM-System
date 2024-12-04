@@ -248,7 +248,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <Expander Header="{Binding OrderID}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
+                                <Expander Header="{Binding CustName}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
                                     <Grid Background="White" Margin="10">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="7*"/>
@@ -481,7 +481,7 @@
                                                     FontWeight="Bold"
                                                     Margin="10"
                                                     Content="PRINT RECIEPT"
-                                                    Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
+                                                    Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}"/>
                                             <!--temporary command, will change later-->
 
                                             <Button Grid.Column="2" Grid.RowSpan="4"

@@ -11,11 +11,13 @@ namespace LSM_prototype.MVVM.ViewModel
     {
         public RelayCommand LoginCommand => new RelayCommand(execute => Login());
         public ObservableCollection<Accounts> SharedAccounts { get; }
+        public ObservableCollection<Accounts> User { get; set; }
 
         public LoginViewModel()
         {
             // Access the shared collection from the Accounts model
             SharedAccounts = AccountsData.Instance.SharedAccounts;
+            User = CurrentUser.Instance.User;
 
             //checks if database accounts is 0
             if (SharedAccounts.Count == 0)
@@ -55,7 +57,8 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             if (Verify() == true)
             {
-                MessageBox.Show("Login Successful");
+
+                MessageBox.Show($"{User[0].Name}, {User[0].EmpID}, {User[0].EmpPW}, {User[0].AccessLevel}");
 
                 // Open the new main window
                 MainWindow mainWindow = new MainWindow();
@@ -84,6 +87,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 {
                     if (SharedAccounts[i].EmpPW == PWinput)
                     {
+                        User.Add(SharedAccounts[i]);
                         return true;
                     }
                     else

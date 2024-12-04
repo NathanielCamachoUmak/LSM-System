@@ -1,16 +1,24 @@
-﻿namespace LSM_prototype.MVVM.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LSM_prototype.MVVM.Model
 {
     public class Orders
     {
-        public string OrderID { get; set; }
-        public string Item { get; set; }
-        public string ETA { get; set; }
-        public string Status { get; set; }
-        public string Technician { get; set; }
-        public string Problem { get; set; }
-        public string OtherNotes { get; set; }
-        public string CustName { get; set; }
-        public string CustEmail { get; set; }
-        public string CustPhoneNum { get; set; }
+        [Key]
+        public int OrderID { get; set; }
+
+        [ForeignKey("Accounts")]
+        public int AccountID { get; set; }
+        public Accounts Accounts { get; set; }
+
+        public string Status { get; set; } = string.Empty;
+        public string Employee { get; set; } = string.Empty;
+        public string DeviceName { get; set; } = string.Empty;
+        public string Problem { get; set; } = string.Empty;
+        public string OtherNotes { get; set; } = string.Empty;
+        public string CustName { get; set; } = string.Empty;
+        public string CustEmail { get; set; } = string.Empty;
+        public string CustPhoneNum { get; set; } = string.Empty;
     }
 }

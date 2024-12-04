@@ -337,7 +337,6 @@ C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_p
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\InventoryView.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\LoginView.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ManageOrdersView.g.cs
-C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\OngoingOrdersView.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype_MarkupCompile.cache
@@ -349,7 +348,6 @@ C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_p
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\InventoryView.baml
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\LoginView.baml
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\ManageOrdersView.baml
-C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\OngoingOrdersView.baml
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.g.resources
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\LSM_prototype.AssemblyInfoInputs.cache
@@ -382,7 +380,6 @@ C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_p
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\MVVM\ViewModel\LoginViewModel.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\MVVM\ViewModel\MainViewModel.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\MVVM\ViewModel\ManageOrdersViewModel.cs
-C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\MVVM\ViewModel\OngoingOrdersViewModel.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\MVVM\ViewModel\ViewModelBase.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\appsettings.json
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
@@ -426,3 +423,21 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\Theme\InputTextBox1.baml
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.g.cs
 C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\RegisterView.baml
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.barcodes.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.bouncy-castle-connector.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.forms.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.io.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.kernel.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.layout.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.pdfa.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.pdfua.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.sign.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.styledxmlparser.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.svg.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.bouncy-castle-adapter.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\itext.commons.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\MyAccountsView.g.cs
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\MVVM\View\MyAccountsView.baml

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\obj\Debug\net8.0-windows\
 LSM_prototype
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\App.xaml
-12476951890
+C:\Users\israel\Desktop\BenjaminProj\LSM-System\prototype V2\LSM_prototype\LSM_prototype\App.xaml
+12-1261384789
 
-29-354999182
-2381960314977
-MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;MVVM\View\LoginView.xaml;MVVM\View\ManageOrdersView.xaml;MVVM\View\OngoingOrdersView.xaml;MVVM\View\RegisterView.xaml;Theme\InputTextBox1.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\WindowButtonTheme.xaml;
+33-879148677
+2551128846120
+MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;MVVM\View\LoginView.xaml;MVVM\View\ManageOrdersView.xaml;MVVM\View\MyAccountsView.xaml;MVVM\View\RegisterView.xaml;Theme\InputTextBox1.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\WindowButtonTheme.xaml;
 
 False
 

@@ -9,28 +9,31 @@ namespace LSM_prototype.MVVM.Model
         public static OrdersData Instance => _instance ??= new OrdersData();
 
         // Shared collection of accounts
-        public ObservableCollection<Orders> OrdersList { get; }
+        public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
 
         // Private constructor to enforce singleton pattern
         private OrdersData()
         {
-            OrdersList = new ObservableCollection<Orders>();
 
-            //temporary, can delete
-            OrdersList.Add(new Orders { OrderID = "a123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                       Problem = "screen replacement", OtherNotes = null});
+            using (var context = new BenjaminDbContext())
+            {
+                var ordersFromDb = context.Orders?.ToList() ?? new List<Orders>();
+                foreach (var orders in ordersFromDb)
+                {
+                    SharedOrders.Add(orders);
+                }
+            }
 
-            OrdersList.Add(new Orders { OrderID = "b123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                       Problem = "screen replacement", OtherNotes = null});
+        }
 
-            OrdersList.Add(new Orders { OrderID = "c123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                       Problem = "screen replacement", OtherNotes = null});
-
-            OrdersList.Add(new Orders { OrderID = "d123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                       Problem = "screen replacement", OtherNotes = null});
-
-            OrdersList.Add(new Orders { OrderID = "e123456789", Item = "Laptop", ETA = "5 business days", Status = "Ongoing", Technician = "God Hand",
-                                       Problem = "screen replacement", OtherNotes = null});
+        public void SaveChangesToDatabase()
+        {
+            using (var context = new BenjaminDbContext())
+            {
+                context.Orders.RemoveRange(context.Orders); // Clear current database entries
+                context.Orders.AddRange(SharedOrders);     // Add updated accounts
+                context.SaveChanges();                         // Commit changes
+            }
         }
     }
 }

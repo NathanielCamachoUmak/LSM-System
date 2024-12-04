@@ -15,6 +15,7 @@ namespace LSM_prototype
     {
         public DbSet<Accounts>? Accounts { get; set; } // Represents the Accounts table
         public DbSet<Item>? Item { get; set; } // Represents the Item table
+        public DbSet<Orders>? Orders { get; set; } // Represents the Orders table
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
@@ -22,7 +23,7 @@ namespace LSM_prototype
             .AddJsonFile("appsettings.json")
             .Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-            
+
         }
     }
 }

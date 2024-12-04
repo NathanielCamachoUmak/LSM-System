@@ -5,6 +5,10 @@ using System.Collections.ObjectModel;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
@@ -12,6 +16,7 @@ namespace LSM_prototype.MVVM.ViewModel
     {
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
 
@@ -181,6 +186,57 @@ namespace LSM_prototype.MVVM.ViewModel
         private void ResetNewOrderFields()
         {
             NewOrder = new Orders();
+        }
+
+        public void ExportToPDF()
+        {
+            if (SelectedItem == null)
+            {
+                MessageBox.Show("No order selected to export!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // PDF file path is in Exports
+            string filePath = $"..\\..\\..\\Exports\\Order_{SelectedItem.CustName}.pdf";
+
+            try
+            {
+                
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
+
+                    // Receipt title
+                    var title = new iText.Layout.Element.Paragraph($"Order Details - ID: {SelectedItem.OrderID}")
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetFontSize(20);
+                    document.Add(title);
+
+                    // Info on beloved customer
+                    document.Add(new iText.Layout.Element.Paragraph("Customer Information").SetFontSize(16));
+                    document.Add(new iText.Layout.Element.Paragraph($"Name: {SelectedItem.CustName}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Phone Number: {SelectedItem.CustPhoneNum}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Email: {SelectedItem.CustEmail}"));
+
+                    // Main gist of info
+                    document.Add(new iText.Layout.Element.Paragraph("\nOrder Details").SetFontSize(16));
+                    document.Add(new iText.Layout.Element.Paragraph($"Device: {SelectedItem.DeviceName}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Employee Assigned: {SelectedItem.Employee}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Status: {SelectedItem.Status}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Problem: {SelectedItem.Problem}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Other Notes: {SelectedItem.OtherNotes}"));
+
+                    
+                    document.Close();
+                }
+
+                MessageBox.Show($"Order exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export order: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
