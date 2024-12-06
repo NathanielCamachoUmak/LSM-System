@@ -19,6 +19,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
+        public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
 
         private Orders _newOrder = new Orders();
         public Orders NewOrder
@@ -39,27 +40,25 @@ namespace LSM_prototype.MVVM.ViewModel
             "Cancelled",
             "Completed"
         };
+
+
+        public ObservableCollection<Dictionary<string, string>> ServiceOptions { get; set; } = new ObservableCollection<Dictionary<string, string>>
+        {
+            new Dictionary<string, string> { { "Repair", "1-2 days" } },
+            new Dictionary<string, string> { { "Cleaning", "1-2 days" } },
+            new Dictionary<string, string> { { "Check-up", "1 hour" } },
+            new Dictionary<string, string> { { "Installation", "2-3 hours" } },
+            new Dictionary<string, string> { { "Maintenance", "2 hours" } }
+        };
+
         public string Status { get; set; } = "Ongoing";
 
         public ManageOrdersViewModel()
         {
             LoadAccountsFromDatabase();
-            LoadItemsFromDatabase();
+            LoadOrdersFromDatabase();
             PopulateAccountsOptions();
-        }
-
-        public void PopulateAccountsOptions()
-        {
-            AccountsOptions.Clear();
-            LoadAccountsFromDatabase();
-
-            foreach (var account in SharedAccounts)
-            {
-                if (account.AccessLevel != "Admin")
-                {
-                    AccountsOptions.Add(account.Name);
-                }
-            }
+            LoadItemsFromDatabase();
         }
 
         private Orders _selectedItem;
@@ -139,7 +138,7 @@ namespace LSM_prototype.MVVM.ViewModel
             return true;
         }
 
-        public void LoadItemsFromDatabase()
+        public void LoadOrdersFromDatabase()
         {
             SharedOrders.Clear();
             using (var context = new BenjaminDbContext())
@@ -161,6 +160,33 @@ namespace LSM_prototype.MVVM.ViewModel
                 foreach (var account in accountsFromDb)
                 {
                     SharedAccounts.Add(account);
+                }
+            }
+        }
+
+        public void PopulateAccountsOptions()
+        {
+            AccountsOptions.Clear();
+            LoadAccountsFromDatabase();
+
+            foreach (var account in SharedAccounts)
+            {
+                if (account.AccessLevel != "Admin")
+                {
+                    AccountsOptions.Add(account.Name);
+                }
+            }
+        }
+
+        public void LoadItemsFromDatabase()
+        {
+            //Items.Clear();
+            using (var context = new BenjaminDbContext())
+            {
+                var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
+                foreach (var item in itemsFromDb)
+                {
+                    Items.Add(item);
                 }
             }
         }

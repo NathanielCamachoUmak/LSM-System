@@ -85,7 +85,13 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Birthdate: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding NewAccount.Birthdate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                <DatePicker Grid.Column="1" SelectedDate="{Binding NewAccount.Birthdate, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy-MM-dd'}" FontSize="14" Margin="5">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
                             </Grid>
 
                             <!--Phone Number-->
@@ -115,7 +121,13 @@
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Hire date: " FontSize="14" Margin="5"/>
-                                <TextBox Grid.Column="1" Text="{Binding NewAccount.HireDate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                <DatePicker Grid.Column="1" SelectedDate="{Binding NewAccount.HireDate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5">
+                                    <DatePicker.Resources>
+                                        <Style TargetType="DatePickerTextBox">
+                                            <Setter Property="IsReadOnly" Value="True"/>
+                                        </Style>
+                                    </DatePicker.Resources>
+                                </DatePicker>
                             </Grid>
 
                             <!--Role-->
@@ -258,7 +270,13 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Birthdate: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                    <DatePicker Grid.Column="1" SelectedDate="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy-MM-dd'}" FontSize="14" Margin="5">
+                                                        <DatePicker.Resources>
+                                                            <Style TargetType="DatePickerTextBox">
+                                                                <Setter Property="IsReadOnly" Value="True"/>
+                                                            </Style>
+                                                        </DatePicker.Resources>
+                                                    </DatePicker>
                                                 </Grid>
 
                                                 <Grid Grid.Column="1" Grid.Row="0">
@@ -285,7 +303,13 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Hire date: " FontSize="14" Margin="5"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding HireDate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                    <DatePicker Grid.Column="1" SelectedDate="{Binding HireDate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5">
+                                                        <DatePicker.Resources>
+                                                            <Style TargetType="DatePickerTextBox">
+                                                                <Setter Property="IsReadOnly" Value="True"/>
+                                                            </Style>
+                                                        </DatePicker.Resources>
+                                                    </DatePicker>
                                                 </Grid>
 
                                                 <Grid Grid.Column="1" Grid.Row="3">
