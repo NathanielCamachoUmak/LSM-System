@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace LSM_prototype.MVVM.Model
 {
-    public class ServiceOption : INotifyPropertyChanged
+    public class ServiceOptions : INotifyPropertyChanged
     {
+        [Key]
+        public int ServiceOptionsID {  get; set; }
+
         public string Name { get; set; }
         public int DurationValue { get; set; }
         public string DurationText { get; set; }

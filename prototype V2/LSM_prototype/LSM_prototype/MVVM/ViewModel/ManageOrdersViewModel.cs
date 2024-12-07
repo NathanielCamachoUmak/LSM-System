@@ -107,10 +107,10 @@ namespace LSM_prototype.MVVM.ViewModel
                 MessageBox.Show($"{service.Name}, {service.DurationText}");
             }
             //just shows the list of items selected
-            foreach (var item in selectedItems)
-            {
-                MessageBox.Show($"{item.Name}, {item.Stock}, {item.Price}");
-            }
+            //foreach (var item in selectedItems)
+            //{
+            //    MessageBox.Show($"{item.Name}, {item.Stock}, {item.Price}");
+            //}
 
             SharedOrders.Add(new Orders
             {

@@ -1,25 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSM_prototype.MVVM.Model
 {
     public class SelectableItem
     {
-        public Item Item { get; set; }  // Original Item
 
-        public bool IsSelected { get; set; }
+        [Key]
+        public int SelectableItemID { get; set; }
 
-        public string Name => Item.Name; // Name from the Item
-        public decimal Price => Item.Price; // Price from the Item
-        public int Stock => Item.Stock; // Stock from the Item
+        [ForeignKey("Item")]
+        public int ItemID { get; set; }
+        public Item Item { get; set; }
+
+        [ForeignKey("Orders")]
+        public int OrderID { get; set; }
+        public Orders Orders { get; set; }
+
+        //public Item Item { get; set; }  // Original Item
+        //public bool IsSelected { get; set; }
+
+
+        //public string Name => Item.Name; // Name from the Item
+        //public decimal Price => Item.Price; // Price from the Item
+        //public int Stock => Item.Stock; // Stock from the Item
 
         public SelectableItem(Item item)
         {
-            Item = item;
-            IsSelected = false; // Default to unselected
+            //Item = item;
+            //IsSelected = false; // Default to unselected
         }
     }
 }
