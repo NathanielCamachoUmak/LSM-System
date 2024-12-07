@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSM_prototype.MVVM.Model
 {
@@ -12,7 +13,13 @@ namespace LSM_prototype.MVVM.Model
         public int DurationValue { get; set; }
         public string DurationText { get; set; }
 
+        [ForeignKey("Orders")]
+        public int OrderID { get; set; }
+        public Orders Orders { get; set; }
+
         private bool _isSelected;
+
+        [NotMapped]
         public bool IsSelected
         {
             get => _isSelected;

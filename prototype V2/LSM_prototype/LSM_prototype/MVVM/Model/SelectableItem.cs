@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSM_prototype.MVVM.Model
 {
-    public class SelectableItem
+    public class SelectableItem : INotifyPropertyChanged
     {
 
         [Key]
@@ -17,18 +18,23 @@ namespace LSM_prototype.MVVM.Model
         public int OrderID { get; set; }
         public Orders Orders { get; set; }
 
-        //public Item Item { get; set; }  // Original Item
-        //public bool IsSelected { get; set; }
+        private bool _isSelected;
 
-
-        //public string Name => Item.Name; // Name from the Item
-        //public decimal Price => Item.Price; // Price from the Item
-        //public int Stock => Item.Stock; // Stock from the Item
-
-        public SelectableItem(Item item)
+        [NotMapped]
+        public bool IsSelected
         {
-            //Item = item;
-            //IsSelected = false; // Default to unselected
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

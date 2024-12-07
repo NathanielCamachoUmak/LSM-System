@@ -9,6 +9,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using iText.Commons.Bouncycastle.Asn1.X509;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
@@ -19,6 +20,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
+        public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
         public ObservableCollection<string> AccountsOptions { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> StatusOptions { get; set; } = new ObservableCollection<string>
         {
@@ -28,13 +30,13 @@ namespace LSM_prototype.MVVM.ViewModel
         };
 
         //for the checkbox
-        public ObservableCollection<ServiceOption> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOption>
+        public ObservableCollection<ServiceOptions> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOptions>
         {
-            new ServiceOption { Name = "Repair", DurationValue = 3, DurationText = "3 days" },
-            new ServiceOption { Name = "Cleaning", DurationValue = 1, DurationText = "1 days" },
-            new ServiceOption { Name = "Check-up", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOption { Name = "Installation", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOption { Name = "Maintenance", DurationValue = 3, DurationText = "3 days" }
+            new ServiceOptions { Name = "Repair", DurationValue = 3, DurationText = "3 days" },
+            new ServiceOptions { Name = "Cleaning", DurationValue = 1, DurationText = "1 days" },
+            new ServiceOptions { Name = "Check-up", DurationValue = 2, DurationText = "2 days" },
+            new ServiceOptions { Name = "Installation", DurationValue = 2, DurationText = "2 days" },
+            new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days" }
         };
         public ObservableCollection<SelectableItem> ItemsCheckbox { get; set; } = new ObservableCollection<SelectableItem>();
 
@@ -95,9 +97,15 @@ namespace LSM_prototype.MVVM.ViewModel
             var selectedServices = GetSelectedServices();
             var selectedItems = GetSelectedItems();
 
-            if (!selectedServices.Any() || !selectedItems.Any())
+            if (!selectedServices.Any())
             {
                 MessageBox.Show("Please select at least one service!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (!selectedItems.Any())
+            {
+                MessageBox.Show("Please select at least one component!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -106,24 +114,70 @@ namespace LSM_prototype.MVVM.ViewModel
             {
                 MessageBox.Show($"{service.Name}, {service.DurationText}");
             }
-            //just shows the list of items selected
-            //foreach (var item in selectedItems)
-            //{
-            //    MessageBox.Show($"{item.Name}, {item.Stock}, {item.Price}");
-            //}
 
-            SharedOrders.Add(new Orders
+            //just shows the list of items selected
+            foreach (var item in selectedItems)
             {
-                DeviceName = NewOrder.DeviceName,
-                Status = "Ongoing",
-                Problem = NewOrder.Problem,
-                OtherNotes = NewOrder.OtherNotes,
-                Employee = NewOrder.Employee,
-                CustName = NewOrder.CustName,
-                CustPhoneNum = NewOrder.CustPhoneNum,
-                CustEmail = NewOrder.CustEmail,
-                AccountID = SelectedAccount?.AccountID ?? 0
-            });
+                if (item.Item != null)
+                {
+                    MessageBox.Show($"{item.Item.Name}, {item.Item.Stock}, {item.Item.Price}");
+                }
+                else
+                {
+                    MessageBox.Show("Item data is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+
+
+            // Add the new order to the database
+            using (var context = new BenjaminDbContext())
+            {
+                var newOrder = new Orders
+                {
+                    DeviceName = NewOrder.DeviceName,
+                    Status = "Ongoing",
+                    Problem = NewOrder.Problem,
+                    OtherNotes = NewOrder.OtherNotes,
+                    Employee = NewOrder.Employee,
+                    CustName = NewOrder.CustName,
+                    CustPhoneNum = NewOrder.CustPhoneNum,
+                    CustEmail = NewOrder.CustEmail,
+                    AccountID = SelectedAccount?.AccountID ?? 0
+                };
+
+                context.Orders.Add(newOrder);
+                context.SaveChanges(); // Save to the database
+
+                // Directly add the selected services to the new order
+                foreach (var service in selectedServices)
+                {
+                    var newselectedServices = new ServiceOptions
+                    {
+                        OrderID = newOrder.OrderID, // Link to the newly created order
+                        Name = service.Name,
+                        DurationValue = service.DurationValue,
+                        DurationText = service.DurationText
+
+                    };
+
+                    context.ServiceOptions.Add(newselectedServices);
+                }
+
+                // Directly add the selected items to the new order
+                foreach (var item in selectedItems)
+                {
+                    var newSelectableItem = new SelectableItem
+                    {
+                        ItemID = item.Item.ItemID, // Link to the actual item
+                        OrderID = newOrder.OrderID, // Link to the newly created order
+                    };
+
+                    context.SelectableItem.Add(newSelectableItem);
+                }
+
+                context.SaveChanges(); // Save to the database
+            }
+            LoadOrdersFromDatabase();
 
             ResetNewOrderFields();
             MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -203,20 +257,25 @@ namespace LSM_prototype.MVVM.ViewModel
                 var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
                 foreach (var item in itemsFromDb)
                 {
-                    ItemsCheckbox.Add(new SelectableItem(item));
+                    ItemsCheckbox.Add(new SelectableItem
+                    {
+                        Item = item,
+                        ItemID = item.ItemID,
+                        IsSelected = false // Default state
+                    });
                 }
             }
         }
 
         //loads the list of selected services
-        public List<ServiceOption> GetSelectedServices()
+        public List<ServiceOptions> GetSelectedServices()
         {
             return ServicesCheckbox.Where(service => service.IsSelected).ToList();
         }
         //loads the list of selected items
-        public List<Item> GetSelectedItems()
+        public List<SelectableItem> GetSelectedItems()
         {
-            return ItemsCheckbox.Where(x => x.IsSelected).Select(x => x.Item).ToList();
+            return ItemsCheckbox.Where(item => item.IsSelected).ToList();
         }
 
         private bool IsValidInput()

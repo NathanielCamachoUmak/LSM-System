@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LSM_prototype.Core" xmlns:viewmodel="clr-namespace:LSM_prototype.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ManageOrdersViewModel}"
+             xmlns:local="clr-namespace:LSM_prototype.Core"
+             xmlns:viewmodel="clr-namespace:LSM_prototype.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ManageOrdersViewModel}"
              mc:Ignorable="d" 
              x:Name="Root"
              d:DesignHeight="500" d:DesignWidth="1000">
@@ -185,11 +187,11 @@
                                               VerticalAlignment="Stretch">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <CheckBox IsChecked="{Binding IsSelected}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                        <TextBlock Padding="0,0,10,0" Width="150" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
-                                                        <TextBlock Width="100" Grid.Column="0" Text="{Binding Price}" VerticalAlignment="Center"/>
-                                                        <TextBlock Grid.Column="0" Text="{Binding Stock}" VerticalAlignment="Center"/>
+                                                        <TextBlock Padding="0,0,10,0" Width="150" Grid.Column="0" Text="{Binding Item.Name}" TextWrapping="Wrap"/>
+                                                        <TextBlock Width="100" Grid.Column="0" Text="{Binding Item.Price}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="0" Text="{Binding Items.Stock}" VerticalAlignment="Center"/>
                                                     </StackPanel>
                                                 </CheckBox>
                                             </DataTemplate>
@@ -347,7 +349,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
 
-                                <Expander Header="{Binding CustName}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
+                                <Expander Header="{Binding OrderID}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
                                     <StackPanel Background="White">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -456,9 +458,10 @@
                                                     <!--item Other Details-->
                                                     <GroupBox Header="Services:" FontSize="15" BorderThickness="3" Grid.Row="2" Grid.Column="0"
                                                               Grid.RowSpan="3" Margin="5,0,0,5" Height="130">
-                                                        <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ElementName=Root, Path=DataContext.ServicesCheckbox}"
-                                                                  HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                                        <ListView BorderThickness="0" Background="Transparent"
+                                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.ServiceOptions}"
+                                                                  HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                             <ListView.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <CheckBox Grid.Column="0" VerticalContentAlignment="Center">
@@ -496,7 +499,7 @@
                                                             <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
                                                         </Grid>
                                                         <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.ItemsCheckbox, UpdateSourceTrigger=PropertyChanged}"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.Items, UpdateSourceTrigger=PropertyChanged}"
                                                                   BorderThickness="0" Background="White"
                                                                   HorizontalContentAlignment="Stretch"
                                                                   VerticalAlignment="Stretch">
@@ -626,14 +629,6 @@
                                                             Margin="10,0,10,5"
                                                             Content="PRINT RECIEPT"
                                                             Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}"/>
-
-                                                    <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="#FFFF8D8D"
-                                                            FontWeight="Bold"
-                                                            FontSize="15"
-                                                            Margin="10,0,10,0"
-                                                            Content="DELETE ITEM"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.DeleteCommand}"/>
                                                 </StackPanel>
                                             </GroupBox>
                                         </Grid>
