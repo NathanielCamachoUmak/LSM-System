@@ -19,21 +19,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
-        public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
-
-        private Orders _newOrder = new Orders();
-        public Orders NewOrder
-        {
-            get => _newOrder;
-            set
-            { 
-                _newOrder = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ObservableCollection<string> AccountsOptions { get; set; } = new ObservableCollection<string>();
-
         public ObservableCollection<string> StatusOptions { get; set; } = new ObservableCollection<string>
         {
             "Ongoing",
@@ -41,15 +27,17 @@ namespace LSM_prototype.MVVM.ViewModel
             "Completed"
         };
 
-
-        public ObservableCollection<Dictionary<string, string>> ServiceOptions { get; set; } = new ObservableCollection<Dictionary<string, string>>
+        //for the checkbox
+        public ObservableCollection<ServiceOption> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOption>
         {
-            new Dictionary<string, string> { { "Repair", "1-2 days" } },
-            new Dictionary<string, string> { { "Cleaning", "1-2 days" } },
-            new Dictionary<string, string> { { "Check-up", "1 hour" } },
-            new Dictionary<string, string> { { "Installation", "2-3 hours" } },
-            new Dictionary<string, string> { { "Maintenance", "2 hours" } }
+            new ServiceOption { Name = "Repair", DurationValue = 3, DurationText = "3 days" },
+            new ServiceOption { Name = "Cleaning", DurationValue = 1, DurationText = "1 days" },
+            new ServiceOption { Name = "Check-up", DurationValue = 2, DurationText = "2 days" },
+            new ServiceOption { Name = "Installation", DurationValue = 2, DurationText = "2 days" },
+            new ServiceOption { Name = "Maintenance", DurationValue = 3, DurationText = "3 days" }
         };
+        public ObservableCollection<SelectableItem> ItemsCheckbox { get; set; } = new ObservableCollection<SelectableItem>();
+
 
         public string Status { get; set; } = "Ongoing";
 
@@ -84,15 +72,45 @@ namespace LSM_prototype.MVVM.ViewModel
             }
         }
 
+        private Orders _newOrder = new Orders();
+        public Orders NewOrder
+        {
+            get => _newOrder;
+            set
+            {
+                _newOrder = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void AddItem()
         {
-            MessageBox.Show("test");
             if (!IsValidInput())
             {
-                MessageBox.Show("adsasddas");
+                MessageBox.Show("there is an invalid input");
                 return;
             }
-            MessageBox.Show(NewOrder.Employee);
+
+            //lists for the items and services selected
+            var selectedServices = GetSelectedServices();
+            var selectedItems = GetSelectedItems();
+
+            if (!selectedServices.Any() || !selectedItems.Any())
+            {
+                MessageBox.Show("Please select at least one service!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            //just shows the list of services selected
+            foreach (var service in selectedServices)
+            {
+                MessageBox.Show($"{service.Name}, {service.DurationText}");
+            }
+            //just shows the list of items selected
+            foreach (var item in selectedItems)
+            {
+                MessageBox.Show($"{item.Name}, {item.Stock}, {item.Price}");
+            }
 
             SharedOrders.Add(new Orders
             {
@@ -112,7 +130,6 @@ namespace LSM_prototype.MVVM.ViewModel
 
         }
 
-        //save to database using this
         private void Save()
         {
             if (!SharedOrders.All(IsValidOrder)) return;
@@ -134,7 +151,6 @@ namespace LSM_prototype.MVVM.ViewModel
 
         private bool CanSave()
         {
-            //if ok, return true
             return true;
         }
 
@@ -178,21 +194,35 @@ namespace LSM_prototype.MVVM.ViewModel
             }
         }
 
+        //loads items to use show in checkbox
         public void LoadItemsFromDatabase()
         {
-            //Items.Clear();
+            ItemsCheckbox.Clear();
             using (var context = new BenjaminDbContext())
             {
                 var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
                 foreach (var item in itemsFromDb)
                 {
-                    Items.Add(item);
+                    ItemsCheckbox.Add(new SelectableItem(item));
                 }
             }
         }
 
+        //loads the list of selected services
+        public List<ServiceOption> GetSelectedServices()
+        {
+            return ServicesCheckbox.Where(service => service.IsSelected).ToList();
+        }
+        //loads the list of selected items
+        public List<Item> GetSelectedItems()
+        {
+            return ItemsCheckbox.Where(x => x.IsSelected).Select(x => x.Item).ToList();
+        }
+
         private bool IsValidInput()
         {
+            NewOrder.Problem = "estte";
+
             return !string.IsNullOrWhiteSpace(NewOrder.DeviceName) &&
                    !string.IsNullOrWhiteSpace(NewOrder.Problem) &&
                    !string.IsNullOrWhiteSpace(NewOrder.CustName) &&

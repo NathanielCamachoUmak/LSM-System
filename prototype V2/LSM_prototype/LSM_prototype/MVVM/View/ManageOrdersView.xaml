@@ -136,18 +136,18 @@
                                              TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
                                 </GroupBox>
 
-                                <!--item Other Details-->
+                                <!--item Services-->
                                 <GroupBox Header="Services:" FontSize="15" BorderThickness="3" Grid.Row="2" Grid.Column="0"
                                           Grid.RowSpan="4" Margin="5,0,0,5" Height="180">
-                                    <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ServiceOptions}"
+                                    <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ServicesCheckbox}"
                                               HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"
                                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <CheckBox Grid.Column="0" VerticalContentAlignment="Center">
+                                                <CheckBox IsChecked="{Binding IsSelected}" VerticalContentAlignment="Center">
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                        <TextBlock Width="140" Grid.Column="0" Text="{Binding Key}" VerticalAlignment="Center"/>
-                                                        <TextBlock Grid.Column="0" Text="{Binding Value}" VerticalAlignment="Center"/>
+                                                        <TextBlock Width="140" Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                                        <TextBlock Grid.Column="0" Text="{Binding DurationText}" VerticalAlignment="Center"/>
                                                     </StackPanel>
                                                 </CheckBox>
                                             </DataTemplate>
@@ -179,13 +179,13 @@
                                         <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
                                     </Grid>
                                     <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                              ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding ItemsCheckbox, UpdateSourceTrigger=PropertyChanged}"
                                               BorderThickness="0" Background="White"
                                               HorizontalContentAlignment="Stretch"
                                               VerticalAlignment="Stretch">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <CheckBox HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
+                                                <CheckBox IsChecked="{Binding IsSelected}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                                         <TextBlock Padding="0,0,10,0" Width="150" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
                                                         <TextBlock Width="100" Grid.Column="0" Text="{Binding Price}" VerticalAlignment="Center"/>
@@ -374,7 +374,7 @@
                                                     <!--device-->
                                                     <Grid Grid.Row="0" Grid.Column="0">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="95"/>
+                                                            <ColumnDefinition Width="75"/>
                                                             <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
@@ -393,15 +393,15 @@
 
                                                     <Grid Grid.Row="1" Grid.ColumnSpan="2">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2.3*"/>
-                                                            <ColumnDefinition Width="0.8*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition Width="1*"/>
                                                             <ColumnDefinition Width="0.8*"/>
                                                         </Grid.ColumnDefinitions>
 
                                                         <!--item Technician-->
                                                         <Grid Grid.Column="0">
                                                             <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="95"/>
+                                                                <ColumnDefinition Width="75"/>
                                                                 <ColumnDefinition Width="*"/>
                                                             </Grid.ColumnDefinitions>
                                                             <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
@@ -417,7 +417,9 @@
                                                                 <ColumnDefinition Width="*"/>
                                                             </Grid.ColumnDefinitions>
                                                             <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                            <TextBlock Grid.Column="1" Text="Ongoing" FontSize="14" Margin="5"/>
+                                                            <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                                  SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.StatusOptions}"/>
                                                         </Grid>
 
                                                         <!--ETA-->
@@ -454,15 +456,15 @@
                                                     <!--item Other Details-->
                                                     <GroupBox Header="Services:" FontSize="15" BorderThickness="3" Grid.Row="2" Grid.Column="0"
                                                               Grid.RowSpan="3" Margin="5,0,0,5" Height="130">
-                                                        <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ServiceOptions}"
+                                                        <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ElementName=Root, Path=DataContext.ServicesCheckbox}"
                                                                   HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"
                                                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                                             <ListView.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <CheckBox Grid.Column="0" VerticalContentAlignment="Center">
                                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                                            <TextBlock Width="140" Grid.Column="0" Text="{Binding Key}" VerticalAlignment="Center"/>
-                                                                            <TextBlock Grid.Column="0" Text="{Binding Value}" VerticalAlignment="Center"/>
+                                                                            <TextBlock Width="140" Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                                                            <TextBlock Grid.Column="0" Text="{Binding DurationText}" VerticalAlignment="Center"/>
                                                                         </StackPanel>
                                                                     </CheckBox>
                                                                 </DataTemplate>
@@ -494,7 +496,7 @@
                                                             <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
                                                         </Grid>
                                                         <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.Items, UpdateSourceTrigger=PropertyChanged}"
+                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.ItemsCheckbox, UpdateSourceTrigger=PropertyChanged}"
                                                                   BorderThickness="0" Background="White"
                                                                   HorizontalContentAlignment="Stretch"
                                                                   VerticalAlignment="Stretch">
