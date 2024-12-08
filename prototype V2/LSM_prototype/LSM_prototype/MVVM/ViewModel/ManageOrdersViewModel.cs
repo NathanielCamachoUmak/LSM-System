@@ -1,15 +1,8 @@
 ﻿using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
-using Microsoft.IdentityModel.Tokens;
+using LSM_prototype.MVVM.View;
 using System.Collections.ObjectModel;
-using System.Security.Principal;
 using System.Windows;
-using System.Windows.Controls;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
-using iText.Commons.Bouncycastle.Asn1.X509;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
@@ -18,6 +11,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
         public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
+        public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
         public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
@@ -182,6 +176,12 @@ namespace LSM_prototype.MVVM.ViewModel
             ResetNewOrderFields();
             MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
+        }
+
+        private void OpenOrder()
+        {
+            OrderWindowView orderWindow = new OrderWindowView(SelectedItem.OrderID);
+            orderWindow.Show();
         }
 
         private void Save()

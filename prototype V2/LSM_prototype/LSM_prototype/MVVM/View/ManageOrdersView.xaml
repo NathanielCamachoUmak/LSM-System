@@ -93,8 +93,8 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
                                         <ComboBox Grid.Column="1" FontSize="14" Margin="5"
-                                        SelectedItem="{Binding NewOrder.Employee, UpdateSourceTrigger=PropertyChanged}"
-                                        ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
+                                                  SelectedItem="{Binding NewOrder.Employee, UpdateSourceTrigger=PropertyChanged}"
+                                                  ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
                                     </Grid>
 
                                     <!--item Status-->
@@ -335,9 +335,7 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <!-- Other columns -->
-
-                    <!-- Template column with Expander inside -->
+                    <!-- OrderID column -->
                     <DataGridTemplateColumn Header="Job Orders" Width="*" SortMemberPath="OrderID">
                         <DataGridColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
@@ -348,293 +346,18 @@
                         </DataGridColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-
-                                <Expander Header="{Binding OrderID}" VerticalAlignment="Top" Margin="20,2.5,0,2.5">
-                                    <StackPanel Background="White">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1.2*"/>
-                                                <ColumnDefinition Width="0.8*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <!--order information-->
-                                            <GroupBox Header="Order Information" FontSize="15" BorderThickness="3" Grid.Column="0">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"/>
-                                                        <ColumnDefinition Width="1*"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <!--device-->
-                                                    <Grid Grid.Row="0" Grid.Column="0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="75"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBox Grid.Column="1" Text="{Binding DeviceName}" FontSize="14" Margin="5"/>
-                                                    </Grid>
-
-                                                    <!--model-->
-                                                    <Grid Grid.Row="0" Grid.Column="1">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="50"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Model:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBox Grid.Column="1" Text="{Binding Model}" FontSize="14" Margin="5"/>
-                                                    </Grid>
-
-                                                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*"/>
-                                                            <ColumnDefinition Width="1*"/>
-                                                            <ColumnDefinition Width="0.8*"/>
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <!--item Technician-->
-                                                        <Grid Grid.Column="0">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="75"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
-                                                            <ComboBox Grid.Column="1" FontSize="14" Margin="5"
-                                                                      SelectedItem="{Binding Employee, UpdateSourceTrigger=PropertyChanged}"
-                                                                      ItemsSource="{Binding ElementName=Root, Path=DataContext.AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
-                                                        </Grid>
-
-                                                        <!--item Status-->
-                                                        <Grid Grid.Column="1">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="50"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                            <ComboBox Grid.Column="1" FontSize="14" Margin="5"
-                                                                  SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}"
-                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.StatusOptions}"/>
-                                                        </Grid>
-
-                                                        <!--ETA-->
-                                                        <Grid Grid.Column="2">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="40"/>
-                                                                <ColumnDefinition Width="*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <TextBlock Grid.Column="0" Text="ETA:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                            <TextBlock Grid.Column="1" Text="2-3 days" FontSize="14" Margin="5"/>
-                                                        </Grid>
-                                                    </Grid>
-
-                                                    <!--start date
-                                                    <Grid Grid.Row="4">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="95"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Start Date: " FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBlock Grid.Column="1" FontSize="14" Margin="5"
-                                                                    Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='MM-dd-yyyy'}" 
-                                                                    xmlns:system="clr-namespace:System;assembly=mscorlib" />
-                                                    </Grid>-->
-
-                                                    <!--item Other Details-->
-                                                    <GroupBox Header="Other Details:" FontSize="15" BorderThickness="3" Height="130"
-                                                              Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Margin="0,0,5,5">
-                                                        <TextBox Grid.Row="1" Text="{Binding OtherNotes}" Background="Transparent"
-                                                                 BorderThickness="0" Margin="0,-5,0,0" Padding="0,5,0,0" FontSize="14"
-                                                                 TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
-                                                    </GroupBox>
-
-                                                    <!--item Other Details-->
-                                                    <GroupBox Header="Services:" FontSize="15" BorderThickness="3" Grid.Row="2" Grid.Column="0"
-                                                              Grid.RowSpan="3" Margin="5,0,0,5" Height="130">
-                                                        <ListView BorderThickness="0" Background="Transparent"
-                                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.ServiceOptions}"
-                                                                  HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                                            <ListView.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <CheckBox Grid.Column="0" VerticalContentAlignment="Center">
-                                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                                            <TextBlock Width="140" Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center"/>
-                                                                            <TextBlock Grid.Column="0" Text="{Binding DurationText}" VerticalAlignment="Center"/>
-                                                                        </StackPanel>
-                                                                    </CheckBox>
-                                                                </DataTemplate>
-                                                            </ListView.ItemTemplate>
-                                                        </ListView>
-                                                    </GroupBox>
-                                                </Grid>
-                                            </GroupBox>
-
-                                            <!--components used-->
-                                            <GroupBox Header="Components Used" FontSize="15" BorderThickness="3" Grid.Column="1">
-
-                                                <!--item Components used-->
-                                                <Grid Height="200">
-                                                    <Grid Margin="5" Background="Transparent">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="15"/>
-                                                            <RowDefinition Height="*"/>
-                                                        </Grid.RowDefinitions>
-                                                        <Grid Grid.Row="0" Background="LightGray">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="20"/>
-                                                                <ColumnDefinition Width="2*"/>
-                                                                <ColumnDefinition Width="1*"/>
-                                                                <ColumnDefinition Width="1*"/>
-                                                            </Grid.ColumnDefinitions>
-                                                            <TextBlock Grid.Column="1" FontSize="10" Text="Name"/>
-                                                            <TextBlock Grid.Column="2" FontSize="10" Text="Price"/>
-                                                            <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
-                                                        </Grid>
-                                                        <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                                                  ItemsSource="{Binding ElementName=Root, Path=DataContext.Items, UpdateSourceTrigger=PropertyChanged}"
-                                                                  BorderThickness="0" Background="White"
-                                                                  HorizontalContentAlignment="Stretch"
-                                                                  VerticalAlignment="Stretch">
-                                                            <ListView.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <CheckBox HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
-                                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                                                            <TextBlock Padding="0,0,10,0" Width="150" Grid.Column="0" Text="{Binding Name}" TextWrapping="Wrap"/>
-                                                                            <TextBlock Width="100" Grid.Column="0" Text="{Binding Price}" VerticalAlignment="Center"/>
-                                                                            <TextBlock Grid.Column="0" Text="{Binding Stock}" VerticalAlignment="Center"/>
-                                                                        </StackPanel>
-                                                                    </CheckBox>
-                                                                </DataTemplate>
-                                                            </ListView.ItemTemplate>
-                                                        </ListView>
-                                                    </Grid>
-                                                </Grid>
-                                            </GroupBox>
-                                        </Grid>
-
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1.2*"/>
-                                                <ColumnDefinition Width="0.8*"/>
-                                                <ColumnDefinition Width="0.8*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <!--customer information-->
-                                            <GroupBox Header="Customer Information" FontSize="15" BorderThickness="3" Grid.Column="0">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                    </Grid.RowDefinitions>
-
-                                                    <!--customer name-->
-                                                    <Grid Grid.Row="0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="65"/>
-                                                            <ColumnDefinition Width="5*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Name:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBox Grid.Column="1" Text="{Binding CustName}" FontSize="14" Margin="5"/>
-                                                    </Grid>
-
-                                                    <!--customer PhoneNum-->
-                                                    <Grid Grid.Row="1">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="65"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Phone #:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBox Grid.Column="1" Text="{Binding CustPhoneNum}" FontSize="14" Margin="5"/>
-                                                    </Grid>
-
-                                                    <!--item Email-->
-                                                    <Grid Grid.Row="2">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="65"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" Text="Email:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                        <TextBox Grid.Column="1" Text="{Binding CustEmail}" FontSize="14" Margin="5"/>
-                                                    </Grid>
-
-                                                </Grid>
-                                            </GroupBox>
-
-                                            <!--order total-->
-                                            <GroupBox Header="Order Total" FontSize="15" BorderThickness="3" Grid.Column="1">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                        <RowDefinition Height="1*"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid Grid.Row="0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*"/>
-                                                            <ColumnDefinition Width="1*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="Total price of Components used:" TextWrapping="Wrap"/>
-                                                        <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="1,000"/>
-                                                    </Grid>
-                                                    <Grid Grid.Row="1">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*"/>
-                                                            <ColumnDefinition Width="1*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="9.5" FontWeight="Bold" Text="20% service charge:" TextWrapping="Wrap"/>
-                                                        <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="200"/>
-                                                    </Grid>
-                                                    <Grid Grid.Row="2">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*"/>
-                                                            <ColumnDefinition Width="1*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="10% VAT:" TextWrapping="Wrap"/>
-                                                        <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="120"/>
-                                                    </Grid>
-                                                    <Grid Grid.Row="3">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="2*"/>
-                                                            <ColumnDefinition Width="1*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,5,0" FontSize="10" FontWeight="Bold" Text="Order total:" TextWrapping="Wrap"/>
-                                                        <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" Text="1,320"/>
-                                                    </Grid>
-                                                </Grid>
-                                            </GroupBox>
-
-                                            <GroupBox Header="Buttons:" FontSize="15" BorderThickness="3" Grid.Column="2">
-                                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                                                    <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="White"
-                                                            FontWeight="Bold"
-                                                            FontSize="15"
-                                                            Margin="10,0,10,5"
-                                                            Content="SAVE CHANGES"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
-
-                                                    <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="White"
-                                                            FontWeight="Bold"
-                                                            FontSize="15"
-                                                            Margin="10,0,10,5"
-                                                            Content="PRINT RECIEPT"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}"/>
-                                                </StackPanel>
-                                            </GroupBox>
-                                        </Grid>
-                                    </StackPanel>
-                                </Expander>
-
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding OrderID}" Foreground="Black"
+                                               VerticalAlignment="Center" Margin="20,2.5,0,2.5"
+                                               Grid.Column="0"/>
+                                    <Button Content="Edite Order" VerticalAlignment="Center"
+                                            Margin="20,2.5,0,2.5" Grid.Column="1"
+                                            Command="{Binding ElementName=Root, Path=DataContext.OpenOrderCommand}"/>
+                                </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
