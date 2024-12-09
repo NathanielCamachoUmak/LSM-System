@@ -15,7 +15,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CalendarDayButton}">
-                        <Grid Width="35" Height="20">
+                        <Grid Width="55" Height="20">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualStateGroup.Transitions>
@@ -85,7 +85,7 @@
                                     <VisualState x:Name="Inactive">
                                         <Storyboard>
                                             <!--blacked out days text color-->
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="Red" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="DarkGray" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -98,7 +98,7 @@
                                         <Storyboard>
                                             <!--current day text color-->
                                             <DoubleAnimation Duration="0" Storyboard.TargetName="TodayBackground" To="1" Storyboard.TargetProperty="Opacity"/>
-                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="Green" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="NormalText" To="White" Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)"/>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
@@ -115,18 +115,18 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <!--current day box elements-->
-                            <Rectangle x:Name="TodayBackground" Fill="Gainsboro" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="TodayBackground" Fill="#FF585454" Opacity="0" RadiusX="10" RadiusY="10" Margin="2"/>
                             <!--selected day box elements-->
-                            <Rectangle x:Name="SelectedBackground" Fill="Gainsboro" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="SelectedBackground" Fill="#FF585454" Opacity="0" RadiusX="10" RadiusY="10" Margin="2"/>
                             <!--day grid box elements-->
                             <Border Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
                             <!--current day box elements-->
-                            <Rectangle x:Name="HighlightBackground" Fill="Gainsboro" Opacity="0" RadiusX="1" RadiusY="1"/>
+                            <Rectangle x:Name="HighlightBackground" Fill="#FF585454" Opacity="0" RadiusX="10" RadiusY="10" Margin="2"/>
                             <!--day text box elements-->
-                            <ContentPresenter x:Name="NormalText" TextElement.Foreground="Blue" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="#FF000000" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
+                            <ContentPresenter x:Name="NormalText" TextBlock.FontWeight="bold" TextElement.Foreground="White" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="5,1,5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Path x:Name="Blackout" Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z" Fill="red" HorizontalAlignment="Stretch" Margin="3" Opacity="0" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Stretch"/>
                             <!--selected day box border elements-->
-                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="1" RadiusY="1" Stroke="Transparent" Visibility="Collapsed"/>
+                            <Rectangle x:Name="DayButtonFocusVisual" IsHitTestVisible="false" RadiusX="10" RadiusY="10" Stroke="Transparent" Visibility="Collapsed"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -140,7 +140,7 @@
                         <ControlTemplate.Resources>
                             <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
                                 <!--week days-->
-                                <TextBlock Foreground="Black" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                                <TextBlock Foreground="White" FontFamily="Verdana" FontWeight="Bold" FontSize="9.5" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                             </DataTemplate>
                         </ControlTemplate.Resources>
                         <Grid x:Name="PART_Root">
@@ -163,7 +163,7 @@
                                     <Grid>
                                         <Grid.Resources>
                                             <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="{x:Type Button}">
-                                                <Grid Cursor="Hand">
+                                                <Border Cursor="Hand" CornerRadius="10" Background="Gray">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Normal"/>
@@ -179,16 +179,14 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <!--month left arrow box-->
-                                                    <Rectangle Fill="Transparent" Opacity="1" Stretch="Fill"/>
                                                     <Grid>
                                                         <!--month left arrow-->
-                                                        <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="Black" HorizontalAlignment="Left" Height="10" Margin="14,-6,0,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                                        <Path x:Name="path" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" Fill="Black" HorizontalAlignment="Center" Height="10" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
                                                     </Grid>
-                                                </Grid>
+                                                </Border>
                                             </ControlTemplate>
                                             <ControlTemplate x:Key="NextButtonTemplate" TargetType="{x:Type Button}">
-                                                <Grid Cursor="Hand">
+                                                <Border Cursor="Hand" CornerRadius="10" Background="Gray">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Normal"/>
@@ -204,13 +202,11 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <!--month right arrow box-->
-                                                    <Rectangle Fill="Transparent" Opacity="1" Stretch="Fill"/>
                                                     <!--month right arrow-->
                                                     <Grid>
-                                                        <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="Black" HorizontalAlignment="Right" Height="10" Margin="0,-6,14,0" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
+                                                        <Path x:Name="path" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" Fill="Black" HorizontalAlignment="Center" Height="10" Stretch="Fill" VerticalAlignment="Center" Width="6"/>
                                                     </Grid>
-                                                </Grid>
+                                                </Border>
                                             </ControlTemplate>
                                             <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="{x:Type Button}">
                                                 <Grid Cursor="Hand">
@@ -230,23 +226,26 @@
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
                                                     <!--month-->
-                                                    <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" TextElement.Foreground="Black" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,4,1,9" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                    <ContentPresenter x:Name="buttonContent" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" TextElement.Foreground="Black" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Grid.Resources>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="auto" MinWidth="79"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <!--calendar grid-->
-                                        <Button x:Name="PART_HeaderButton" Grid.Column="0" Focusable="False" FontWeight="Bold" FontSize="10.5" HorizontalAlignment="Center" Grid.Row="0" Template="{StaticResource HeaderButtonTemplate}" VerticalAlignment="Center"/>
-                                        <Button x:Name="PART_PreviousButton" Grid.Column="1" Focusable="False" HorizontalAlignment="Left" Height="20" Grid.Row="0" Template="{StaticResource PreviousButtonTemplate}" Width="28"/>
-                                        <Button x:Name="PART_NextButton" Grid.Column="2" Focusable="False" HorizontalAlignment="Right" Height="20" Grid.Row="0" Template="{StaticResource NextButtonTemplate}" Width="28"/>
+                                        <Button x:Name="PART_HeaderButton" Grid.Column="0" Focusable="False" FontWeight="Bold" FontSize="10.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Margin="10" Template="{StaticResource HeaderButtonTemplate}"/>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                                            <Button x:Name="PART_PreviousButton" Focusable="False" HorizontalAlignment="Center" Height="20" Template="{StaticResource PreviousButtonTemplate}" Width="28"/>
+                                            <StackPanel Width="10" Visibility="Hidden"/>
+                                            <Button x:Name="PART_NextButton" Focusable="False" HorizontalAlignment="Center" Height="20" Template="{StaticResource NextButtonTemplate}" Width="28"/>
+                                        </StackPanel>
                                         <Grid x:Name="PART_MonthView" Grid.ColumnSpan="3" HorizontalAlignment="Center" Margin="6,-1,6,6" Grid.Row="1" Visibility="Visible">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
