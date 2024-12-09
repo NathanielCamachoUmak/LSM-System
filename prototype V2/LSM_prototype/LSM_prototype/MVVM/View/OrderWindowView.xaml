@@ -141,11 +141,10 @@
                                     Height="25"
                                     Content="□"
                                     FontSize="25"
-                                    Background="Transparent"
+                                    Background="#FF3C3C3C"
                                     Foreground="White"
                                     Padding="0,-10,0,0"
-                                    BorderThickness="0"
-                                    Click="Button_Maximize"/>
+                                    BorderThickness="0"/>
 
                             <Button Template="{DynamicResource ButtonTemplate1}"
                                     Width="25"
@@ -296,7 +295,7 @@
                                                                  TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
                                                 </GroupBox>
 
-                                                <!--item Other Details-->
+                                                <!--item service-->
                                                 <GroupBox Header="Services:" FontSize="15" BorderThickness="3" Grid.Row="2" Grid.Column="0"
                                                           Grid.RowSpan="3" Margin="5,0,0,5" Height="170">
                                                     <ListView BorderThickness="0" Background="Transparent" ItemsSource="{Binding ServicesCheckbox}"
@@ -304,7 +303,7 @@
                                                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                                         <ListView.ItemTemplate>
                                                             <DataTemplate>
-                                                                <CheckBox IsChecked="{Binding IsSelected}" VerticalContentAlignment="Center">
+                                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalContentAlignment="Center">
                                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                                                         <TextBlock Width="140" Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center"/>
                                                                         <TextBlock Grid.Column="0" Text="{Binding DurationText}" VerticalAlignment="Center"/>
@@ -339,10 +338,10 @@
                                                         <TextBlock Grid.Column="3" FontSize="10" Text="Stock"/>
                                                     </Grid>
                                                     <ListView Grid.Row="1" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                              ItemsSource="{Binding ItemsCheckbox, UpdateSourceTrigger=PropertyChanged}"
-                                              BorderThickness="0" Background="White"
-                                              HorizontalContentAlignment="Stretch"
-                                              VerticalAlignment="Stretch">
+                                                              ItemsSource="{Binding ItemsCheckbox, UpdateSourceTrigger=PropertyChanged}"
+                                                              BorderThickness="0" Background="White"
+                                                              HorizontalContentAlignment="Stretch"
+                                                              VerticalAlignment="Stretch">
                                                         <ListView.ItemTemplate>
                                                             <DataTemplate>
                                                                 <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalContentAlignment="Center">
@@ -454,21 +453,23 @@
 
                                         <GroupBox Header="Buttons:" FontSize="15" BorderThickness="3" Grid.Column="2">
                                             <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                                                <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="White"
-                                                            FontWeight="Bold"
-                                                            FontSize="15"
-                                                            Margin="10,0,10,5"
-                                                            Content="SAVE CHANGES"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"/>
 
-                                                <Button Grid.Column="2" Grid.RowSpan="4"
-                                                            Background="White"
-                                                            FontWeight="Bold"
-                                                            FontSize="15"
-                                                            Margin="10,0,10,5"
-                                                            Content="PRINT RECIEPT"
-                                                            Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}"/>
+                                                <Button Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"
+                                                        Grid.Column="2" Grid.RowSpan="4"
+                                                        Content="SAVE CHANGES"
+                                                        Background="White"
+                                                        Margin="10,0,10,5"
+                                                        FontWeight="Bold"
+                                                        FontSize="15"/>
+
+                                                <Button Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}"
+                                                        Grid.Column="2" Grid.RowSpan="4"
+                                                        Content="PRINT RECIEPT"
+                                                        Background="White"
+                                                        Margin="10,0,10,5"
+                                                        FontWeight="Bold"
+                                                        FontSize="15"/>
+                                                
                                             </StackPanel>
                                         </GroupBox>
                                     </Grid>

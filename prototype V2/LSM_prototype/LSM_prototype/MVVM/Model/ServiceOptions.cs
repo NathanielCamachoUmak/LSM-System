@@ -19,7 +19,6 @@ namespace LSM_prototype.MVVM.Model
 
         private bool _isSelected;
 
-        [NotMapped]
         public bool IsSelected
         {
             get => _isSelected;
