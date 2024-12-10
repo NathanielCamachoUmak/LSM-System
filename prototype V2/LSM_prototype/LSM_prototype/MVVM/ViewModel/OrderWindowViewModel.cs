@@ -391,6 +391,7 @@ namespace LSM_prototype.MVVM.ViewModel
             ETAValue();
             CalculateTotal();
         }
+
         private void ExportToPDF()
         {
             if (OrderDetails == null)
@@ -399,45 +400,105 @@ namespace LSM_prototype.MVVM.ViewModel
                 return;
             }
 
-            // PDF file path is in Exports
-            string filePath = $"..\\..\\..\\Exports\\Order_{OrderDetails.OrderID}.pdf";
+            // PDF file path wher we can find the exported documents
+            string filePath = $"..\\..\\..\\Exports\\Receipt_Order_{OrderDetails.OrderID}.pdf";
 
             try
             {
-
                 using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
                 using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
                 {
                     var document = new iText.Layout.Document(pdf);
 
-                    // Receipt title
-                    var title = new iText.Layout.Element.Paragraph($"Order Details - ID: {OrderDetails.OrderID}")
+                    // THIS IS THE TITLE OR HEADER OR WHATEVER
+                    document.Add(new iText.Layout.Element.Paragraph("Benjafix").SetFontSize(24)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new iText.Layout.Element.Paragraph($"Receipt - Order ID: {OrderDetails.OrderID}")
                         .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
-                        .SetFontSize(20);
-                    document.Add(title);
+                        .SetFontSize(18).SetUnderline());
 
-                    // Info on beloved customer
-                    document.Add(new iText.Layout.Element.Paragraph("Customer Information").SetFontSize(16));
+                    // THESE ARE THE DETAILS OF THE ORDER AND WHATEVER
+                    document.Add(new iText.Layout.Element.Paragraph("\nCustomer Information")
+                        .SetFontSize(16));
                     document.Add(new iText.Layout.Element.Paragraph($"Name: {OrderDetails.CustName}"));
                     document.Add(new iText.Layout.Element.Paragraph($"Phone Number: {OrderDetails.CustPhoneNum}"));
                     document.Add(new iText.Layout.Element.Paragraph($"Email: {OrderDetails.CustEmail}"));
-
-                    // Main gist of info
+              
                     document.Add(new iText.Layout.Element.Paragraph("\nOrder Details").SetFontSize(16));
                     document.Add(new iText.Layout.Element.Paragraph($"Device: {OrderDetails.DeviceName}"));
+                    document.Add(new iText.Layout.Element.Paragraph($"Model: {OrderDetails.DeviceType}"));
                     document.Add(new iText.Layout.Element.Paragraph($"Employee Assigned: {OrderDetails.Employee}"));
-                    document.Add(new iText.Layout.Element.Paragraph($"Status: {OrderDetails.Status}"));
                     document.Add(new iText.Layout.Element.Paragraph($"Other Notes: {OrderDetails.OtherNotes}"));
 
+                    // TABLE WHERE THE STUFF WE USED AND DID ARE AT
+                    var compServiceTable = new iText.Layout.Element.Table(3).UseAllAvailableWidth();
+                    compServiceTable.AddHeaderCell("Service/Component");
+                    compServiceTable.AddHeaderCell("Price");
+                    compServiceTable.AddHeaderCell("Type");
+
+                    foreach (var service in ServicesCheckbox.Where(s => s.IsSelected))
+                    {
+                        compServiceTable.AddCell(service.Name);
+                        compServiceTable.AddCell($"₱{service.Price:F2}");
+                        compServiceTable.AddCell("Service");
+                    }
+
+                    foreach (var item in ItemsCheckbox.Where(i => i.IsSelected))
+                    {
+                        compServiceTable.AddCell(item.Item.Name);
+                        compServiceTable.AddCell($"₱{item.Item.Price:F2}");
+                        compServiceTable.AddCell("Component");
+                    }
+
+                    document.Add(compServiceTable);
+
+                    // THE PRICING AND WHATEVER THE FOOK
+                    var pricingTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    pricingTable.AddHeaderCell("Description");
+                    pricingTable.AddHeaderCell("Amount");
+
+                    pricingTable.AddCell("Total Price of Components");
+                    pricingTable.AddCell($"₱{CompTotal:F2}");
+
+                    pricingTable.AddCell("Total Price of Services");
+                    pricingTable.AddCell($"₱{ServTotal:F2}");
+
+                    pricingTable.AddCell("Subtotal");
+                    pricingTable.AddCell($"₱{SubTotal:F2}");
+
+                    pricingTable.AddCell("12% VAT");
+                    pricingTable.AddCell($"₱{Tax:F2}");
+
+                    if (DiscountCheckbox)
+                    {
+                        pricingTable.AddCell("20% Discount");
+                        pricingTable.AddCell($"₱{Discount:F2}");
+                    }
+                    else
+                    {
+                        pricingTable.AddCell("20% Discount");
+                        pricingTable.AddCell("₱0.00");
+                    }
+
+                    pricingTable.AddCell("Total Cost");
+                    pricingTable.AddCell($"₱{Total:F2}");
+
+                    document.Add(new iText.Layout.Element.Paragraph("\nPricing Details").SetFontSize(16));
+                    document.Add(pricingTable);
+
+                    // THANK YOU FOR USING OUR SERVICE LMAO
+                    document.Add(new iText.Layout.Element.Paragraph("\nThank you for choosing Benjafix!")
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetFontSize(14));
 
                     document.Close();
                 }
 
-                MessageBox.Show($"Order exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Receipt exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to export order: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Failed to export receipt: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
