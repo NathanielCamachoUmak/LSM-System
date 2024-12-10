@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using iText.Forms.Form.Element;
+using LSM_prototype.MVVM.Model;
+using LSM_prototype.MVVM.ViewModel;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace LSM_prototype.MVVM.View
@@ -29,6 +33,26 @@ namespace LSM_prototype.MVVM.View
                     row1.Height = new GridLength(1, GridUnitType.Star);
                     row2.Height = new GridLength(9, GridUnitType.Star);
                 }
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.CheckBox checkBox && this.DataContext is ManageOrdersViewModel viewModel)
+            {
+                viewModel.ETAValue();
+                viewModel.CalculateTotal();
+                viewModel.DiscountCheckbox = true;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.CheckBox checkBox && this.DataContext is ManageOrdersViewModel viewModel)
+            {
+                viewModel.ETAValue();
+                viewModel.CalculateTotal();
+                viewModel.DiscountCheckbox = false;
             }
         }
     }

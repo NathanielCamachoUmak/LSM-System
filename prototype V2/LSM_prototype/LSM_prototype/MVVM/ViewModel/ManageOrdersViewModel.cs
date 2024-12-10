@@ -21,20 +21,138 @@ namespace LSM_prototype.MVVM.ViewModel
             "Cancelled",
             "Completed"
         };
+        public ObservableCollection<string> DeviceOptions { get; set; } = new ObservableCollection<string>
+        {
+            "Laptop",
+            "Desktop Computer",
+            "Smartphone",
+            "Tablet",
+            "Game Console",
+            "Others"
+        };
 
         //for the checkbox
         public ObservableCollection<ServiceOptions> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOptions>
         {
-            new ServiceOptions { Name = "Repair", DurationValue = 3, DurationText = "3 days" },
-            new ServiceOptions { Name = "Cleaning", DurationValue = 1, DurationText = "1 days" },
-            new ServiceOptions { Name = "Check-up", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOptions { Name = "Installation", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days" }
+            new ServiceOptions { Name = "Repair", DurationValue = 3, DurationText = "3 days", Price = 100.00m },
+            new ServiceOptions { Name = "Cleaning", DurationValue = 1, DurationText = "1 days", Price = 200.00m },
+            new ServiceOptions { Name = "Check-up", DurationValue = 2, DurationText = "2 days", Price = 300.00m },
+            new ServiceOptions { Name = "Installation", DurationValue = 2, DurationText = "2 days", Price = 400.00m },
+            new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days", Price = 500.00m }
         };
         public ObservableCollection<SelectableItem> ItemsCheckbox { get; set; } = new ObservableCollection<SelectableItem>();
 
+        private int _totalDuration;
+        public int TotalDuration
+        {
+            get => _totalDuration;
+            set
+            {
+                if (_totalDuration != value)
+                {
+                    _totalDuration = value;
+                    OnPropertyChanged(nameof(TotalDuration));
+                }
+            }
+        }
 
-        public string Status { get; set; } = "Ongoing";
+        private decimal _compTotal;
+        public decimal CompTotal
+        {
+            get => _compTotal;
+            set
+            {
+                if (_compTotal != value)
+                {
+                    _compTotal = value;
+                    OnPropertyChanged(nameof(CompTotal));
+                }
+            }
+        }
+
+        private decimal _servTotal;
+        public decimal ServTotal
+        {
+            get => _servTotal;
+            set
+            {
+                if (_servTotal != value)
+                {
+                    _servTotal = value;
+                    OnPropertyChanged(nameof(ServTotal));
+                }
+            }
+        }
+
+        private decimal _tax;
+        public decimal Tax
+        {
+            get => _tax;
+            set
+            {
+                if (_tax != value)
+                {
+                    _tax = value;
+                    OnPropertyChanged(nameof(Tax));
+                }
+            }
+        }
+
+        private decimal _subTotal;
+        public decimal SubTotal
+        {
+            get => _subTotal;
+            set
+            {
+                if (_subTotal != value)
+                {
+                    _subTotal = value;
+                    OnPropertyChanged(nameof(SubTotal));
+                }
+            }
+        }
+
+        private decimal _discount;
+        public decimal Discount
+        {
+            get => _discount;
+            set
+            {
+                if (_discount != value)
+                {
+                    _discount = value;
+                    OnPropertyChanged(nameof(Discount));
+                }
+            }
+        }
+
+        private decimal _total;
+        public decimal Total
+        {
+            get => _total;
+            set
+            {
+                if (_total != value)
+                {
+                    _total = value;
+                    OnPropertyChanged(nameof(Total));
+                }
+            }
+        }
+
+        private bool _discountCheckbox;
+        public bool DiscountCheckbox
+        {
+            get => _discountCheckbox;
+            set
+            {
+                if (_discountCheckbox != value)
+                {
+                    _discountCheckbox = value;
+                    OnPropertyChanged(nameof(DiscountCheckbox));
+                }
+            }
+        }
 
         public ManageOrdersViewModel()
         {
@@ -102,35 +220,16 @@ namespace LSM_prototype.MVVM.ViewModel
                 return;
             }
 
-            //just shows the list of services selected
-            foreach (var service in selectedServices)
-            {
-                MessageBox.Show($"{service.Name}, {service.DurationText}");
-            }
-
-            //just shows the list of items selected
-            foreach (var item in selectedItems)
-            {
-                if (item.Item != null)
-                {
-                    MessageBox.Show($"{item.Item.Name}, {item.Item.Stock}, {item.Item.Price}");
-                }
-                else
-                {
-                    MessageBox.Show("Item data is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-
-
             // Add the new order to the database
             using (var context = new BenjaminDbContext())
             {
                 var newOrder = new Orders
                 {
+                    DeviceType = NewOrder.DeviceType,
                     DeviceName = NewOrder.DeviceName,
                     Status = "Ongoing",
-                    OtherNotes = NewOrder.OtherNotes,
                     Employee = NewOrder.Employee,
+                    OtherNotes = NewOrder.OtherNotes,
                     CustName = NewOrder.CustName,
                     CustPhoneNum = NewOrder.CustPhoneNum,
                     CustEmail = NewOrder.CustEmail,
@@ -149,6 +248,7 @@ namespace LSM_prototype.MVVM.ViewModel
                         Name = service.Name,
                         DurationValue = service.DurationValue,
                         DurationText = service.DurationText,
+                        Price = service.Price,
                         IsSelected = service.IsSelected
 
                     };
@@ -276,6 +376,58 @@ namespace LSM_prototype.MVVM.ViewModel
         public List<SelectableItem> GetSelectedItems()
         {
             return ItemsCheckbox.Where(item => item.IsSelected).ToList();
+        }
+
+        public void ETAValue()
+        {
+            TotalDuration = 0;
+
+            // Iterate through all services in ServicesCheckbox and update their IsSelected property
+            foreach (var service in ServicesCheckbox)
+            {
+                if (service.IsSelected)
+                {
+                    // If the service is selected, add its DurationValue to the TotalDuration
+                    TotalDuration += service.DurationValue;
+                }
+            }
+        }
+        public void CalculateTotal()
+        {
+            CompTotal = 0;
+            ServTotal = 0;
+            SubTotal = 0;
+            Tax = 0;
+            Total = 0;
+            Discount = 0;
+            decimal discount = 0;
+
+            foreach (var item in ItemsCheckbox)
+            {
+                if (item.IsSelected)
+                {
+                    CompTotal += item.Item.Price;
+                }
+            }
+
+            foreach (var service in ServicesCheckbox)
+            {
+                if (service.IsSelected)
+                {
+                    ServTotal += service.Price;
+                }
+            }
+
+            if (DiscountCheckbox == true)
+            {
+                discount = 0.20m;
+            }
+
+            SubTotal = CompTotal + ServTotal;
+
+            Tax = SubTotal * 0.12m;
+            Discount = (SubTotal + Tax) * discount;
+            Total = (SubTotal + Tax) - Discount;
         }
 
         private bool IsValidInput()

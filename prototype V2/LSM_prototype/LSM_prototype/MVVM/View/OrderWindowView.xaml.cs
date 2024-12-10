@@ -1,18 +1,21 @@
 ﻿using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LSM_prototype.MVVM.View
 {
     public partial class OrderWindowView : Window
     {
+        private readonly OrderWindowViewModel orderVM;
+
         public OrderWindowView(int orderID)
         {
             InitializeComponent();
 
             // Create the ViewModel instance and pass the OrderID
-            OrderWindowViewModel orderVM = new OrderWindowViewModel(orderID);
+            orderVM = new OrderWindowViewModel(orderID);
 
             // Set the DataContext of the window to the ViewModel
             this.DataContext = orderVM;
@@ -56,6 +59,31 @@ namespace LSM_prototype.MVVM.View
             var orderWindow = Application.Current.Windows.OfType<OrderWindowView>().FirstOrDefault();
 
             orderWindow.Close();
+        }
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            // Cast sender to CheckBox
+            var checkBox = sender as CheckBox;
+
+            if (checkBox != null)
+            {
+                orderVM.ETAValue();
+                orderVM.CalculateTotal();
+                orderVM.DiscountCheckbox = true;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Cast sender to CheckBox
+            var checkBox = sender as CheckBox;
+
+            if (checkBox != null)
+            {
+                orderVM.ETAValue();
+                orderVM.CalculateTotal();
+                orderVM.DiscountCheckbox = false;
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ namespace LSM_prototype.MVVM.Model
         public int OrderID { get; set; }
         public Orders Orders { get; set; }
 
+        public decimal Price { get; set; }
+
         private bool _isSelected;
 
         public bool IsSelected

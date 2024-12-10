@@ -18,15 +18,136 @@ namespace LSM_prototype.MVVM.ViewModel
             "Cancelled",
             "Completed"
         };
+        public ObservableCollection<string> DeviceOptions { get; set; } = new ObservableCollection<string>
+        {
+            "Laptop",
+            "Desktop Computer",
+            "Smartphone",
+            "Tablet",
+            "Game Console",
+            "Others"
+        };
         public ObservableCollection<ServiceOptions> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOptions>
         {
-            new ServiceOptions { Name = "Repair", DurationValue = 3, DurationText = "3 days" },
-            new ServiceOptions { Name = "Cleaning", DurationValue = 1, DurationText = "1 days" },
-            new ServiceOptions { Name = "Check-up", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOptions { Name = "Installation", DurationValue = 2, DurationText = "2 days" },
-            new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days" }
+            new ServiceOptions { Name = "Repair", DurationValue = 3, DurationText = "3 days", Price = 100.00m },
+            new ServiceOptions { Name = "Cleaning", DurationValue = 1, DurationText = "1 days", Price = 200.00m },
+            new ServiceOptions { Name = "Check-up", DurationValue = 2, DurationText = "2 days", Price = 300.00m },
+            new ServiceOptions { Name = "Installation", DurationValue = 2, DurationText = "2 days", Price = 400.00m },
+            new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days", Price = 500.00m }
         };
         public ObservableCollection<SelectableItem> ItemsCheckbox { get; set; } = new ObservableCollection<SelectableItem>();
+
+        private int _totalDuration;
+        public int TotalDuration
+        {
+            get => _totalDuration;
+            set
+            {
+                if (_totalDuration != value)
+                {
+                    _totalDuration = value;
+                    OnPropertyChanged(nameof(TotalDuration));
+                }
+            }
+        }
+
+        private decimal _compTotal;
+        public decimal CompTotal
+        {
+            get => _compTotal;
+            set
+            {
+                if (_compTotal != value)
+                {
+                    _compTotal = value;
+                    OnPropertyChanged(nameof(CompTotal));
+                }
+            }
+        }
+
+        private decimal _servTotal;
+        public decimal ServTotal
+        {
+            get => _servTotal;
+            set
+            {
+                if (_servTotal != value)
+                {
+                    _servTotal = value;
+                    OnPropertyChanged(nameof(ServTotal));
+                }
+            }
+        }
+
+        private decimal _tax;
+        public decimal Tax
+        {
+            get => _tax;
+            set
+            {
+                if (_tax != value)
+                {
+                    _tax = value;
+                    OnPropertyChanged(nameof(Tax));
+                }
+            }
+        }
+
+        private decimal _subTotal;
+        public decimal SubTotal
+        {
+            get => _subTotal;
+            set
+            {
+                if (_subTotal != value)
+                {
+                    _subTotal = value;
+                    OnPropertyChanged(nameof(SubTotal));
+                }
+            }
+        }
+
+        private decimal _discount;
+        public decimal Discount
+        {
+            get => _discount;
+            set
+            {
+                if (_discount != value)
+                {
+                    _discount = value;
+                    OnPropertyChanged(nameof(Discount));
+                }
+            }
+        }
+
+        private decimal _total;
+        public decimal Total
+        {
+            get => _total;
+            set
+            {
+                if (_total != value)
+                {
+                    _total = value;
+                    OnPropertyChanged(nameof(Total));
+                }
+            }
+        }
+
+        private bool _discountCheckbox;
+        public bool DiscountCheckbox
+        {
+            get => _discountCheckbox;
+            set
+            {
+                if (_discountCheckbox != value)
+                {
+                    _discountCheckbox = value;
+                    OnPropertyChanged(nameof(DiscountCheckbox));
+                }
+            }
+        }
 
         private Orders _orderDetails;
         public Orders OrderDetails
@@ -37,7 +158,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 _orderDetails = value;
                 OnPropertyChanged(nameof(OrderDetails));
             }
-        }
+        }   
 
         public OrderWindowViewModel(int OrderID)
         {
@@ -45,7 +166,6 @@ namespace LSM_prototype.MVVM.ViewModel
             LoadItemsFromDatabase();
             OrderReciever(OrderID);
         }
-
         public void OrderReciever(int OrderID)
         {
             using (var context = new BenjaminDbContext())
@@ -59,7 +179,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
 
                 OrderDetails = order;
-                
+
                 // Fetch selected services from the database
                 var selectedServicesList = context.ServiceOptions.Where(s => s.OrderID == OrderID).ToList();
 
@@ -97,62 +217,10 @@ namespace LSM_prototype.MVVM.ViewModel
                     }
                 }
             }
+            ETAValue();
+            CalculateTotal();
         }
-
-        public void SaveOrderChanges()
-        {
-            if (!IsValidOrder(OrderDetails)) return;
-
-            using (var context = new BenjaminDbContext())
-            {
-                context.Orders.Update(OrderDetails);
-
-                // Step 1: Retrieve the selected services that match the current OrderID
-                var servicesToRemove = context.ServiceOptions.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
-
-                // Step 2: Delete the selected services that match the current OrderID
-                context.ServiceOptions.RemoveRange(servicesToRemove);
-
-                // Step 3: Put the selected services into a list and add to the database
-                var newSelectedServices = ServicesCheckbox.Where(s => s.IsSelected)
-                                          .Select(service => new ServiceOptions
-                                          {
-                                              OrderID = OrderDetails.OrderID, // Link to the correct order
-                                              Name = service.Name,
-                                              DurationValue = service.DurationValue,
-                                              DurationText = service.DurationText,
-                                              IsSelected = service.IsSelected
-                                          }).ToList();
-
-                // Step 4: Add the list of selected services to the database
-                context.ServiceOptions.AddRange(newSelectedServices);
-
-
-                // Step 1: Retrieve the selected services that match the current OrderID
-                var itemsToRemove = context.SelectableItem.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
-
-                // Step 2: Delete the selected services that match the current OrderID
-                context.SelectableItem.RemoveRange(itemsToRemove);
-
-                // Step 3: Put the selected services into a list and add to the database
-                var newSelectedItems = ItemsCheckbox.Where(s => s.IsSelected)
-                                       .Select(item => new SelectableItem
-                                       {
-                                           ItemID = item.Item.ItemID,
-                                           OrderID = OrderDetails.OrderID,
-                                           IsSelected = item.IsSelected
-                                       }).ToList();
-
-                // Step 4: Add the list of selected services to the database
-                context.SelectableItem.AddRange(newSelectedItems);
-
-                context.SaveChanges();
-
-                MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
-        public void PopulateAccountsOptions()
+        private void PopulateAccountsOptions()
         {
             AccountsOptions.Clear();
             LoadAccountsFromDatabase();
@@ -177,7 +245,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
             }
         }
-        public void LoadItemsFromDatabase()
+        private void LoadItemsFromDatabase()
         {
             ItemsCheckbox.Clear();
             using (var context = new BenjaminDbContext())
@@ -194,6 +262,57 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
             }
         }
+        public void ETAValue()
+        {
+            TotalDuration = 0;
+
+            // Iterate through all services in ServicesCheckbox and update their IsSelected property
+            foreach (var service in ServicesCheckbox)
+            {
+                if (service.IsSelected)
+                {
+                    // If the service is selected, add its DurationValue to the TotalDuration
+                    TotalDuration += service.DurationValue;
+                }
+            }
+        }
+        public void CalculateTotal()
+        {
+            CompTotal = 0;
+            ServTotal = 0;
+            SubTotal = 0;
+            Tax = 0;
+            Total = 0;
+            Discount = 0;
+            decimal discount = 0;
+
+            foreach (var item in ItemsCheckbox)
+            {
+                if (item.IsSelected)
+                {
+                    CompTotal += item.Item.Price;
+                }
+            }
+
+            foreach (var service in ServicesCheckbox)
+            {
+                if (service.IsSelected)
+                {
+                    ServTotal += service.Price;
+                }
+            }
+
+            if (DiscountCheckbox == true)
+            {
+                discount = 0.20m;
+            }
+
+            SubTotal = CompTotal + ServTotal;
+
+            Tax = SubTotal * 0.12m;
+            Discount = (SubTotal + Tax) * discount;
+            Total = (SubTotal + Tax) - Discount;
+        }
         private bool IsValidOrder(Orders order)
         {
             return !string.IsNullOrWhiteSpace(order.DeviceName) &&
@@ -202,7 +321,77 @@ namespace LSM_prototype.MVVM.ViewModel
                    order.CustEmail.Contains("@");
         }
 
-        public void ExportToPDF()
+        //relay command methods
+        private void SaveOrderChanges()
+        {
+            if (!IsValidOrder(OrderDetails)) return;
+
+            using (var context = new BenjaminDbContext())
+            {
+                context.Orders.Update(OrderDetails);
+
+                // Step 1: Retrieve the selected services that match the current OrderID
+                var servicesToRemove = context.ServiceOptions.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
+
+                // Step 2: Delete the selected services that match the current OrderID
+                context.ServiceOptions.RemoveRange(servicesToRemove);
+
+                // Step 3: Put the selected services into a list and add to the database
+                var newSelectedServices = ServicesCheckbox.Where(s => s.IsSelected)
+                                          .Select(service => new ServiceOptions
+                                          {
+                                              OrderID = OrderDetails.OrderID, // Link to the correct order
+                                              Name = service.Name,
+                                              DurationValue = service.DurationValue,
+                                              DurationText = service.DurationText,
+                                              Price = service.Price,
+                                              IsSelected = service.IsSelected
+                                          }).ToList();
+
+                // Step 4: Check if there are any services selected
+                if (!newSelectedServices.Any())
+                {
+                    MessageBox.Show("Please select at least one service!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Step 5: Add the list of selected services to the database
+                context.ServiceOptions.AddRange(newSelectedServices);
+
+
+                // Step 1: Retrieve the selected items that match the current OrderID
+                var itemsToRemove = context.SelectableItem.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
+
+                // Step 2: Delete the selected items that match the current OrderID
+                context.SelectableItem.RemoveRange(itemsToRemove);
+
+                // Step 3: Put the selected items into a list and add to the database
+                var newSelectedItems = ItemsCheckbox.Where(s => s.IsSelected)
+                                       .Select(item => new SelectableItem
+                                       {
+                                           ItemID = item.Item.ItemID,
+                                           OrderID = OrderDetails.OrderID,
+                                           IsSelected = item.IsSelected
+                                       }).ToList();
+
+                // Step 4: Check if there are any items selected
+                if (!newSelectedItems.Any())
+                {
+                    MessageBox.Show("Please select at least one item!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Step 5: Add the list of selected items to the database
+                context.SelectableItem.AddRange(newSelectedItems);
+
+                context.SaveChanges();
+
+                MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            ETAValue();
+            CalculateTotal();
+        }
+        private void ExportToPDF()
         {
             if (OrderDetails == null)
             {
