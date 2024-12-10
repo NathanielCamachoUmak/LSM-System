@@ -69,11 +69,35 @@ namespace LSM_prototype.MVVM.View
             {
                 orderVM.ETAValue();
                 orderVM.CalculateTotal();
-                orderVM.DiscountCheckbox = true;
             }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Cast sender to CheckBox
+            var checkBox = sender as CheckBox;
+
+            if (checkBox != null)
+            {
+                orderVM.ETAValue();
+                orderVM.CalculateTotal();
+            }
+        }
+
+        private void CheckBox_Checked2(object sender, RoutedEventArgs e)
+        {
+            // Cast sender to CheckBox
+            var checkBox = sender as CheckBox;
+
+            if (checkBox != null)
+            {
+                orderVM.ETAValue();
+                orderVM.CalculateTotal();
+                orderVM.DiscountCheckbox = true;
+            }
+        }
+
+        private void CheckBox_Unchecked2(object sender, RoutedEventArgs e)
         {
             // Cast sender to CheckBox
             var checkBox = sender as CheckBox;

@@ -10,10 +10,12 @@
 
   <ItemGroup>
     <None Remove="Images\BENJAMIN transparent.png" />
+    <None Remove="Images\BENJAMIN transparent2.png" />
     <None Remove="Images\BotLeft.png" />
     <None Remove="Images\BotRight.png" />
     <None Remove="Images\TopLeft.png" />
     <None Remove="Images\TopRight.png" />
+    <None Remove="Images\userIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +40,9 @@
     <Resource Include="Images\BENJAMIN transparent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\BENJAMIN transparent2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\BotLeft.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -48,6 +53,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\TopRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\userIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

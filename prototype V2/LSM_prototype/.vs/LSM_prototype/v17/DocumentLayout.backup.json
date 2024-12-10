@@ -1,18 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\",
+  "WorkspaceRootPath": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\viewmodel\\manageordersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\orderwindowview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\orderwindowview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\orderwindowview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\orderwindowview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\manageordersview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\manageordersview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\manageordersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\manageordersview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\viewmodel\\orderwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\viewmodel\\orderwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\model\\serviceoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\model\\serviceoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/BenjaminDB/True/SqlTable/dbo.Orders.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\app.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\andre\\source\\repos\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\viewmodel\\manageordersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\viewmodel\\manageordersviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\view\\manageordersview.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\view\\manageordersview.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|c:\\users\\israel\\desktop\\benjaminproj\\lsm-system\\prototype v2\\lsm_prototype\\lsm_prototype\\mvvm\\viewmodel\\pdfexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99A22374-1219-4EC9-B5D2-A702473A5C59}|LSM_prototype\\LSM_prototype.csproj|solutionrelative:lsm_prototype\\mvvm\\viewmodel\\pdfexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,46 +49,127 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PDFExporter.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\PDFExporter.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\ViewModel\\PDFExporter.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\PDFExporter.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\ViewModel\\PDFExporter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ServiceOptions.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\ServiceOptions.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\Model\\ServiceOptions.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\Model\\ServiceOptions.cs",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\Model\\ServiceOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T00:58:07.189Z",
+              "WhenOpened": "2024-12-10T14:31:21.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dbo.Orders [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/BenjaminDB/True/SqlTable/dbo.Orders.sql",
+              "ToolTip": "dbo.Orders [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-10T14:29:17.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\App.xaml.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\App.xaml.cs",
+              "RelativeToolTip": "LSM_prototype\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T14:25:38.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\App.xaml",
+              "RelativeDocumentMoniker": "LSM_prototype\\App.xaml",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\App.xaml",
+              "RelativeToolTip": "LSM_prototype\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-10T14:25:33.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManageOrdersView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml.cs",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAADwv0YAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T12:46:17.866Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "OrderWindowView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\OrderWindowView.xaml.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\View\\OrderWindowView.xaml.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\OrderWindowView.xaml.cs",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\View\\OrderWindowView.xaml.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAswEEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T08:18:15.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "ManageOrdersView.xaml",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
               "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
               "RelativeToolTip": "LSM_prototype\\MVVM\\View\\ManageOrdersView.xaml",
-              "ViewState": "AgIAANIBAAAAMDMzMzMbwPEBAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-04T00:41:00.168Z",
+              "WhenOpened": "2024-12-10T12:40:31.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\OrderWindowViewModel.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\ViewModel\\OrderWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\OrderWindowViewModel.cs",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\ViewModel\\OrderWindowViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T09:39:58.316Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ManageOrdersViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
-              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
-              "ToolTip": "C:\\Users\\israel\\Desktop\\BenjaminProj\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
-              "RelativeToolTip": "LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
-              "ViewState": "AgIAALsAAAAAAgAAAAAqwMcAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T00:40:02.129Z",
+              "Title": "OrderWindowView.xaml",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\OrderWindowView.xaml",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\View\\OrderWindowView.xaml",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\View\\OrderWindowView.xaml",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\View\\OrderWindowView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-08T09:39:33.73Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ManageOrdersViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
+              "RelativeDocumentMoniker": "LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
+              "ToolTip": "C:\\Users\\Andre\\source\\repos\\LSM-System\\prototype V2\\LSM_prototype\\LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
+              "RelativeToolTip": "LSM_prototype\\MVVM\\ViewModel\\ManageOrdersViewModel.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAcwO8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T08:57:48.632Z"
             }
           ]
         }

@@ -14,8 +14,8 @@ namespace LSM_prototype.MVVM.Model
 
         public string Status { get; set; } = string.Empty;
         public string Employee { get; set; } = string.Empty;
+        public string DeviceType { get; set; } = string.Empty;
         public string DeviceName { get; set; } = string.Empty;
-        public string Problem { get; set; } = string.Empty;
         public string OtherNotes { get; set; } = string.Empty;
         public string CustName { get; set; } = string.Empty;
         public string CustEmail { get; set; } = string.Empty;

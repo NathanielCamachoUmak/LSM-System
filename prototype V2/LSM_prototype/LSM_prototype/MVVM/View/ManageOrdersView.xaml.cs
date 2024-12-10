@@ -42,11 +42,28 @@ namespace LSM_prototype.MVVM.View
             {
                 viewModel.ETAValue();
                 viewModel.CalculateTotal();
-                viewModel.DiscountCheckbox = true;
             }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.CheckBox checkBox && this.DataContext is ManageOrdersViewModel viewModel)
+            {
+                viewModel.ETAValue();
+                viewModel.CalculateTotal();
+            }
+        }
+        private void CheckBox_Checked2(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.CheckBox checkBox && this.DataContext is ManageOrdersViewModel viewModel)
+            {
+                viewModel.ETAValue();
+                viewModel.CalculateTotal();
+                viewModel.DiscountCheckbox = true;
+            }
+        }
+
+        private void CheckBox_Unchecked2(object sender, RoutedEventArgs e)
         {
             if (sender is System.Windows.Controls.CheckBox checkBox && this.DataContext is ManageOrdersViewModel viewModel)
             {
