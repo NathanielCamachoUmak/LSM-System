@@ -13,8 +13,40 @@
                 <ResourceDictionary Source="Theme/InputTextBox1.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <DataTemplate DataType="{x:Type viewModel:Analytics1ViewModel}">
+                <view:Analytics1View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:Analytics2ViewModel}">
+                <view:Analytics2View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:Analytics3ViewModel}">
+                <view:Analytics3View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:Analytics4ViewModel}">
+                <view:Analytics4View/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddOrdersViewModel}">
+                <view:AddOrdersView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:ManageOrdersViewModel}">
                 <view:ManageOrdersView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:OngoingOrdersViewModel}">
+                <view:OngoingOrdersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CompletedOrdersViewModel}">
+                <view:CompletedOrdersView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CancelledOrdersViewModel}">
+                <view:CancelledOrdersView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">

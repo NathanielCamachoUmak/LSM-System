@@ -175,6 +175,8 @@
                         <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
 
@@ -196,37 +198,222 @@
 
                     <StackPanel Background="Black" Grid.Column="1"/>
 
-                    <ToggleButton Name="Ord_btn"
-                                  Content="ORDERS"
-                                  Height="50"
-                                  FontSize="14"
-                                  Grid.Column="2"
-                                  FontWeight="Black"
-                                  HorizontalAlignment="Stretch"
-                                  Style="{StaticResource MenuButtonTheme}"
-                                  Command="{Binding ManageOrdersViewCommand}"
-                                  Checked="ToggleButton_Checked"/>
+                    <Border Grid.Column="2" Name="Analytics_Expander" Margin="-2,0,-2,0"
+                            Background="#FFEA8B00" BorderThickness="2,0,2,0" BorderBrush="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton Name="Analytics_btn"
+                                          Command="{Binding HomeViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Unchecked="Analytics_Expander_Unchecked"
+                                          Checked="Analytics_Expander_Checked"
+                                          LostFocus="Analytics_Expander_Unchecked"
+                                          HorizontalAlignment="Stretch"
+                                          BorderThickness="0"
+                                          FontWeight="Black"
+                                          Content="ANALYTICS"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="1"/>
+
+                            <ToggleButton Name="Analytics1_btn"
+                                          Command="{Binding Analytics2ViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="DEVICE TYPE OVERVIEW"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="2"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="3"/>
+
+                            <ToggleButton Name="Analytics2_btn"
+                                          Command="{Binding Analytics3ViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="SERVICE TYPE OVERVIEW"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="4"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="5"/>
+
+                            <ToggleButton Name="Analytics3_btn"
+                                          Command="{Binding Analytics4ViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="EMPLOYEE OVERVIEW"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="6"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="7"/>
+
+                            <ToggleButton Name="Analytics4_btn"
+                                          Command="{Binding Analytics1ViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="ORDERS &amp; REVENUE"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="8"
+                                          Height="50"/>
+                        </Grid>
+
+                    </Border>
 
                     <StackPanel Background="Black" Grid.Column="3"/>
+
+                    <Border Grid.Column="4" Name="Orders_Expander" Margin="-2,0,-2,0"
+                            Background="#FFEA8B00" BorderThickness="2,0,2,0" BorderBrush="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="2"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton Name="Orders_Expander_btn"
+                                          Command="{Binding HomeViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Unchecked="Orders_Expander_Unchecked"
+                                          Checked="Orders_Expander_Checked"
+                                          LostFocus="Orders_Expander_Unchecked"
+                                          HorizontalAlignment="Stretch"
+                                          BorderThickness="0"
+                                          FontWeight="Black"
+                                          Content="MANAGE ORDERS"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="1"/>
+
+                            <ToggleButton Name="Add_Orders_btn"
+                                          Command="{Binding AddOrdersViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="ADD ORDERS"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="2"
+                                          Height="50"/>
+                        
+                            <StackPanel Background="Black" Height="2" Grid.Row="3"/>
+
+                            <ToggleButton Name="All_Orders_btn"
+                                          Command="{Binding ManageOrdersViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="ALL ORDERS"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="4"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="5"/>
+
+                            <ToggleButton Name="Ongoing_Orders_btn"
+                                          Command="{Binding OngoingOrdersViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="ONGOING ORDERS"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="6"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="7"/>
+
+                            <ToggleButton Name="Completed_Orders_btn"
+                                          Command="{Binding CompletedOrdersViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="COMPLETE ORDERS"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="8"
+                                          Height="50"/>
+
+                            <StackPanel Background="Black" Height="2" Grid.Row="9"/>
+
+                            <ToggleButton Name="Cancelled_Orders_btn"
+                                          Command="{Binding CancelledOrdersViewCommand}"
+                                          Style="{StaticResource MenuButtonTheme}"
+                                          Checked="ToggleButton_Checked"
+                                          HorizontalAlignment="Stretch"
+                                          Content="CANCELLED ORDERS"
+                                          FontWeight="Black"
+                                          Panel.ZIndex="0"
+                                          FontSize="14"
+                                          Grid.Row="10"
+                                          Height="50"/>
+                        </Grid>
+
+                    </Border>
+
+                    <StackPanel Background="Black" Grid.Column="5"/>
 
                     <ToggleButton Name="Inv_btn"
                                   Content="INVENTORY"
                                   Height="50"
                                   FontSize="14"
-                                  Grid.Column="4"
+                                  Grid.Column="6"
                                   FontWeight="Black"
                                   HorizontalAlignment="Stretch"
                                   Style="{StaticResource MenuButtonTheme}"
                                   Command="{Binding InventoryViewCommand}"
                                   Checked="ToggleButton_Checked"/>
 
-                    <StackPanel Background="Black" Grid.Column="5"/>
+                    <StackPanel Background="Black" Grid.Column="7"/>
 
                     <ToggleButton Name="Acc_btn"
                                   Content="ACCOUNTS"
                                   Height="50"
                                   FontSize="14"
-                                  Grid.Column="6"
+                                  Grid.Column="8"
                                   FontWeight="Black"
                                   HorizontalAlignment="Stretch"
                                   Style="{StaticResource MenuButtonTheme}"
@@ -237,20 +424,20 @@
                                   Content="MY ACCOUNT"
                                   Height="50"
                                   FontSize="14"
-                                  Grid.Column="6"
+                                  Grid.Column="8"
                                   FontWeight="Black"
                                   HorizontalAlignment="Stretch"
                                   Style="{StaticResource MenuButtonTheme}"
                                   Command="{Binding MyAccountsViewCommand}"
                                   Checked="ToggleButton_Checked"/>
 
-                    <StackPanel Background="Black" Grid.Column="7"/>
+                    <StackPanel Background="Black" Grid.Column="9"/>
 
                     <ToggleButton Name="Logout"
                                   Content="LOGOUT"
                                   Height="50"
                                   FontSize="14"
-                                  Grid.Column="8"
+                                  Grid.Column="10"
                                   FontWeight="Black"
                                   HorizontalAlignment="Stretch"
                                   Background="#ed5d5d"
@@ -264,7 +451,8 @@
                         Background="#CCEA8B00"
                         Margin="10"
                         Padding="25"
-                        CornerRadius="50">
+                        CornerRadius="50"
+                        Panel.ZIndex="-1">
                     <Viewbox VerticalAlignment="Top"
                              Margin="5">
                         <ContentControl Content="{Binding CurrentView}"/>

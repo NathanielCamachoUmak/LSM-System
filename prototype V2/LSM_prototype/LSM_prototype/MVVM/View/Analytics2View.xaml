@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="LSM_prototype.MVVM.View.Analytics2View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:LSM_prototype.Core"
+             xmlns:viewmodel="clr-namespace:LSM_prototype.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             x:Name="Root">
+
+    <UserControl.Resources>
+        <local:RectConverter x:Key="RectConverter"/>
+        <local:ColumnWidthConverter x:Key="ColumnWidthConverter"/>
+    </UserControl.Resources>
+
+    <Border Height="auto"
+            Background="White"
+            CornerRadius="25"
+            Padding="15">
+        <Grid Height="500" Width="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--table-->
+            <DataGrid ItemsSource="{Binding DeviceTypeCountCollection}"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Visible"
+                      VirtualizingPanel.ScrollUnit="Pixel"
+                      CanUserResizeColumns="False"
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="True"
+                      CanUserDeleteRows="False"
+                      CanUserAddRows="False"
+                      BorderThickness="0"
+                      RowHeaderWidth="0"
+                      Margin="-15,-15,0,-15"
+                      x:Name="ClippedBorder">
+                <DataGrid.Clip>
+                    <RectangleGeometry RadiusX="25" RadiusY="25">
+                        <RectangleGeometry.Rect>
+                            <MultiBinding Converter="{StaticResource RectConverter}">
+                                <Binding ElementName="ClippedBorder" Path="ActualWidth"/>
+                                <Binding ElementName="ClippedBorder" Path="ActualHeight"/>
+                            </MultiBinding>
+                        </RectangleGeometry.Rect>
+                    </RectangleGeometry>
+                </DataGrid.Clip>
+                <DataGrid.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Device Type" Width="*" SortMemberPath="Key">
+                        <DataGridColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="30,10,0,10"/>
+                            </Style>
+                        </DataGridColumn.HeaderStyle>
+                        
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Key}" TextWrapping="Wrap"
+                                           FontSize="20" FontWeight="Bold"
+                                           Padding="30,0,0,0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="#" Width="auto" SortMemberPath="Value">
+                        <DataGridColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+                        </DataGridColumn.HeaderStyle>
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Value}" TextWrapping="Wrap"
+                                           FontSize="20" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--graph-->
+            <Grid Grid.Column="1">
+                <lc:CartesianChart x:Name="MyChart" Series="{Binding SeriesCollection}">
+                    <lc:CartesianChart.AxisX>
+                        <lc:Axis Title="Device Type" Labels="{Binding Labels}">
+                            <lc:Axis.Separator>
+                                <lc:Separator Step="1"/>
+                            </lc:Axis.Separator>
+                        </lc:Axis>
+                    </lc:CartesianChart.AxisX>
+
+                    <lc:CartesianChart.AxisY>
+                        <lc:Axis Title="Order Count">
+                            <lc:Axis.Separator>
+                                <lc:Separator Step="1" />
+                            </lc:Axis.Separator>
+                        </lc:Axis>
+                    </lc:CartesianChart.AxisY>
+                </lc:CartesianChart>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+

@@ -10,6 +10,27 @@
     <Compile Update="MVVM\View\AccountsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\AddOrdersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\Analytics1View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\Analytics2View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\Analytics3View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\Analytics4View.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\CancelledOrdersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\CompletedOrdersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,6 +41,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\ManageOrdersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\OngoingOrdersView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\OrderWindowView.xaml.cs">
@@ -36,6 +60,27 @@
     <Page Update="MVVM\View\AccountsView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\AddOrdersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Analytics1View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Analytics2View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Analytics3View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Analytics4View.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CancelledOrdersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CompletedOrdersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -46,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\ManageOrdersView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\OngoingOrdersView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\OrderWindowView.xaml">

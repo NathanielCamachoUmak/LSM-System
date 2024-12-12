@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LSM_prototype.MVVM.Model
 {
-    public class Orders
+    public class Orders : INotifyPropertyChanged
     {
         [Key]
         public int OrderID { get; set; }
@@ -20,5 +21,23 @@ namespace LSM_prototype.MVVM.Model
         public string CustName { get; set; } = string.Empty;
         public string CustEmail { get; set; } = string.Empty;
         public string CustPhoneNum { get; set; } = string.Empty;
+        public DateOnly StartDate { get; set; }
+
+        private bool _discounted;
+        public bool Discounted
+        {
+            get => _discounted;
+            set
+            {
+                _discounted = value;
+                OnPropertyChanged(nameof(Discounted));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -35,17 +35,14 @@ namespace LSM_prototype
             {
                 Acc_btn.Visibility = Visibility.Collapsed;
                 MyAcc_btn.Visibility = Visibility.Visible;
+                Analytics_Expander.Visibility = Visibility.Collapsed;
             }
             else if (User[0].AccessLevel == "Admin")
             {
                 Acc_btn.Visibility = Visibility.Visible;
                 MyAcc_btn.Visibility = Visibility.Collapsed;
+                Analytics_Expander.Visibility = Visibility.Visible;
             }
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -84,13 +81,57 @@ namespace LSM_prototype
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (var button in new[] { Ord_btn, Inv_btn, Acc_btn, MyAcc_btn, Logout })
+            foreach (var button in new[] { Analytics_btn, Analytics1_btn,
+                                           Analytics2_btn, Analytics3_btn, 
+                                           Analytics4_btn, Orders_Expander_btn, 
+                                           Add_Orders_btn, All_Orders_btn, 
+                                           Ongoing_Orders_btn, Completed_Orders_btn, 
+                                           Cancelled_Orders_btn, Inv_btn, Acc_btn,
+                                           MyAcc_btn, Logout })
             {
                 if (button != sender && button.IsChecked == true)
                 {
                     button.IsChecked = false;
                 }
             }
+        }
+
+        private void Orders_Expander_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (var button in new[] { Orders_Expander_btn, Inv_btn, Acc_btn, MyAcc_btn, Logout })
+            {
+                if (button != sender && button.IsChecked == true)
+                {
+                    button.IsChecked = false;
+                }
+            }
+            Orders_Expander.Margin = new Thickness(-2, 0, -2, -258);
+            Orders_Expander.BorderThickness = new Thickness(2, 0, 2, 2);
+        }
+
+        private void Orders_Expander_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Orders_Expander.Margin = new Thickness(-2, 0, -2, 0);
+            Orders_Expander.BorderThickness = new Thickness(2, 0, 2, 0);
+        }
+
+        private void Analytics_Expander_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (var button in new[] { Analytics_btn, Inv_btn, Acc_btn, MyAcc_btn, Logout })
+            {
+                if (button != sender && button.IsChecked == true)
+                {
+                    button.IsChecked = false;
+                }
+            }
+            Analytics_Expander.Margin = new Thickness(-2, 0, -2, -206);
+            Analytics_Expander.BorderThickness = new Thickness(2, 0, 2, 2);
+        }
+
+        private void Analytics_Expander_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Analytics_Expander.Margin = new Thickness(-2, 0, -2, 0);
+            Analytics_Expander.BorderThickness = new Thickness(2, 0, 2, 0);
         }
     }
 }

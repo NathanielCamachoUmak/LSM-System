@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="LSM_prototype.MVVM.View.Analytics1View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:LSM_prototype.Core"
+             xmlns:viewmodel="clr-namespace:LSM_prototype.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             x:Name="Root">
+
+    <UserControl.Resources>
+        <local:RectConverter x:Key="RectConverter"/>
+        <local:ColumnWidthConverter x:Key="ColumnWidthConverter"/>
+    </UserControl.Resources>
+
+    <Border Height="auto"
+                Background="White"
+                CornerRadius="25"
+                Padding="15">
+        <Grid Height="500" Width="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="ORDERS" Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="30" FontWeight="Bold"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                    <TextBlock Text="Total Orders: " Margin="0,5,0,0"
+                               FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Orders.Count}"
+                               VerticalAlignment="Bottom"
+                               FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+
+                <!--graph-->
+                <Grid Grid.Row="2">
+                    <lc:PieChart x:Name="MyPieChart1"
+                                 Series="{Binding PieChart1}"
+                                 LegendLocation="Bottom" FontSize="20" FontWeight="Bold"/>
+                </Grid>
+            </Grid>
+
+            <StackPanel Background="Black" Grid.Column="1" Margin="0,-15,0,-15"/>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="REVENUE" Grid.ColumnSpan="3"
+                           Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="30" FontWeight="Bold"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                    <TextBlock Text="Total Revenue (after tax): " Margin="0,5,0,0"
+                               FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding RevenueCollection}"
+                               VerticalAlignment="Bottom"
+                               FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+
+                <!--graph-->
+                <Grid Grid.Row="2">
+                    <lc:PieChart x:Name="MyPieChart2"
+                                 Series="{Binding PieChart2}"
+                                 LegendLocation="Bottom" FontSize="20" FontWeight="Bold"/>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>
+

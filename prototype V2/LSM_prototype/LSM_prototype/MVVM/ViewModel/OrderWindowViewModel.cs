@@ -1,4 +1,5 @@
-﻿using iText.Layout.Borders;
+﻿using iText.Commons.Bouncycastle.Asn1.X509;
+using iText.Layout.Borders;
 using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
 using System.Collections.ObjectModel;
@@ -302,7 +303,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
             }
 
-            if (DiscountCheckbox == true)
+            if (OrderDetails.Discounted == true)
             {
                 discount = 0.20m;
             }
@@ -383,6 +384,14 @@ namespace LSM_prototype.MVVM.ViewModel
 
                 // Step 5: Add the list of selected items to the database
                 context.SelectableItem.AddRange(newSelectedItems);
+
+                //
+                // UNFINISHED
+                //
+                if (OrderDetails.Status == "Complete")
+                {
+                    //if order is complete, decrement used components from inventory
+                }
 
                 context.SaveChanges();
 
