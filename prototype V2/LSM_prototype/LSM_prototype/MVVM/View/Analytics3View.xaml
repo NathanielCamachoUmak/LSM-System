@@ -89,6 +89,24 @@
                 </DataGrid.Columns>
             </DataGrid>
 
+            <StackPanel Margin="-15,0,0,-15" x:Name="ClippedButton"
+                        VerticalAlignment="Bottom" >
+                <StackPanel.Clip>
+                    <RectangleGeometry RadiusX="25" RadiusY="25">
+                        <RectangleGeometry.Rect>
+                            <MultiBinding Converter="{StaticResource RectConverter}">
+                                <Binding ElementName="ClippedButton" Path="ActualWidth"/>
+                                <Binding ElementName="ClippedButton" Path="ActualHeight"/>
+                            </MultiBinding>
+                        </RectangleGeometry.Rect>
+                    </RectangleGeometry>
+                </StackPanel.Clip>
+
+                <!--button for printing or whatever, im sleepy-->
+                <Button Content="PRINT" FontSize="30" FontWeight="Black"
+                        Height="50" BorderThickness="0"/>
+            </StackPanel>
+
             <!--graph-->
             <Grid Grid.Column="1">
                 <lc:CartesianChart x:Name="MyChart" Series="{Binding SeriesCollection}">

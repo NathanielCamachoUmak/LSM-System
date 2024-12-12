@@ -19,26 +19,27 @@
                 CornerRadius="25"
                 Padding="15">
         <Grid Height="500" Width="1000">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="ORDERS" Grid.ColumnSpan="3"
-                           Grid.Row="0"
+                <TextBlock Text="ORDERS" Grid.Row="0" Grid.Column="0"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="30" FontWeight="Bold"/>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Grid.Row="1" Grid.Column="0">
                     <TextBlock Text="Total Orders: " Margin="0,5,0,0"
                                FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="{Binding Orders.Count}"
@@ -47,44 +48,52 @@
                 </StackPanel>
 
                 <!--graph-->
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" Grid.Column="0">
                     <lc:PieChart x:Name="MyPieChart1"
                                  Series="{Binding PieChart1}"
                                  LegendLocation="Bottom" FontSize="20" FontWeight="Bold"/>
                 </Grid>
-            </Grid>
 
-            <StackPanel Background="Black" Grid.Column="1" Margin="0,-15,0,-15"/>
+                <StackPanel Background="Black" Grid.Column="1" Grid.RowSpan="4" Margin="0,-15,0,-15"/>
 
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="REVENUE" Grid.ColumnSpan="3"
-                           Grid.Row="0"
+                <TextBlock Text="REVENUE" Grid.Row="0" Grid.Column="2"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="30" FontWeight="Bold"/>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2">
                     <TextBlock Text="Total Revenue (after tax): " Margin="0,5,0,0"
-                               FontSize="20" FontWeight="Bold"/>
+                                   FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="{Binding RevenueCollection}"
-                               VerticalAlignment="Bottom"
-                               FontSize="20" FontWeight="Bold"/>
+                                   VerticalAlignment="Bottom"
+                                   FontSize="20" FontWeight="Bold"/>
                 </StackPanel>
 
                 <!--graph-->
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" Grid.Column="2">
                     <lc:PieChart x:Name="MyPieChart2"
-                                 Series="{Binding PieChart2}"
-                                 LegendLocation="Bottom" FontSize="20" FontWeight="Bold"/>
+                                     Series="{Binding PieChart2}"
+                                     LegendLocation="Bottom" FontSize="20" FontWeight="Bold"/>
                 </Grid>
-            </Grid>
 
+                <StackPanel Margin="-15,0,-15,-15" x:Name="ClippedButton2"
+                            VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                    <StackPanel.Clip>
+                        <RectangleGeometry RadiusX="25" RadiusY="25">
+                            <RectangleGeometry.Rect>
+                                <MultiBinding Converter="{StaticResource RectConverter}">
+                                    <Binding ElementName="ClippedButton2" Path="ActualWidth"/>
+                                    <Binding ElementName="ClippedButton2" Path="ActualHeight"/>
+                                </MultiBinding>
+                            </RectangleGeometry.Rect>
+                        </RectangleGeometry>
+                    </StackPanel.Clip>
+
+                    <!--button for printing or whatever, im sleepy-->
+                    <Button Content="PRINT" FontSize="30" FontWeight="Black"
+                                Height="50" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>
