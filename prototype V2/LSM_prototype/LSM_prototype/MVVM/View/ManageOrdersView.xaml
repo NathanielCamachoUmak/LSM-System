@@ -63,21 +63,46 @@
                         </DataGridColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="100"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding OrderID}" Foreground="Black"
-                                               VerticalAlignment="Center" Margin="20,2.5,0,2.5"
-                                               Grid.Column="0"/>
-                                    <Button Content="Edite Order" VerticalAlignment="Center"
-                                            Margin="20,2.5,0,2.5" Grid.Column="1"
-                                            Command="{Binding ElementName=Root, Path=DataContext.OpenOrderCommand}"/>
-                                </Grid>
+                                <TextBlock Foreground="Black" FontSize="20" FontWeight="SemiBold"
+                                           VerticalAlignment="Center" Margin="20,2.5,0,2.5" Text="{Binding OrderID}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
+                    <!-- Date -->
+                    <DataGridTemplateColumn Header="Start date" Width="auto" SortMemberPath="StartDate">
+                        <DataGridColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="30,0,30,0"/>
+                            </Style>
+                        </DataGridColumn.HeaderStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartDate}" Foreground="Black" Margin="5"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- button -->
+                    <DataGridTemplateColumn Header="" Width="auto">
+                        <DataGridColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Setter Property="Padding" Value="30,0,30,0"/>
+                            </Style>
+                        </DataGridColumn.HeaderStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit Order" VerticalAlignment="Center" Margin="5"
+                                        Command="{Binding ElementName=Root, Path=DataContext.OpenOrderCommand}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
