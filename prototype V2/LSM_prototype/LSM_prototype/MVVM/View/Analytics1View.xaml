@@ -90,7 +90,7 @@
                     </StackPanel.Clip>
 
                     <!--button for printing or whatever, im sleepy-->
-                    <Button Content="PRINT" FontSize="30" FontWeight="Black"
+                    <Button Command="{Binding ElementName=Root, Path=DataContext.ExportCommand}" Content="PRINT" FontSize="30" FontWeight="Black"
                                 Height="50" BorderThickness="0"/>
                 </StackPanel>
             </Grid>

@@ -4,12 +4,15 @@ using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.View;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     internal class Analytics2ViewModel : ViewModelBase
     {
         public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
+
         public ObservableCollection<string> DeviceOptions { get; set; } = new ObservableCollection<string>
         {
             "Laptop",
@@ -98,5 +101,57 @@ namespace LSM_prototype.MVVM.ViewModel
             // Generate labels based on device types
             Labels = DeviceTypeCountCollection.Select(d => d.Key).ToList();
         }
+        private void ExportToPDF()
+        {
+            // PDF file path where the document will be saved
+            string filePath = $"..\\..\\..\\Exports\\Analytics_Device_Type.pdf";
+
+            try
+            {
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
+
+                    document.Add(new iText.Layout.Element.Paragraph("Analytics Report")
+                        .SetFontSize(24)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new iText.Layout.Element.Paragraph("Device Type Usage Analytics")
+                        .SetFontSize(18)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetUnderline());
+
+                    document.Add(new iText.Layout.Element.Paragraph("\nDevice Type Usage")
+                        .SetFontSize(16));
+
+                    var deviceTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    deviceTable.AddHeaderCell("Device Type");
+                    deviceTable.AddHeaderCell("Count");
+
+                    int totalDevices = 0;
+
+                    foreach (var deviceType in DeviceTypeCountCollection)
+                    {
+                        deviceTable.AddCell(deviceType.Key);
+                        deviceTable.AddCell(deviceType.Value.ToString());
+                        totalDevices += deviceType.Value;
+                    }
+
+                    deviceTable.AddCell("Total Devices");
+                    deviceTable.AddCell(totalDevices.ToString());
+
+                    document.Add(deviceTable);
+
+                    document.Close();
+                }
+
+                MessageBox.Show($"Analytics exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export analytics: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

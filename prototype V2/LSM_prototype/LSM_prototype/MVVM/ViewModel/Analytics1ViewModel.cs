@@ -10,6 +10,7 @@ namespace LSM_prototype.MVVM.ViewModel
 {
     internal class Analytics1ViewModel : ViewModelBase
     {
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<Orders> Orders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<ServiceOptions> SelectedServices { get; } = new ObservableCollection<ServiceOptions>();
 
@@ -131,7 +132,78 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
             };
         }
+        private void ExportToPDF()
+        {
+            // PDF file path where the document will be saved
+            string filePath = $"..\\..\\..\\Exports\\Analytics_Orders_Revenue.pdf";
 
+            try
+            {
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
 
+                    document.Add(new iText.Layout.Element.Paragraph("Analytics Report")
+                        .SetFontSize(24)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new iText.Layout.Element.Paragraph("Order and Revenue Analytics")
+                        .SetFontSize(18)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetUnderline());
+
+                    // Order Status Distribution
+                    document.Add(new iText.Layout.Element.Paragraph("\nOrder Status Distribution")
+                        .SetFontSize(16));
+
+                    var statusTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    statusTable.AddHeaderCell("Status");
+                    statusTable.AddHeaderCell("Count");
+
+                    int totalOrders = 0;
+                    foreach (var status in StatusCountCollection)
+                    {
+                        statusTable.AddCell(status.Key);
+                        statusTable.AddCell(status.Value.ToString());
+                        totalOrders += status.Value;
+                    }
+
+                    statusTable.AddCell("Total Orders");
+                    statusTable.AddCell(totalOrders.ToString());
+
+                    document.Add(statusTable);
+
+                    // Section: Revenue Breakdown
+                    document.Add(new iText.Layout.Element.Paragraph("\nRevenue Breakdown")
+                        .SetFontSize(16));
+
+                    var revenueTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    revenueTable.AddHeaderCell("Revenue Type");
+                    revenueTable.AddHeaderCell("Amount");
+
+                    decimal serviceRevenue = PieChart2[0].Values.Cast<decimal>().FirstOrDefault();
+                    decimal itemRevenue = PieChart2[1].Values.Cast<decimal>().FirstOrDefault();
+
+                    revenueTable.AddCell("Service Revenue");
+                    revenueTable.AddCell($"₱{serviceRevenue:F2}");
+
+                    revenueTable.AddCell("Item Revenue");
+                    revenueTable.AddCell($"₱{itemRevenue:F2}");
+
+                    revenueTable.AddCell("Total Revenue");
+                    revenueTable.AddCell($"₱{RevenueCollection:F2}");
+
+                    document.Add(revenueTable);
+                    
+                    document.Close();
+                }
+
+                MessageBox.Show($"Analytics exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export analytics: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

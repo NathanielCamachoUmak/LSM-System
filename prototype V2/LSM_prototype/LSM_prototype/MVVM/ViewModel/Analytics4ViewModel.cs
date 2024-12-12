@@ -9,12 +9,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     internal class Analytics4ViewModel : ViewModelBase
     {
         public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<string> EmployeeList { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<KeyValuePair<string, int>> EmployeeOrderCountCollection { get; } = new ObservableCollection<KeyValuePair<string, int>>();
 
@@ -102,5 +104,58 @@ namespace LSM_prototype.MVVM.ViewModel
             // Generate labels based on device types
             Labels = EmployeeOrderCountCollection.Select(d => d.Key).ToList();
         }
+
+        private void ExportToPDF()
+        {
+            // PDF file path where the document will be saved
+            string filePath = $"..\\..\\..\\Exports\\Analytics_Employees.pdf";
+
+            try
+            {
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
+
+                    document.Add(new iText.Layout.Element.Paragraph("Analytics Report")
+                        .SetFontSize(24)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new iText.Layout.Element.Paragraph("Employee Order Analytics")
+                        .SetFontSize(18)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetUnderline());
+
+                    document.Add(new iText.Layout.Element.Paragraph("\nEmployee Order Breakdown")
+                        .SetFontSize(16));
+
+                    var employeeTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    employeeTable.AddHeaderCell("Employee Name");
+                    employeeTable.AddHeaderCell("Order Count");
+
+                    int totalOrders = 0;
+
+                    foreach (var employee in EmployeeOrderCountCollection)
+                    {
+                        employeeTable.AddCell(employee.Key);
+                        employeeTable.AddCell(employee.Value.ToString());
+                        totalOrders += employee.Value;
+                    }
+
+                    employeeTable.AddCell("Total Orders");
+                    employeeTable.AddCell(totalOrders.ToString());
+
+                    document.Add(employeeTable);
+
+                    document.Close();
+                }
+
+                MessageBox.Show($"Analytics exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export analytics: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

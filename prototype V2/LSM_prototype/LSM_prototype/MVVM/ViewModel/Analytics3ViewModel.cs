@@ -9,12 +9,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
 {
     internal class Analytics3ViewModel : ViewModelBase
     {
         public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
+        public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
         public ObservableCollection<string> ServicesOptions { get; set; } = new ObservableCollection<string>
         {
             "Repair",
@@ -102,5 +104,58 @@ namespace LSM_prototype.MVVM.ViewModel
             // Generate labels based on device types
             Labels = ServiceTypeCountCollection.Select(d => d.Key).ToList();
         }
+
+        private void ExportToPDF()
+        {
+            // PDF file path where the document will be saved
+            string filePath = $"..\\..\\..\\Exports\\Analytics_Service_Type.pdf";
+
+            try
+            {
+                using (var writer = new iText.Kernel.Pdf.PdfWriter(filePath))
+                using (var pdf = new iText.Kernel.Pdf.PdfDocument(writer))
+                {
+                    var document = new iText.Layout.Document(pdf);
+
+                    document.Add(new iText.Layout.Element.Paragraph("Analytics Report")
+                        .SetFontSize(24)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
+                    document.Add(new iText.Layout.Element.Paragraph("Service Type Analytics")
+                        .SetFontSize(18)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                        .SetUnderline());
+
+                    document.Add(new iText.Layout.Element.Paragraph("\nService Type Breakdown")
+                        .SetFontSize(16));
+
+                    var serviceTable = new iText.Layout.Element.Table(2).UseAllAvailableWidth();
+                    serviceTable.AddHeaderCell("Service Type");
+                    serviceTable.AddHeaderCell("Services Done");
+
+                    int totalServices = 0;
+
+                    foreach (var serviceType in ServiceTypeCountCollection)
+                    {
+                        serviceTable.AddCell(serviceType.Key);
+                        serviceTable.AddCell(serviceType.Value.ToString());
+                        totalServices += serviceType.Value;
+                    }
+
+                    serviceTable.AddCell("Total Services");
+                    serviceTable.AddCell(totalServices.ToString());
+
+                    document.Add(serviceTable);
+
+                    document.Close();
+                }
+
+                MessageBox.Show($"Analytics exported successfully to {filePath}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to export analytics: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }
