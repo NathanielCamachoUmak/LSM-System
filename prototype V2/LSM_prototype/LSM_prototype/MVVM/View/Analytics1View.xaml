@@ -33,7 +33,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="ORDERS" Grid.Row="0" Grid.Column="0"
+                <TextBlock Text="ORDERS THIS WEEK" Grid.Row="0" Grid.Column="0"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="30" FontWeight="Bold"/>
@@ -42,7 +42,7 @@
                             Grid.Row="1" Grid.Column="0">
                     <TextBlock Text="Total Orders: " Margin="0,5,0,0"
                                FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Orders.Count}"
+                    <TextBlock Text="{Binding OrdersList.Count}"
                                VerticalAlignment="Bottom"
                                FontSize="20" FontWeight="Bold"/>
                 </StackPanel>
@@ -56,13 +56,13 @@
 
                 <StackPanel Background="Black" Grid.Column="1" Grid.RowSpan="4" Margin="0,-15,0,-15"/>
 
-                <TextBlock Text="REVENUE" Grid.Row="0" Grid.Column="2"
+                <TextBlock Text="REVENUE THIS WEEK" Grid.Row="0" Grid.Column="2"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="30" FontWeight="Bold"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2">
-                    <TextBlock Text="Total Revenue (after tax): " Margin="0,5,0,0"
+                    <TextBlock Text="Total Revenue: " Margin="0,5,0,0"
                                    FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="{Binding RevenueCollection}"
                                    VerticalAlignment="Bottom"

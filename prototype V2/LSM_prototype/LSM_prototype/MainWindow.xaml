@@ -196,7 +196,7 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Background="Black" Grid.Column="1"/>
+                    <StackPanel Background="Black" Grid.Column="1" Name="black_bar"/>
 
                     <Border Grid.Column="2" Name="Analytics_Expander" Margin="-2,0,-2,0"
                             Background="#FFEA8B00" BorderThickness="2,0,2,0" BorderBrush="Black">

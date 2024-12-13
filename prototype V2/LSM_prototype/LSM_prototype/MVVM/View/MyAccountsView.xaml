@@ -32,119 +32,171 @@
                     <TextBlock Grid.Row="0" Text="Account Information" FontSize="48" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
+                            <RowDefinition Height="15"/>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="15"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
 
-                        <!--name-->
-                        <Grid Grid.Column="0" Grid.Row="0">
+                        <Grid Grid.Row="0" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Name:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Name}" FontSize="14" Margin="5"/>
+
+                            <!-- Name -->
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Name:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}"
+                                         Text="{Binding CurrentAccount.Name, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Name" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <!-- Gender -->
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Gender:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}"
+                                         Text="{Binding CurrentAccount.Gender, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Gender" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                <!-- Birthdate -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Birthdate:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <DatePicker Grid.Column="1" SelectedDate="{Binding CurrentAccount.Birthdate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5" />
+                                </Grid>
+
+                                <!-- age -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Age:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding CurrentAccount.Age, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
 
-                        <!--age-->
-                        <Grid Grid.Column="0" Grid.Row="1">
+                        <Grid Grid.Row="2" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Age:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Age}" FontSize="14" Margin="5"/>
+
+                            <!--Phone Number-->
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Phone #:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}"
+                                         Text="{Binding CurrentAccount.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Phone Number" VerticalAlignment="Center" PreviewTextInput="num_only"/>
+                            </Grid>
+
+                            <!--Role-->
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Role:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"
+                                         Text="{Binding CurrentAccount.AccessLevel, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Phone Number" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <!--Hire Date-->
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Hire date:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <DatePicker Grid.Column="1" SelectedDate="{Binding CurrentAccount.HireDate, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5">
+                                    <DatePicker.Resources>
+                                    </DatePicker.Resources>
+                                </DatePicker>
+                            </Grid>
                         </Grid>
 
-                        <!--gender-->
-                        <Grid Grid.Column="0" Grid.Row="2">
+                        <Grid Grid.Row="4" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Gender:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Gender}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                        <!--birthdate-->
-                        <Grid Grid.Column="0" Grid.Row="3">
-                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Birthdate:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Birthdate}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                        <!--phone num-->
-                        <Grid Grid.Column="1" Grid.Row="0">
-                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Phone #:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding SharedAccounts[0].PhoneNumber}" FontSize="14" Margin="5"/>
+
+                            <!--Email-->
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Email:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}"
+                                         Text="{Binding CurrentAccount.Email, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Email" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <!--Account ID-->
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Account ID:" FontSize="12" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}" IsReadOnly="True"
+                                         Text="{Binding CurrentAccount.EmpID, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Auto-Generated" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <!--Account Password-->
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Password:" FontSize="14" Margin="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Style="{StaticResource CustomTextBoxStyle}"
+                                         Text="{Binding CurrentAccount.EmpPW, UpdateSourceTrigger=PropertyChanged}"
+                                         FontSize="14" Margin="5" Tag="Account Password" VerticalAlignment="Center"/>
+                            </Grid>
                         </Grid>
 
-                        <!--email-->
-                        <Grid Grid.Column="1" Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Email:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Email}" FontSize="14" Margin="5"/>
                         </Grid>
 
-                        <!--hiredate-->
-                        <Grid Grid.Column="1" Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Hire date:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].HireDate}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                        <!--role-->
-                        <Grid Grid.Column="1" Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Role:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].Role}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                        <Grid Grid.Column="0" Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="ID:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].EmpID}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                        <Grid Grid.Column="1" Grid.Row="4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="PW:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                            <TextBox Grid.Column="1" Text="{Binding User[0].EmpPW}" FontSize="14" Margin="5"/>
-                        </Grid>
-
-                    </Grid>
-
-                    <StackPanel Grid.Row="4" Margin="100,0,100,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <StackPanel Grid.Row="4" Margin="100,0,100,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                         <!--save button-->
                         <Button Padding="10,10,10,10"
                                 FontWeight="Bold"

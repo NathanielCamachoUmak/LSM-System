@@ -1,5 +1,6 @@
 ﻿using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.ViewModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,6 +11,9 @@ namespace LSM_prototype.MVVM.View
     {
         private readonly OrderWindowViewModel orderVM;
 
+        public ObservableCollection<Accounts> User { get; } = CurrentUser.Instance.User;
+        public ObservableCollection<ServiceOptions> ServicesCheckbox { get; }
+
         public OrderWindowView(int orderID)
         {
             InitializeComponent();
@@ -19,6 +23,7 @@ namespace LSM_prototype.MVVM.View
 
             // Set the DataContext of the window to the ViewModel
             this.DataContext = orderVM;
+            UpdateCheckBoxHitTestVisibility();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -108,6 +113,76 @@ namespace LSM_prototype.MVVM.View
                 orderVM.CalculateTotal();
                 orderVM.DiscountCheckbox = false;
             }
+        }
+
+        private void UpdateCheckBoxVisibilityButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCheckBoxHitTestVisibility();
+        }
+
+        private void UpdateCheckBoxHitTestVisibility()
+        {
+            // enable/diable service checkbox depending on order status
+            foreach (var item in orderVM.ServicesCheckbox)
+            {
+                if (orderVM.OrderDetails.Status != "Ongoing")
+                {
+                item.IsSelectable = false;
+                }
+                else
+                {
+                    item.IsSelectable = true;
+                }
+            }
+
+            // enable/diable items checkbox depending on order status
+            foreach (var item in orderVM.ItemsCheckbox)
+            {
+                if (orderVM.OrderDetails.Status != "Ongoing")
+                {
+                    item.IsSelectable = false;
+                }
+                else
+                {
+                    item.IsSelectable = true;
+                }
+            }
+
+
+            if (orderVM.OrderDetails.Status != "Ongoing")
+            {
+                deviceBox.IsHitTestVisible = false;
+                modelBox.IsHitTestVisible = false;
+                employeeBox.IsHitTestVisible = false;
+                statusBox.IsHitTestVisible = false;
+                otherDetailsBox.IsHitTestVisible = false;
+                custNameBox.IsHitTestVisible = false;
+                custPNumBox.IsHitTestVisible = false;
+                custEmailBox.IsHitTestVisible = false;
+                discountBox.IsHitTestVisible = false;
+            }
+            else
+            {
+                deviceBox.IsHitTestVisible = true;
+                modelBox.IsHitTestVisible = true;
+                employeeBox.IsHitTestVisible = true;
+                statusBox.IsHitTestVisible = true;
+                otherDetailsBox.IsHitTestVisible = true;
+                custNameBox.IsHitTestVisible = true;
+                custPNumBox.IsHitTestVisible = true;
+                custEmailBox.IsHitTestVisible = true;
+                discountBox.IsHitTestVisible = true;
+            }
+
+            if (User[0].AccessLevel == "Admin")
+            {
+                employeeBox.IsHitTestVisible = true;
+            }
+            else
+            {
+                employeeBox.IsHitTestVisible = false;
+            }
+
         }
     }
 }

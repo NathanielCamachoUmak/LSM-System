@@ -85,11 +85,6 @@ namespace LSM_prototype.MVVM.View
             Application.Current.Shutdown();
         }
 
-        private void AgeTxtBox_preview(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
-        }
-
         private void Pnum_preview(object sender, TextCompositionEventArgs e)
         {
             e.Handled = new Regex("[^-0-9]+").IsMatch(e.Text);

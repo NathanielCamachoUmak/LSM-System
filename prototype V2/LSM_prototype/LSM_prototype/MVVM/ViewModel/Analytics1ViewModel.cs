@@ -11,7 +11,7 @@ namespace LSM_prototype.MVVM.ViewModel
     internal class Analytics1ViewModel : ViewModelBase
     {
         public RelayCommand ExportCommand => new RelayCommand(execute => ExportToPDF());
-        public ObservableCollection<Orders> Orders { get; } = new ObservableCollection<Orders>();
+        public ObservableCollection<Orders> OrdersList { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<ServiceOptions> SelectedServices { get; } = new ObservableCollection<ServiceOptions>();
 
         private ObservableCollection<KeyValuePair<string, int>> StatusCountCollection { get; } = new ObservableCollection<KeyValuePair<string, int>>();
@@ -28,22 +28,25 @@ namespace LSM_prototype.MVVM.ViewModel
         
         public void LoadOrdersFromDatabase()
         {
-            Orders.Clear();
+            OrdersList.Clear();
             StatusCountCollection.Clear();
             decimal serviceRevenue = 0;
             decimal itemRevenue = 0;
 
             using (var context = new BenjaminDbContext())
             {
+                var today = DateOnly.FromDateTime(DateTime.Now);
+                var sevenDaysAgo = today.AddDays(-7);
+
                 var itemsFromDb = context.Item?.ToList() ?? new List<Item>();
 
-                var ordersFromDb = context.Orders?.ToList() ?? new List<Orders>();
+                var ordersFromDb = context.Orders?.Where(o => o.StartDate >= sevenDaysAgo).ToList() ?? new List<Orders>();
                 foreach (var order in ordersFromDb)
                 {
-                    Orders.Add(order);
+                    OrdersList.Add(order);
                 }
 
-                var completedOrders = Orders.Where(o => o.Status == "Completed").ToList();
+                var completedOrders = OrdersList.Where(o => o.Status == "Completed").ToList();
                 foreach (var order in completedOrders)
                 {
                     var selectedServices = context.ServiceOptions.Where(s => s.OrderID == order.OrderID).ToList();
@@ -61,8 +64,9 @@ namespace LSM_prototype.MVVM.ViewModel
 
                 RevenueCollection = serviceRevenue + itemRevenue;
 
+
                 // Group orders by status and count them
-                var groupedList = context.Orders
+                var groupedList = OrdersList
                     ?.GroupBy(o => o.Status)
                     .ToDictionary(g => g.Key, g => g.Count());
 

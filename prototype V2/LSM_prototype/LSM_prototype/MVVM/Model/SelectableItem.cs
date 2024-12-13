@@ -30,6 +30,19 @@ namespace LSM_prototype.MVVM.Model
             }
         }
 
+
+        private bool _isSelectable = true;
+        [NotMapped]
+        public bool IsSelectable
+        {
+            get => _isSelectable;
+            set
+            {
+                _isSelectable = value;
+                OnPropertyChanged(nameof(IsSelectable));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

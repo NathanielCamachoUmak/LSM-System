@@ -220,7 +220,7 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                    <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                    <ComboBox Grid.Column="1" FontSize="14" Margin="5" Name="deviceBox" 
                                                               SelectedItem="{Binding OrderDetails.DeviceType, UpdateSourceTrigger=PropertyChanged}"
                                                               ItemsSource="{Binding DeviceOptions, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </Grid>
@@ -232,7 +232,8 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Model:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                    <TextBox Grid.Column="1" Text="{Binding OrderDetails.DeviceName, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Margin="5"/>
+                                                    <TextBox Grid.Column="1" FontSize="14" Margin="5" Name="modelBox" 
+                                                             Text="{Binding OrderDetails.DeviceName, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </Grid>
 
                                                 <!--item Technician-->
@@ -242,7 +243,7 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
-                                                    <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                    <ComboBox Grid.Column="1" FontSize="14" Margin="5" Name="employeeBox"
                                                               SelectedItem="{Binding OrderDetails.Employee, UpdateSourceTrigger=PropertyChanged}"
                                                               ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </Grid>
@@ -261,7 +262,7 @@
                                                             <ColumnDefinition Width="1*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="Status: " FontSize="14" Margin="5" TextAlignment="Right" VerticalAlignment="Center"/>
-                                                        <ComboBox Grid.Column="1" FontSize="14" Margin="5"
+                                                        <ComboBox Grid.Column="1" FontSize="14" Margin="5" Name="statusBox"
                                                                   SelectedItem="{Binding OrderDetails.Status, UpdateSourceTrigger=PropertyChanged}"
                                                                   ItemsSource="{Binding ElementName=Root, Path=DataContext.StatusOptions}"/>
                                                     </Grid>
@@ -291,7 +292,7 @@
                                                               Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" Margin="0,0,5,5">
                                                     <TextBox Grid.Row="1" Text="{Binding OrderDetails.OtherNotes}" Background="Transparent"
                                                                  BorderThickness="0" Margin="0,-5,0,0" Padding="0,5,0,0" FontSize="14"
-                                                                 TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"/>
+                                                                 TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Name="otherDetailsBox"/>
                                                 </GroupBox>
 
                                                 <!--item service-->
@@ -322,6 +323,7 @@
                                                                 <ListView.ItemTemplate>
                                                                     <DataTemplate>
                                                                         <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                                  IsHitTestVisible="{Binding IsSelectable}"
                                                                                   HorizontalAlignment="Stretch" VerticalContentAlignment="Center"
                                                                                   Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
@@ -368,6 +370,7 @@
                                                         <ListView.ItemTemplate>
                                                             <DataTemplate>
                                                                 <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                          IsHitTestVisible="{Binding IsSelectable}"
                                                                           HorizontalAlignment="Stretch" VerticalContentAlignment="Center"
                                                                           Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
@@ -408,7 +411,8 @@
                                                         <ColumnDefinition Width="5*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Name:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                    <TextBox Height="25" Grid.Column="1" Text="{Binding OrderDetails.CustName}" FontSize="14" Margin="5"/>
+                                                    <TextBox Height="25" Grid.Column="1" FontSize="14" Margin="5" Name="custNameBox" 
+                                                             Text="{Binding OrderDetails.CustName}"/>
                                                 </Grid>
 
                                                 <!--customer PhoneNum-->
@@ -418,7 +422,8 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Phone #:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                    <TextBox Height="25" Grid.Column="1" Text="{Binding OrderDetails.CustPhoneNum}" FontSize="14" Margin="5"/>
+                                                    <TextBox Height="25" Grid.Column="1" FontSize="14" Margin="5" Name="custPNumBox"
+                                                             Text="{Binding OrderDetails.CustPhoneNum}"/>
                                                 </Grid>
 
                                                 <!--item Email-->
@@ -428,7 +433,8 @@
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Grid.Column="0" Text="Email:" FontSize="14" Margin="5" TextAlignment="Right"/>
-                                                    <TextBox Height="25" Grid.Column="1" Text="{Binding OrderDetails.CustEmail}" FontSize="14" Margin="5"/>
+                                                    <TextBox Height="25" Grid.Column="1" FontSize="14" Margin="5" Name="custEmailBox"
+                                                             Text="{Binding OrderDetails.CustEmail}"/>
                                                 </Grid>
 
                                             </Grid>
@@ -501,7 +507,8 @@
                                                     </Grid.ColumnDefinitions>
                                                     <CheckBox Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"
                                                               Margin="0,0,5,0" FontSize="13" FontWeight="Bold" Content="20% Discount (after tax):"
-                                                              Checked="CheckBox_Checked2" Unchecked="CheckBox_Unchecked2" IsChecked="{Binding OrderDetails.Discounted, Mode=TwoWay}"/>
+                                                              Checked="CheckBox_Checked2" Unchecked="CheckBox_Unchecked2" Name="discountBox"
+                                                              IsChecked="{Binding OrderDetails.Discounted, Mode=TwoWay}"/>
                                                     <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"
                                                                FontSize="13" FontWeight="SemiBold" Text="{Binding Discount, StringFormat=N2}"/>
                                                 </Grid>
@@ -524,6 +531,7 @@
                                             <StackPanel Grid.Column="3" VerticalAlignment="Center">
 
                                                 <Button Command="{Binding ElementName=Root, Path=DataContext.SaveCommand}"
+                                                        Click="UpdateCheckBoxVisibilityButton_Click"
                                                         Grid.Column="2" Grid.RowSpan="4"
                                                         Content="SAVE CHANGES"
                                                         Background="White"

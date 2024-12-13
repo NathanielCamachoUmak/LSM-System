@@ -17,6 +17,8 @@ namespace LSM_prototype.MVVM.ViewModel
         public string Email { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public string ID { get; set; } = string.Empty;
+        public DateTime Birthdate { get; set; }
+        public DateTime Hiredate { get; set; }
         public SecureString PW { get; set; } = new SecureString();
 
         public RelayCommand RegisterCommand => new RelayCommand(execute => Register());
@@ -25,6 +27,8 @@ namespace LSM_prototype.MVVM.ViewModel
         public RegisterViewModel()
         {
             SharedAccounts = AccountsData.Instance.SharedAccounts;
+            Birthdate = DateTime.Now;
+            Hiredate = DateTime.Now;
         }
 
         public void Register()
@@ -34,35 +38,33 @@ namespace LSM_prototype.MVVM.ViewModel
 
             // Checks if the inputs are valid
             if (!ValidateInputs())
-            {
-                MessageBox.Show("Please correct the invalid fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
+            
+            do
+            {
+                ID = GenerateEmpID();
             }
-
-            // Assign AccessLevel based on the number of accounts in the database you get the drill
-            string accessLevel = SharedAccounts.Count == 0 ? "Admin" : "User";
+            while (!IsEmpIDUnique(ID));
 
             // Add the new account to the SharedAccounts and database
             var newAccount = new Accounts
             {
                 Name = Name,
-                Age = int.Parse(Age),
                 Gender = Gender,
                 PhoneNumber = PNum,
                 Email = Email,
-                Role = Role,
-                EmpID = ID.Trim(),
+                EmpID = ID,
                 EmpPW = PW.ToUnsecureString(),
-                Birthdate = "XX/XX/XXXX", // Replace with actual value if available
-                HireDate = "XX/XX/XXXX", // Replace with actual value if available
-                AccessLevel = accessLevel
+                Birthdate = Birthdate,
+                HireDate = Hiredate,
+                AccessLevel = "Admin"
             };
 
             SharedAccounts.Add(newAccount);
 
             AccountsData.Instance.SaveChangesToDatabase(); // Save changes to the database
 
-            MessageBox.Show("Registration successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"Registration successful!\nEmployee ID: {newAccount.EmpID}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
             LoginView loginWindow = new LoginView();
             Application.Current.MainWindow = loginWindow;
@@ -72,40 +74,65 @@ namespace LSM_prototype.MVVM.ViewModel
                 .OfType<RegisterView>()
                 .FirstOrDefault()?.Close();
         }
+        public string GenerateEmpID()
+        {
+            Random random = new Random();
+
+            // Generate a random letter (A-Z)
+            char letter = (char)random.Next('A', 'Z' + 1);
+
+            // Generate an 8-digit random number
+            int number = random.Next(10000000, 100000000); // Ensures the number has 8 digits
+
+            // Combine the letter and number to create the EmpID
+            return $"{letter}{number}";
+        }
+
+        public bool IsEmpIDUnique(string empID)
+        {
+            using (var context = new BenjaminDbContext())
+            {
+                // Check if the EmpID already exists in the database
+                return !context.Accounts.Any(a => a.EmpID == empID);
+            }
+        }
 
         private bool ValidateInputs()
         {
             // Validate Name
             if (string.IsNullOrWhiteSpace(Name))
+            {
+                MessageBox.Show($"Invalid name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
-
-            // Validate Age (must be a valid positive number)
-            if (!int.TryParse(Age, out int age) || age <= 0)
-                return false;
+            }
 
             // Validate Gender
             if (string.IsNullOrWhiteSpace(Gender))
+            {
+                MessageBox.Show($"Invalid gender!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
 
             // Validate Phone Number (basic numeric check, can be expanded)
             if (string.IsNullOrWhiteSpace(PNum) || !Regex.IsMatch(PNum, @"^\d+$"))
+            {
+                MessageBox.Show($"Invalid phone number!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
 
             // Validate Email (simple regex for email structure)
             if (string.IsNullOrWhiteSpace(Email) || !Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show($"Invalid password!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
-
-            // Validate Role
-            if (string.IsNullOrWhiteSpace(Role))
-                return false;
-
-            // Validate EmpID
-            if (string.IsNullOrWhiteSpace(ID))
-                return false;
+            }
 
             // Validate Password (must not be empty)
             if (PW == null || PW.Length == 0)
+            {
+                MessageBox.Show($"Invalid password!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
 
             return true;
         }

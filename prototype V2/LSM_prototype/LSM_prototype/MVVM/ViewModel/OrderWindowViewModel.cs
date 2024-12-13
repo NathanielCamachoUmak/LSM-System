@@ -37,6 +37,8 @@ namespace LSM_prototype.MVVM.ViewModel
             new ServiceOptions { Name = "Maintenance", DurationValue = 3, DurationText = "3 days", Price = 500.00m }
         };
         public ObservableCollection<SelectableItem> ItemsCheckbox { get; set; } = new ObservableCollection<SelectableItem>();
+        public bool CanModifyOrder => OrderDetails?.Status != "Ongoing";
+
 
         private int _totalDuration;
         public int TotalDuration
@@ -329,77 +331,113 @@ namespace LSM_prototype.MVVM.ViewModel
 
             using (var context = new BenjaminDbContext())
             {
-                context.Orders.Update(OrderDetails);
-
-                // Step 1: Retrieve the selected services that match the current OrderID
+                // Step 1: Retrieve and delete existing services for the current OrderID
                 var servicesToRemove = context.ServiceOptions.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
-
-                // Step 2: Delete the selected services that match the current OrderID
                 context.ServiceOptions.RemoveRange(servicesToRemove);
 
-                // Step 3: Put the selected services into a list and add to the database
+                // Step 2: Add the selected services to the database
                 var newSelectedServices = ServicesCheckbox.Where(s => s.IsSelected)
-                                          .Select(service => new ServiceOptions
-                                          {
-                                              OrderID = OrderDetails.OrderID, // Link to the correct order
-                                              Name = service.Name,
-                                              DurationValue = service.DurationValue,
-                                              DurationText = service.DurationText,
-                                              Price = service.Price,
-                                              IsSelected = service.IsSelected
-                                          }).ToList();
+                                              .Select(service => new ServiceOptions
+                                              {
+                                                  OrderID = OrderDetails.OrderID,
+                                                  Name = service.Name,
+                                                  DurationValue = service.DurationValue,
+                                                  DurationText = service.DurationText,
+                                                  Price = service.Price,
+                                                  IsSelected = service.IsSelected
+                                              }).ToList();
 
-                // Step 4: Check if there are any services selected
+                // Check if there are any services selected
                 if (!newSelectedServices.Any())
                 {
                     MessageBox.Show("Please select at least one service!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                // Step 5: Add the list of selected services to the database
+                // Add the selected services to the database
                 context.ServiceOptions.AddRange(newSelectedServices);
 
-
-                // Step 1: Retrieve the selected items that match the current OrderID
+                // Step 3: Retrieve and delete selected items for the current OrderID
                 var itemsToRemove = context.SelectableItem.Where(s => s.OrderID == OrderDetails.OrderID).ToList();
-
-                // Step 2: Delete the selected items that match the current OrderID
                 context.SelectableItem.RemoveRange(itemsToRemove);
 
-                // Step 3: Put the selected items into a list and add to the database
+                // Step 4: Add the selected items to the database
                 var newSelectedItems = ItemsCheckbox.Where(s => s.IsSelected)
-                                       .Select(item => new SelectableItem
-                                       {
-                                           ItemID = item.Item.ItemID,
-                                           OrderID = OrderDetails.OrderID,
-                                           IsSelected = item.IsSelected
-                                       }).ToList();
+                                               .Select(item => new SelectableItem
+                                               {
+                                                   ItemID = item.Item.ItemID,
+                                                   OrderID = OrderDetails.OrderID,
+                                                   IsSelected = item.IsSelected
+                                               }).ToList();
 
-                // Step 4: Check if there are any items selected
+                // Check if there are any items selected
                 if (!newSelectedItems.Any())
                 {
                     MessageBox.Show("Please select at least one item!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                // Step 5: Add the list of selected items to the database
+                // Add the selected items to the database
                 context.SelectableItem.AddRange(newSelectedItems);
+                context.SaveChanges();
 
-                //
-                // UNFINISHED
-                //
-                if (OrderDetails.Status == "Complete")
+                var oldStatus = context.Orders.FirstOrDefault(o => o.OrderID == OrderDetails.OrderID);
+                // If the order is completed, decrement used items from the inventory
+                if (OrderDetails.Status == "Completed" && oldStatus.Status != "Completed")
                 {
-                    //if order is complete, decrement used components from inventory
+                    // Retrieve all items associated with the completed order and marked as selected
+                    var usedItems = context.SelectableItem
+                                           .Where(s => s.OrderID == OrderDetails.OrderID && s.IsSelected)
+                                           .ToList();
+
+                    foreach (var usedItem in usedItems)
+                    {
+                        // Find the corresponding item in the Inventory
+                        var inventoryItem = context.Item.FirstOrDefault(i => i.ItemID == usedItem.ItemID);
+
+                        if (inventoryItem != null)
+                        {
+                            if (inventoryItem.Stock >= 1)
+                            {
+                                inventoryItem.Stock -= 1;
+                            }
+                            else
+                            {
+                                context.SelectableItem.Remove(usedItem);
+                                MessageBox.Show($"Insufficient stock for item: {inventoryItem.Name}",
+                                                "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
+                        else
+                        {
+                            context.SelectableItem.Remove(usedItem);
+                            MessageBox.Show($"Item not found in inventory: ID {usedItem.ItemID}",
+                                            "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
                 }
 
                 context.SaveChanges();
 
                 MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+
+
+            using (var context = new BenjaminDbContext())
+            {
+                var employeeAccount = context.Accounts.FirstOrDefault(a => a.Name == OrderDetails.Employee);
+
+                OrderDetails.AccountID = employeeAccount.AccountID;
+
+                context.Orders.Update(OrderDetails);
+                context.SaveChanges();
+            }
+
             ETAValue();
             CalculateTotal();
+            OrderReciever(OrderDetails.OrderID);
         }
+
 
         private void ExportToPDF()
         {

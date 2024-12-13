@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LSM_prototype.MVVM.View
 {
@@ -30,6 +32,11 @@ namespace LSM_prototype.MVVM.View
                     row2.Height = new GridLength(9, GridUnitType.Star);
                 }
             }
+        }
+
+        private void num_only(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^.0-9]+").IsMatch(e.Text);
         }
     }
 }

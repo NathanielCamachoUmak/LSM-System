@@ -4,23 +4,26 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Grid Background="{TemplateBinding Background}">
-                        <!-- Main TextBox Content Host -->
-                        <ScrollViewer x:Name="PART_ContentHost"
-                                  Margin="0"
-                                  VerticalAlignment="Center"
-                                  Padding="5,0,0,0" />
+                    <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                            BorderBrush="Gray">
+                        <Grid Background="{TemplateBinding Background}">
+                            <!-- Main TextBox Content Host -->
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="0"
+                                          VerticalAlignment="Center"
+                                          Padding="5,0,0,0" />
 
-                        <!-- Placeholder Text (TextBlock) -->
-                        <TextBlock x:Name="PlaceholderText"
-                               Text="{TemplateBinding Tag}"
-                               Foreground="LightGray"
-                               IsHitTestVisible="False"
-                               Margin="5,0,0,0"
-                               VerticalAlignment="Center"
-                               Visibility="Collapsed"
-                               FontSize="{TemplateBinding FontSize}" />
-                    </Grid>
+                            <!-- Placeholder Text (TextBlock) -->
+                            <TextBlock x:Name="PlaceholderText"
+                                       Text="{TemplateBinding Tag}"
+                                       Foreground="LightGray"
+                                       IsHitTestVisible="False"
+                                       Margin="5,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Visibility="Collapsed"
+                                       FontSize="{TemplateBinding FontSize}" />
+                        </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <!-- Show Placeholder when TextBox is empty -->
                         <Trigger Property="Text" Value="">

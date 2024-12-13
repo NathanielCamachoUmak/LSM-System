@@ -30,6 +30,7 @@ namespace LSM_prototype.MVVM.ViewModel
             "Game Console",
             "Others"
         };
+        public ObservableCollection<Accounts> User { get; } = CurrentUser.Instance.User;
 
         //for the checkbox
         public ObservableCollection<ServiceOptions> ServicesCheckbox { get; set; } = new ObservableCollection<ServiceOptions>
@@ -160,6 +161,10 @@ namespace LSM_prototype.MVVM.ViewModel
             LoadOrdersFromDatabase();
             PopulateAccountsOptions();
             LoadItemsFromDatabase();
+            if (User[0].AccessLevel != "Admin")
+            {
+                NewOrder.Employee = User[0].Name;
+            }
         }
 
         private Orders _selectedItem;
@@ -223,6 +228,8 @@ namespace LSM_prototype.MVVM.ViewModel
             // Add the new order to the database
             using (var context = new BenjaminDbContext())
             {
+                var employeeAccount = context.Accounts.FirstOrDefault(a => a.Name == NewOrder.Employee);
+
                 var newOrder = new Orders
                 {
                     DeviceType = NewOrder.DeviceType,
@@ -235,7 +242,7 @@ namespace LSM_prototype.MVVM.ViewModel
                     CustEmail = NewOrder.CustEmail,
                     StartDate = DateOnly.FromDateTime(DateTime.Now),
                     Discounted = NewOrder.Discounted,
-                    AccountID = SelectedAccount?.AccountID ?? 0
+                    AccountID = employeeAccount.AccountID
                 };
 
                 context.Orders.Add(newOrder);

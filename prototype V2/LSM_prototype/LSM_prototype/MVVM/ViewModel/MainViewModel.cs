@@ -229,6 +229,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
                 else
                 {
+                    InventoryVM.LoadItemsFromDatabase();
                     CurrentView = InventoryVM;
                 }
             });
@@ -242,6 +243,7 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
                 else
                 {
+                    AccountsVM.LoadAccountsFromDatabase();
                     CurrentView = AccountsVM;
                 }
             });

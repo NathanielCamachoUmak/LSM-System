@@ -109,9 +109,16 @@
 
             <!--graph-->
             <Grid Grid.Column="1">
-                <lc:CartesianChart x:Name="MyChart" Series="{Binding SeriesCollection}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="TOTAL ORDERS PER SERVICE TYPE" FontSize="35" FontWeight="Black" HorizontalAlignment="Center"/>
+
+                <lc:CartesianChart Grid.Row="1" x:Name="MyChart" Series="{Binding SeriesCollection}">
                     <lc:CartesianChart.AxisX>
-                        <lc:Axis Title="Device Type" Labels="{Binding Labels}">
+                        <lc:Axis Title="Service Type" Labels="{Binding Labels}">
                             <lc:Axis.Separator>
                                 <lc:Separator Step="1"/>
                             </lc:Axis.Separator>

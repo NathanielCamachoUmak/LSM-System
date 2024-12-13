@@ -58,8 +58,8 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Device:" FontSize="14" Margin="5" TextAlignment="Right"/>
                                 <ComboBox Grid.Column="1" FontSize="14" Margin="5"
-                                                              SelectedItem="{Binding NewOrder.DeviceType, UpdateSourceTrigger=PropertyChanged}"
-                                                              ItemsSource="{Binding DeviceOptions, UpdateSourceTrigger=PropertyChanged}"/>
+                                          SelectedItem="{Binding NewOrder.DeviceType, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding DeviceOptions, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
 
                             <!--model-->
@@ -79,9 +79,9 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Employee Assigned:" FontSize="12" Margin="5" TextAlignment="Right" TextWrapping="Wrap"/>
-                                <ComboBox Grid.Column="1" FontSize="14" Margin="5"
-                                                  SelectedItem="{Binding NewOrder.Employee, UpdateSourceTrigger=PropertyChanged}"
-                                                  ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
+                                <ComboBox Grid.Column="1" FontSize="14" Margin="5" Name="employeeBox"
+                                          SelectedItem="{Binding NewOrder.Employee, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding AccountsOptions, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
 
                             <Grid Grid.Row="1" Grid.Column="1">

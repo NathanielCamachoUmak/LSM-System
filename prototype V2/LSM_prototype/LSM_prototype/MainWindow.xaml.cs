@@ -1,18 +1,8 @@
 ﻿using LSM_prototype.MVVM.Model;
-using LSM_prototype.MVVM.View;
 using LSM_prototype.MVVM.ViewModel;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LSM_prototype
 {
@@ -21,7 +11,7 @@ namespace LSM_prototype
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Accounts> User { get; }
+        public ObservableCollection<Accounts> User { get; } = CurrentUser.Instance.User;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,19 +19,20 @@ namespace LSM_prototype
             this.DataContext = mainvm;
 
 
-            User = CurrentUser.Instance.User;
 
             if (User[0].AccessLevel != "Admin")
             {
                 Acc_btn.Visibility = Visibility.Collapsed;
                 MyAcc_btn.Visibility = Visibility.Visible;
                 Analytics_Expander.Visibility = Visibility.Collapsed;
+                black_bar.Visibility = Visibility.Collapsed;
             }
             else if (User[0].AccessLevel == "Admin")
             {
                 Acc_btn.Visibility = Visibility.Visible;
                 MyAcc_btn.Visibility = Visibility.Collapsed;
                 Analytics_Expander.Visibility = Visibility.Visible;
+                black_bar.Visibility = Visibility.Visible;
             }
         }
 

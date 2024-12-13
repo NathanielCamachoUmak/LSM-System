@@ -8,6 +8,7 @@ namespace LSM_prototype.MVVM.ViewModel
     internal class CompletedOrdersViewModel : ViewModelBase
     {
         public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
+        public ObservableCollection<Accounts> User { get; } = CurrentUser.Instance.User;
 
         public ObservableCollection<Orders> _completedOrders = new ObservableCollection<Orders>();
         public ObservableCollection<Orders> CompletedOrders
@@ -48,12 +49,26 @@ namespace LSM_prototype.MVVM.ViewModel
         public void LoadOrdersFromDatabase()
         {
             CompletedOrders.Clear();
-            using (var context = new BenjaminDbContext())
+            if (User[0].AccessLevel == "Admin")
             {
-                var ordersFromDb = context.Orders?.Where(s => s.Status == "Completed").ToList() ?? new List<Orders>();
-                foreach (var order in ordersFromDb)
+                using (var context = new BenjaminDbContext())
                 {
-                    CompletedOrders.Add(order);
+                    var ordersFromDb = context.Orders?.ToList() ?? new List<Orders>();
+                    foreach (var order in ordersFromDb)
+                    {
+                        CompletedOrders.Add(order);
+                    }
+                }
+            }
+            else
+            {
+                using (var context = new BenjaminDbContext())
+                {
+                    var ordersFromDb = context.Orders?.Where(s => s.AccountID == User[0].AccountID && s.Status == "Completed").ToList() ?? new List<Orders>();
+                    foreach (var order in ordersFromDb)
+                    {
+                        CompletedOrders.Add(order);
+                    }
                 }
             }
         }

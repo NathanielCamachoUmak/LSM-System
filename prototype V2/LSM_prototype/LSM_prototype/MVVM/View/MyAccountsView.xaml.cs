@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LSM_prototype.MVVM.View
 {
@@ -10,6 +12,11 @@ namespace LSM_prototype.MVVM.View
         public MyAccountsView()
         {
             InitializeComponent();
+        }
+
+        private void num_only(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^-0-9]+").IsMatch(e.Text);
         }
     }
 }
