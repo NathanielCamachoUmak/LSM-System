@@ -37,8 +37,7 @@ namespace LSM_prototype.MVVM.ViewModel
             string PWinput = PW.ToUnsecureString();
 
             // Checks if the inputs are valid
-            if (!ValidateInputs())
-                return;
+            if (!ValidateInputs()) return;
             
             do
             {
@@ -46,25 +45,26 @@ namespace LSM_prototype.MVVM.ViewModel
             }
             while (!IsEmpIDUnique(ID));
 
-            // Add the new account to the SharedAccounts and database
-            var newAccount = new Accounts
+            using (var context = new BenjaminDbContext())
             {
-                Name = Name,
-                Gender = Gender,
-                PhoneNumber = PNum,
-                Email = Email,
-                EmpID = ID,
-                EmpPW = PW.ToUnsecureString(),
-                Birthdate = Birthdate,
-                HireDate = Hiredate,
-                AccessLevel = "Admin"
-            };
 
-            SharedAccounts.Add(newAccount);
+                var newAccount = new Accounts
+                {
+                    Name = Name,
+                    Gender = Gender,
+                    PhoneNumber = PNum,
+                    Email = Email,
+                    EmpID = ID,
+                    EmpPW = PW.ToUnsecureString(),
+                    Birthdate = Birthdate,
+                    HireDate = Hiredate,
+                    AccessLevel = "Admin"
+                };
 
-            AccountsData.Instance.SaveChangesToDatabase(); // Save changes to the database
-
-            MessageBox.Show($"Registration successful!\nEmployee ID: {newAccount.EmpID}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                context.Accounts.Add(newAccount);
+                context.SaveChanges();
+                MessageBox.Show($"Registration successful!\nEmployee ID: {newAccount.EmpID}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
 
             LoginView loginWindow = new LoginView();
             Application.Current.MainWindow = loginWindow;

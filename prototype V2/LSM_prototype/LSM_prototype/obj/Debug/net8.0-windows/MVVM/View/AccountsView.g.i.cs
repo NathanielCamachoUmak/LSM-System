@@ -86,7 +86,7 @@ namespace LSM_prototype.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LSM_prototype;component/mvvm/view/accountsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LSM_prototype;V1.0.0.0;component/mvvm/view/accountsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\AccountsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

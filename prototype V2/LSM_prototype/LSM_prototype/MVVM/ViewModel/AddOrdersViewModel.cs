@@ -2,6 +2,8 @@
 using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.View;
 using System.Collections.ObjectModel;
+using System.Security.Principal;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
@@ -9,7 +11,6 @@ namespace LSM_prototype.MVVM.ViewModel
     internal class AddOrdersViewModel : ViewModelBase
     {
         public RelayCommand AddCommand => new RelayCommand(execute => AddItem());
-        public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => CanSave());
         public RelayCommand OpenOrderCommand => new RelayCommand(execute => OpenOrder());
         public ObservableCollection<Orders> SharedOrders { get; } = new ObservableCollection<Orders>();
         public ObservableCollection<Accounts> SharedAccounts { get; } = new ObservableCollection<Accounts>();
@@ -203,11 +204,7 @@ namespace LSM_prototype.MVVM.ViewModel
 
         private void AddItem()
         {
-            if (!IsValidInput())
-            {
-                MessageBox.Show("there is an invalid input");
-                return;
-            }
+            if (!IsValidInput(NewOrder)) return;
 
             //lists for the items and services selected
             var selectedServices = GetSelectedServices();
@@ -291,25 +288,6 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             OrderWindowView orderWindow = new OrderWindowView(SelectedItem.OrderID);
             orderWindow.Show();
-        }
-
-        private void Save()
-        {
-            if (!SharedOrders.All(IsValidOrder)) return;
-
-            using (var context = new BenjaminDbContext())
-            {
-                foreach (var order in SharedOrders)
-                {
-                    if (order.OrderID == 0)
-                        context.Orders.Add(order);
-                    else
-                        context.Orders.Update(order);
-                }
-                context.SaveChanges();
-            }
-
-            MessageBox.Show("Changes saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private bool CanSave()
@@ -439,25 +417,64 @@ namespace LSM_prototype.MVVM.ViewModel
             Total = (SubTotal + Tax) - Discount;
         }
 
-        private bool IsValidInput()
+        private bool IsValidInput(Orders order)
         {
-            return !string.IsNullOrWhiteSpace(NewOrder.DeviceName) &&
-                   !string.IsNullOrWhiteSpace(NewOrder.CustName) &&
-                   !string.IsNullOrWhiteSpace(NewOrder.CustPhoneNum) &&
-                   //NewOrder.Status == "Ongoing" &&
-                   NewOrder.CustEmail.Contains("@");
-        }
-        private bool IsValidOrder(Orders order)
-        {
-            return !string.IsNullOrWhiteSpace(order.DeviceName) &&
-                   !string.IsNullOrWhiteSpace(order.CustName) &&
-                   !string.IsNullOrWhiteSpace(order.CustPhoneNum) &&
-                   order.CustEmail.Contains("@");
+            // Validate device type
+            if (string.IsNullOrWhiteSpace(order.DeviceType))
+            {
+                MessageBox.Show($"Invalid device type!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate device name
+            if (string.IsNullOrWhiteSpace(order.DeviceName))
+            {
+                MessageBox.Show($"Invalid device name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.Employee))
+            {
+                MessageBox.Show($"Invalid employee!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.CustName))
+            {
+                MessageBox.Show($"Invalid customer name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate Phone Number
+            if (string.IsNullOrWhiteSpace(order.CustPhoneNum) || !Regex.IsMatch(order.CustPhoneNum, @"^\d+$"))
+            {
+                MessageBox.Show($"Invalid phone number!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate Email 
+            if (string.IsNullOrWhiteSpace(order.CustEmail) || !Regex.IsMatch(order.CustEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show($"Invalid email!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void ResetNewOrderFields()
         {
             NewOrder = new Orders();
+            foreach (var service in ServicesCheckbox)
+            {
+                service.IsSelected = false;
+            }
+            foreach (var item in ItemsCheckbox)
+            {
+                item.IsSelected = false;
+            }
         }
     }
 }

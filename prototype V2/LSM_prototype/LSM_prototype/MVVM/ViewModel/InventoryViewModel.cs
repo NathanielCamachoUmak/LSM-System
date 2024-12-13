@@ -135,34 +135,30 @@ namespace LSM_prototype.MVVM.ViewModel
 
         private bool IsValidItem(Item item)
         {
-            // Check if Name is empty or whitespace
             if (string.IsNullOrWhiteSpace(item.Name))
             {
-                MessageBox.Show("Name cannot be empty.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Invalid name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            // Parse PriceInput to decimal and check if it is greater than 0
             if (!decimal.TryParse(item.PriceInput, out decimal price))
             {
-                MessageBox.Show("Invalid price input. Please enter a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Invalid price input!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (price <= 0)
             {
-                MessageBox.Show("Price must be greater than 0.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Invalid price!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            // Check if Stock is negative
             if (item.Stock < 0)
             {
-                MessageBox.Show("Stock cannot be negative.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Invalid stock!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            // If all checks pass
             return true;
         }
 

@@ -26,7 +26,11 @@ namespace LSM_prototype.MVVM.ViewModel
         public Accounts NewAccount
         {
             get => _newAccount;
-            set { _newAccount = value; OnPropertyChanged(); }
+            set
+            {
+                _newAccount = value;
+                OnPropertyChanged();
+            }
         }
 
         private Accounts? _selectedAccount;
@@ -180,6 +184,13 @@ namespace LSM_prototype.MVVM.ViewModel
                 return false;
             }
 
+            // Validate Password (must not be empty)
+            if (string.IsNullOrWhiteSpace(account.AccessLevel))
+            {
+                MessageBox.Show($"Invalid access level!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
             return true;
         }
 
@@ -209,8 +220,11 @@ namespace LSM_prototype.MVVM.ViewModel
         private void ResetNewAccountFields()
         {
             NewAccount = new Accounts();
+
             NewAccount.Birthdate = DateTime.Now;
             NewAccount.HireDate = DateTime.Now;
+
+            //HIREDATE RESETS TO 0 AFTER NEW ACCOUNT
         }
     }
 }

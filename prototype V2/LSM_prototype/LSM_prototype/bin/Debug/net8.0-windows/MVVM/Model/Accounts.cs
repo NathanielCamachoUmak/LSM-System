@@ -28,7 +28,20 @@ namespace LSM_prototype.MVVM.Model
         public string Email { get; set; } = string.Empty;
         public string EmpID { get; set; } = string.Empty;
         public string EmpPW { get; set; } = string.Empty;
-        public string AccessLevel { get; set; } = string.Empty;
+
+        private string _accessLevel;
+        public string AccessLevel
+        {
+            get { return _accessLevel; }
+            set
+            {
+                if (_accessLevel != value)
+                {
+                    _accessLevel = value;
+                    OnPropertyChanged(nameof(AccessLevel)); // Notify UI of change
+                }
+            }
+        }
 
         private DateTime _birthdate;
 
@@ -44,7 +57,20 @@ namespace LSM_prototype.MVVM.Model
                 }
             }
         }
-        public DateTime HireDate { get; set; }
+        private DateTime _hireDate { get; set; }
+
+        public DateTime HireDate
+        {
+            get => _hireDate;
+            set
+            {
+                if (_hireDate != value)
+                {
+                    _hireDate = value;
+                    OnPropertyChanged(nameof(HireDate));
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

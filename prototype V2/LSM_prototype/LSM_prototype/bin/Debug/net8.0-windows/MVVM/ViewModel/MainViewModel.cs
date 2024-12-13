@@ -27,7 +27,7 @@ namespace LSM_prototype.MVVM.ViewModel
         public Analytics2ViewModel Analytics2VM { get; set; }
         public Analytics3ViewModel Analytics3VM { get; set; }
         public Analytics4ViewModel Analytics4VM { get; set; }
-        public HomeViewModel HomeVM { get; set; }
+        public HomeView HomeVM { get; set; }
         public AddOrdersViewModel AddOrdersVM { get; set; }
         public ManageOrdersViewModel ManageOrdersVM { get; set; }
         public OngoingOrdersViewModel OngoingOrdersVM { get; set; }
@@ -60,7 +60,7 @@ namespace LSM_prototype.MVVM.ViewModel
             Analytics2VM = new Analytics2ViewModel();
             Analytics3VM = new Analytics3ViewModel();
             Analytics4VM = new Analytics4ViewModel();
-            HomeVM = new HomeViewModel();
+            HomeVM = new HomeView();
             AddOrdersVM = new AddOrdersViewModel();
             ManageOrdersVM = new ManageOrdersViewModel();
             OngoingOrdersVM = new OngoingOrdersViewModel();
@@ -154,12 +154,12 @@ namespace LSM_prototype.MVVM.ViewModel
                 }
                 else
                 {
+                    SharedAccounts.Clear();
+                    LoadAccountsFromDatabase();
                     AddOrdersVM.LoadItemsFromDatabase();
                     AddOrdersVM.PopulateAccountsOptions();
                     AddOrdersVM.LoadOrdersFromDatabase();
 
-                    SharedAccounts.Clear();
-                    LoadAccountsFromDatabase();
                     CurrentView = AddOrdersVM;
                 }
             });
@@ -297,11 +297,11 @@ namespace LSM_prototype.MVVM.ViewModel
         {
             using (var context = new BenjaminDbContext())
             {
-                // Assuming you want to load all accounts from the database again
-                var accountsFromDb = context.Accounts?.ToList() ?? new List<Accounts>();
+                // Clear existing items to avoid duplicates
+                SharedAccounts.Clear();
 
-                // Add the accounts to the SharedAccounts collection
-                foreach (var account in accountsFromDb)
+                // Add filtered items to the ObservableCollection
+                foreach (var account in context.Accounts.Where(account => account.AccessLevel == "Admin"))
                 {
                     SharedAccounts.Add(account);
                 }

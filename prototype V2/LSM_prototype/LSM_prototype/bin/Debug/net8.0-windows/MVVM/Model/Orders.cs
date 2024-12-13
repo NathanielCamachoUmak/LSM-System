@@ -7,6 +7,7 @@ namespace LSM_prototype.MVVM.Model
     public class Orders : INotifyPropertyChanged
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
 
         [ForeignKey("Accounts")]
@@ -14,8 +15,34 @@ namespace LSM_prototype.MVVM.Model
         public Accounts Accounts { get; set; }
 
         public string Status { get; set; } = string.Empty;
-        public string Employee { get; set; } = string.Empty;
-        public string DeviceType { get; set; } = string.Empty;
+
+        private string _employee;
+        public string Employee
+        {
+            get { return _employee; }
+            set
+            {
+                if (_employee != value)
+                {
+                    _employee = value;
+                    OnPropertyChanged(nameof(Employee)); // Notify UI of change
+                }
+            }
+        }
+
+        private string _deviceType;
+        public string DeviceType
+        {
+            get { return _deviceType; }
+            set
+            {
+                if (_deviceType != value)
+                {
+                    _deviceType = value;
+                    OnPropertyChanged(nameof(DeviceType)); // Notify UI of change
+                }
+            }
+        }
         public string DeviceName { get; set; } = string.Empty;
         public string OtherNotes { get; set; } = string.Empty;
         public string CustName { get; set; } = string.Empty;

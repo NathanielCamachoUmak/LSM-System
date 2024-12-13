@@ -1,6 +1,7 @@
 ﻿using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.ViewModel;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,6 +24,16 @@ namespace LSM_prototype.MVVM.View
 
             // Set the DataContext of the window to the ViewModel
             this.DataContext = orderVM;
+
+            if (User[0].AccessLevel == "Admin")
+            {
+                employeeBox.IsHitTestVisible = true;
+            }
+            else
+            {
+                employeeBox.IsHitTestVisible = false;
+            }
+
             UpdateCheckBoxHitTestVisibility();
         }
 
@@ -148,41 +159,63 @@ namespace LSM_prototype.MVVM.View
                 }
             }
 
+            if (IsValidOrder(orderVM.OrderDetails))
+            {
+                if (orderVM.OrderDetails.Status != "Ongoing")
+                {
+                    deviceBox.IsHitTestVisible = false;
+                    modelBox.IsHitTestVisible = false;
+                    employeeBox.IsHitTestVisible = false;
+                    statusBox.IsHitTestVisible = false;
+                    otherDetailsBox.IsHitTestVisible = false;
+                    custNameBox.IsHitTestVisible = false;
+                    custPNumBox.IsHitTestVisible = false;
+                    custEmailBox.IsHitTestVisible = false;
+                    discountBox.IsHitTestVisible = false;
+                    save_btn.IsEnabled = false;
+                }
+                else
+                {
+                    deviceBox.IsHitTestVisible = true;
+                    modelBox.IsHitTestVisible = true;
+                    employeeBox.IsHitTestVisible = true;
+                    statusBox.IsHitTestVisible = true;
+                    otherDetailsBox.IsHitTestVisible = true;
+                    custNameBox.IsHitTestVisible = true;
+                    custPNumBox.IsHitTestVisible = true;
+                    custEmailBox.IsHitTestVisible = true;
+                    discountBox.IsHitTestVisible = true;
+                    save_btn.IsEnabled = true;
+                }
+            }
+        }
+        public bool IsValidOrder(Orders order)
+        {
+            // Validate device type
+            if (string.IsNullOrWhiteSpace(order.DeviceType))
+                return false;
 
-            if (orderVM.OrderDetails.Status != "Ongoing")
-            {
-                deviceBox.IsHitTestVisible = false;
-                modelBox.IsHitTestVisible = false;
-                employeeBox.IsHitTestVisible = false;
-                statusBox.IsHitTestVisible = false;
-                otherDetailsBox.IsHitTestVisible = false;
-                custNameBox.IsHitTestVisible = false;
-                custPNumBox.IsHitTestVisible = false;
-                custEmailBox.IsHitTestVisible = false;
-                discountBox.IsHitTestVisible = false;
-            }
-            else
-            {
-                deviceBox.IsHitTestVisible = true;
-                modelBox.IsHitTestVisible = true;
-                employeeBox.IsHitTestVisible = true;
-                statusBox.IsHitTestVisible = true;
-                otherDetailsBox.IsHitTestVisible = true;
-                custNameBox.IsHitTestVisible = true;
-                custPNumBox.IsHitTestVisible = true;
-                custEmailBox.IsHitTestVisible = true;
-                discountBox.IsHitTestVisible = true;
-            }
+            // Validate device name
+            if (string.IsNullOrWhiteSpace(order.DeviceName))
+                return false;
 
-            if (User[0].AccessLevel == "Admin")
-            {
-                employeeBox.IsHitTestVisible = true;
-            }
-            else
-            {
-                employeeBox.IsHitTestVisible = false;
-            }
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.Employee))
+                return false;
 
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.CustName))
+                return false;
+
+            // Validate Phone Number
+            if (string.IsNullOrWhiteSpace(order.CustPhoneNum) || !Regex.IsMatch(order.CustPhoneNum, @"^\d+$"))
+                return false;
+
+            // Validate Email 
+            if (string.IsNullOrWhiteSpace(order.CustEmail) || !Regex.IsMatch(order.CustEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                return false;
+
+            return true;
         }
     }
 }

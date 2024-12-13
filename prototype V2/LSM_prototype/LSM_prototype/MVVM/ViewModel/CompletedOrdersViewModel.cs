@@ -53,7 +53,7 @@ namespace LSM_prototype.MVVM.ViewModel
             {
                 using (var context = new BenjaminDbContext())
                 {
-                    var ordersFromDb = context.Orders?.ToList() ?? new List<Orders>();
+                    var ordersFromDb = context.Orders?.Where(s => s.Status == "Completed").ToList() ?? new List<Orders>();
                     foreach (var order in ordersFromDb)
                     {
                         CompletedOrders.Add(order);

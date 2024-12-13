@@ -1,8 +1,10 @@
 ﻿using LSM_prototype.MVVM.Model;
 using LSM_prototype.MVVM.ViewModel;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LSM_prototype.MVVM.View
 {
@@ -62,6 +64,11 @@ namespace LSM_prototype.MVVM.View
                 viewModel.CalculateTotal();
                 viewModel.DiscountCheckbox = false;
             }
+        }
+
+        private void num_only(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^-0-9]+").IsMatch(e.Text);
         }
     }
 }

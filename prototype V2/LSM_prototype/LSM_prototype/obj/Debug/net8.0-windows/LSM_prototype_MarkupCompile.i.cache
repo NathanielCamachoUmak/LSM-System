@@ -16,5 +16,5 @@ C:\Users\Andre\source\repos\LSM-System\prototype V2\LSM_prototype\LSM_prototype\
 257-1902736577
 MainWindow.xaml;MVVM\View\AccountsView.xaml;MVVM\View\AddOrdersView.xaml;MVVM\View\Analytics1View.xaml;MVVM\View\Analytics2View.xaml;MVVM\View\Analytics3View.xaml;MVVM\View\Analytics4View.xaml;MVVM\View\CancelledOrdersView.xaml;MVVM\View\CompletedOrdersView.xaml;MVVM\View\HomeView.xaml;MVVM\View\InventoryView.xaml;MVVM\View\LoginView.xaml;MVVM\View\ManageOrdersView.xaml;MVVM\View\MyAccountsView.xaml;MVVM\View\OngoingOrdersView.xaml;MVVM\View\OrderWindowView.xaml;MVVM\View\RegisterView.xaml;Theme\InputTextBox1.xaml;Theme\MenuButtonTheme.xaml;Theme\TextBoxTheme.xaml;Theme\WindowButtonTheme.xaml;
 
-False
+True
 

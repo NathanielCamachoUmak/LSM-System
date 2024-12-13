@@ -3,6 +3,7 @@ using iText.Layout.Borders;
 using LSM_prototype.Core;
 using LSM_prototype.MVVM.Model;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace LSM_prototype.MVVM.ViewModel
@@ -316,12 +317,51 @@ namespace LSM_prototype.MVVM.ViewModel
             Discount = (SubTotal + Tax) * discount;
             Total = (SubTotal + Tax) - Discount;
         }
-        private bool IsValidOrder(Orders order)
+        public bool IsValidOrder(Orders order)
         {
-            return !string.IsNullOrWhiteSpace(order.DeviceName) &&
-                   !string.IsNullOrWhiteSpace(order.CustName) &&
-                   !string.IsNullOrWhiteSpace(order.CustPhoneNum) &&
-                   order.CustEmail.Contains("@");
+            // Validate device type
+            if (string.IsNullOrWhiteSpace(order.DeviceType))
+            {
+                MessageBox.Show($"Invalid device type!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate device name
+            if (string.IsNullOrWhiteSpace(order.DeviceName))
+            {
+                MessageBox.Show($"Invalid device name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.Employee))
+            {
+                MessageBox.Show($"Invalid employee!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate employee assigned
+            if (string.IsNullOrWhiteSpace(order.CustName))
+            {
+                MessageBox.Show($"Invalid customer name!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate Phone Number
+            if (string.IsNullOrWhiteSpace(order.CustPhoneNum) || !Regex.IsMatch(order.CustPhoneNum, @"^\d+$"))
+            {
+                MessageBox.Show($"Invalid phone number!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            // Validate Email 
+            if (string.IsNullOrWhiteSpace(order.CustEmail) || !Regex.IsMatch(order.CustEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show($"Invalid email!", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         //relay command methods
